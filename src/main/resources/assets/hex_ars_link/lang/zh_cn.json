@@ -1,0 +1,4 @@
+{
+  "hex_ars_link.tooltip.owner": "所有者：%s",
+  "hex_ars_link.tooltip.owner.null": "未绑定"
+}

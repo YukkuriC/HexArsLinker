@@ -61,3 +61,19 @@ mandatory = true
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+
+# hex
+[[dependencies."${mod_id}"]]
+modId = "hexcasting"
+mandatory = true
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+# ars
+[[dependencies."${mod_id}"]]
+modId = "ars_nouveau"
+mandatory = true
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"

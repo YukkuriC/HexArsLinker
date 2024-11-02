@@ -1,0 +1,4 @@
+{
+  "hex_ars_link.tooltip.owner": "Owner: %s",
+  "hex_ars_link.tooltip.owner.null": "Not binded"
+}
