@@ -1,4 +1,7 @@
 {
   "hex_ars_link.tooltip.owner": "Owner: %s",
-  "hex_ars_link.tooltip.owner.null": "Not binded"
+  "hex_ars_link.tooltip.owner.null": "Not binded",
+  "item.hex_ars_link.linker_base": "Lesser Mana Linker",
+  "item.hex_ars_link.linker_advanced": "Advanced Mana Linker",
+  "item.hex_ars_link.linker_great": "Great Mana Linker"
 }

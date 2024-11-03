@@ -1,0 +1,27 @@
+{
+  "type": "ars_nouveau:enchanting_apparatus",
+  "keepNbtOfReagent": true,
+  "output": {
+    "item": "hex_ars_link:linker_great"
+  },
+  "pedestalItems": [
+    {
+      "tag": "forge:ingots/netherite"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "tag": "forge:ingots/netherite"
+    },
+    {
+      "item": "ars_nouveau:wilden_tribute"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "hex_ars_link:linker_advanced"
+    }
+  ],
+  "sourceCost": 20000
+}

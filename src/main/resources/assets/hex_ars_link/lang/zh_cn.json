@@ -1,4 +1,7 @@
 {
   "hex_ars_link.tooltip.owner": "所有者：%s",
-  "hex_ars_link.tooltip.owner.null": "未绑定"
+  "hex_ars_link.tooltip.owner.null": "未绑定",
+  "item.hex_ars_link.linker_base": "魔力媒质链接 (中杯)",
+  "item.hex_ars_link.linker_advanced": "魔力媒质链接 (大杯)",
+  "item.hex_ars_link.linker_great": "魔力媒质链接 (超大杯)"
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "hex_ars_link:item/linker_great"
+  }
+}

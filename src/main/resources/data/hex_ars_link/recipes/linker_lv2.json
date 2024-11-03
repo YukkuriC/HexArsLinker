@@ -1,0 +1,26 @@
+{
+  "type": "ars_nouveau:enchanting_apparatus",
+  "output": {
+    "item": "hex_ars_link:linker_advanced"
+  },
+  "pedestalItems": [
+    {
+      "tag": "forge:gems/diamond"
+    },
+    {
+      "item": "minecraft:echo_shard"
+    },
+    {
+      "tag": "forge:gems/diamond"
+    },
+    {
+      "item": "minecraft:nether_star"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "hex_ars_link:linker_base"
+    }
+  ],
+  "sourceCost": 5000
+}

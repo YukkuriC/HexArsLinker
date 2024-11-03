@@ -1,0 +1,20 @@
+{
+  "type": "ars_nouveau:enchanting_apparatus",
+  "output": {
+    "item": "hex_ars_link:linker_base"
+  },
+  "pedestalItems": [
+    {
+      "tag": "forge:ingots/gold"
+    },
+    {
+      "tag": "forge:ingots/gold"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "minecraft:amethyst_shard"
+    }
+  ],
+  "sourceCost": 1000
+}

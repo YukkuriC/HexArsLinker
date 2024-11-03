@@ -22,7 +22,7 @@ public class HexArsLinkItems {
     }
 
     public static Item.Properties tool() {
-        return new Item.Properties().tab(IXplatAbstractions.INSTANCE.getTab());
+        return new Item.Properties().tab(IXplatAbstractions.INSTANCE.getTab()).stacksTo(1);
     }
 
     public static void register(IEventBus bus) {
