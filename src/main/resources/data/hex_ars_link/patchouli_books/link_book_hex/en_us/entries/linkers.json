@@ -1,0 +1,41 @@
+{
+  "name": "item.hex_ars_link.linkers",
+  "icon": "item.hex_ars_link.linker_base",
+  "category": "hexcasting:items",
+  "sortnum": 10,
+  "advancement": "hexcasting:root",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "hex_ars_link.page.linkers.0"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "hex_ars_link.page.linkers.1"
+    },
+    {
+      "type": "hex_ars_link:apparatus_recipe",
+      "recipe": "hex_ars_link:linker_lv1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "hex_ars_link.page.linker_lv1"
+    },
+    {
+      "type": "hex_ars_link:apparatus_recipe",
+      "recipe": "hex_ars_link:linker_lv2"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "hex_ars_link.page.linker_lv2"
+    },
+    {
+      "type": "hex_ars_link:apparatus_recipe",
+      "recipe": "hex_ars_link:linker_lv3"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "hex_ars_link.page.linker_lv3"
+    }
+  ]
+}
