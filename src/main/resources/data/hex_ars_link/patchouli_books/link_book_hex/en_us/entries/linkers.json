@@ -4,7 +4,7 @@
   "category": "hexcasting:items",
   "advancement": "hexcasting:root",
   "pages": [
-    "hex_ars_link.page.linkers.0",
+    "hex_ars_link.page.linkers.0.hex",
     "hex_ars_link.page.linkers.1",
     {
       "type": "hex_ars_link:apparatus_recipe",

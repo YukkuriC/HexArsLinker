@@ -8,7 +8,7 @@ A Minecraft Forge 1.19.2 mod. Adds a set of 3 "Mana Linker" items auto-convertin
 - Curseforge: https://www.curseforge.com/minecraft/mc-mods/hex-ars-linker
 
 ## TODOs
-* [ ] Patchouli on both side
+* [x] Patchouli on both side
 * [ ] Configurable conversion ratio
 * [ ] _(if ars on fabric)_ port to architectury & fabric/neoforge
 * [ ] _(if hex published on 1.20.1)_ port to newer version
