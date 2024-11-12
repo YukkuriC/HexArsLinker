@@ -14,20 +14,19 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
-    public ItemLinker(int convertRatio, Properties pProperties) {
+    public ItemLinker(Supplier<Double> convertRatioGetter, Properties pProperties) {
         super(pProperties);
-        _convertRatio = convertRatio;
+        _convertRatioGetter = convertRatioGetter;
     }
 
-    public ItemLinker(Properties pProperties) {
-        super(pProperties);
-    }
+    double _convertRatio = -1;
+    Supplier<Double> _convertRatioGetter;
 
-    int _convertRatio = MediaConstants.DUST_UNIT / 10;
-
-    public int getConvertRatio() {
+    public double getConvertRatio() {
+        if (_convertRatio < 0) _convertRatio = _convertRatioGetter.get();
         return _convertRatio;
     }
 
@@ -53,7 +52,7 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
     public int getMaxMedia(ItemStack stack) {
         var player = getOwner(stack);
         if (player == null) return 0;
-        return (ManaUtil.getMaxMana(player) * getConvertRatio());
+        return (int) (ManaUtil.getMaxMana(player) * getConvertRatio());
     }
 
     @Override

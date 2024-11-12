@@ -1,6 +1,7 @@
 package io.yukkuric.hex_ars_link;
 
 import com.mojang.logging.LogUtils;
+import io.yukkuric.hex_ars_link.config.LinkConfigForge;
 import io.yukkuric.hex_ars_link.items.HexArsLinkItems;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
@@ -21,12 +22,15 @@ public class HexArsLink {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public HexArsLink() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        var context = FMLJavaModLoadingContext.get();
+        IEventBus modEventBus = context.getModEventBus();
         // modEventBus.addListener(this::commonSetup);
         HexArsLinkItems.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+        LinkConfigForge.register(context);
     }
 
     public static MinecraftServer SERVER;
