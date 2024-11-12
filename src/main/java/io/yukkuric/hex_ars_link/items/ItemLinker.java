@@ -1,9 +1,9 @@
 package io.yukkuric.hex_ars_link.items;
 
-import at.petrak.hexcasting.api.misc.MediaConstants;
 import at.petrak.hexcasting.common.items.magic.ItemMediaHolder;
 import com.hollingsworth.arsnouveau.api.util.ManaUtil;
 import com.hollingsworth.arsnouveau.common.capability.CapabilityRegistry;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -70,6 +70,7 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        pTooltipComponents.add(Component.translatable("tooltip.hex_ars_link.linker.ratio", getConvertRatio()).withStyle(ChatFormatting.GRAY));
         appendOwnerTooltip(pStack, pTooltipComponents);
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }

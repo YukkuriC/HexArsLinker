@@ -5,7 +5,8 @@
   "item.hex_ars_link.linker_advanced": "魔力媒质链接 (大杯)",
   "item.hex_ars_link.linker_great": "魔力媒质链接 (超大杯)",
   "item.hex_ars_link.linkers": "魔力媒质链接",
+  "tooltip.hex_ars_link.linker.ratio": "转换率：%.2f",
   "hex_ars_link.page.linkers.0": "用于将玩家的新生魔艺$(thing)魔力值/$转化为咒法学施法$(item)媒质/$。持有时，右键将链接道具绑定至玩家蓝条，潜行+右键解绑。$(br)绑定的链接道具类似一个$(item)媒质之瓶$()，在从中抽取媒质时会相应抽取玩家的魔力。更高级的链接道具有着更高的转换率。",
   "hex_ars_link.page.linkers.0.hex": "可以将我的$(thing)魔力值/$转化为$(media)媒质/$的神奇妙妙工具。当我使用它时，它将绑定至我的蓝条；若我潜行时使用它则会解绑。$(br)绑定的链接道具类似一个$(item)媒质之瓶$()，在从中抽取媒质时会相应抽取我的魔力。更高级的链接道具有着更高的转换率。",
-  "hex_ars_link.page.linkers.1": "$(l:hex_ars_link:linkers#lv1)$(item)魔力媒质链接 (中杯)/$将每$(bold)10/$点魔力转换为$(item)1 紫水晶粉/$等量的媒质；$(br)$(br)$(l:hex_ars_link:linkers#lv2)$(item)魔力媒质链接 (大杯)/$将每$(bold)1/$点魔力转换为$(item)1 紫水晶粉/$等量的媒质；$(br)$(br)$(l:hex_ars_link:linkers#lv3)$(item)魔力媒质链接 (超大杯)/$将每$(bold)1/$点魔力转换为$(item)1 紫水晶碎片/$等量的媒质。"
+  "hex_ars_link.page.linkers.1": "(默认配置下，下同) $(l:hex_ars_link:linkers#lv1)$(item)魔力媒质链接 (中杯)/$将每$(bold)1000/$点魔力转换为$(item)1 紫水晶粉/$等量的媒质；$(br)$(br)$(l:hex_ars_link:linkers#lv2)$(item)魔力媒质链接 (大杯)/$将每$(bold)50/$点魔力转换为$(item)1 紫水晶粉/$等量的媒质；$(br)$(br)$(l:hex_ars_link:linkers#lv3)$(item)魔力媒质链接 (超大杯)/$将每$(bold)20/$点魔力转换为$(item)1 紫水晶粉/$等量的媒质。"
 }
