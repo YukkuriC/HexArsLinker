@@ -10,6 +10,6 @@ A Minecraft Forge 1.19.2 mod. Adds a set of 3 "Mana Linker" items auto-convertin
 ## TODOs
 * [x] Patchouli on both side
 * [x] Configurable conversion ratio
-    * [ ] Dynamic Patchouli
+    * [x] Dynamic Patchouli
 * [ ] _(if ars on fabric)_ port to architectury & fabric/neoforge
 * [ ] _(if hex published on 1.20.1)_ port to newer version

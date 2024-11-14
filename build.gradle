@@ -165,7 +165,7 @@ dependencies {
     // hexcasting
     implementation fg.deobf("at.petra-k.hexcasting:hexcasting-forge-${minecraft_version}:${hexcastingVersion}") { transitive = false }
     // patchouli
-//    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${minecraft_version}-${patchouliVersion}")
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${minecraft_version}-${patchouliVersion}")
 //    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${minecraft_version}-${patchouliVersion}")
     // ars nouveau
     implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${ars_version}")

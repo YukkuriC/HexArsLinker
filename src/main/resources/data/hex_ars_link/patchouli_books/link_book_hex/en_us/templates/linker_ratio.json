@@ -1,0 +1,9 @@
+{
+  "processor": "io.yukkuric.hex_ars_link.patchouli.RatioProcessor",
+  "components": [
+    {
+      "type": "patchouli:text",
+      "text": "#foo"
+    }
+  ]
+}

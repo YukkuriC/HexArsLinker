@@ -5,7 +5,9 @@
   "advancement": "hexcasting:root",
   "pages": [
     "hex_ars_link.page.linkers.0",
-    "hex_ars_link.page.linkers.1",
+    {
+      "type": "hex_ars_link:linker_ratio"
+    },
     {
       "type": "ars_nouveau:apparatus_recipe",
       "recipe": "hex_ars_link:linker_lv1",
