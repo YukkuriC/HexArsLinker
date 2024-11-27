@@ -42,21 +42,21 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
     }
 
     @Override
-    public int getMedia(ItemStack stack) {
+    public synchronized int getMedia(ItemStack stack) {
         var player = getOwner(stack);
         if (player == null) return 0;
         return (int) (ManaUtil.getCurrentMana(player) * getConvertRatio());
     }
 
     @Override
-    public int getMaxMedia(ItemStack stack) {
+    public synchronized int getMaxMedia(ItemStack stack) {
         var player = getOwner(stack);
         if (player == null) return 0;
         return (int) (ManaUtil.getMaxMana(player) * getConvertRatio());
     }
 
     @Override
-    public void setMedia(ItemStack stack, int i) {
+    public synchronized void setMedia(ItemStack stack, int i) {
         var player = getOwner(stack);
         // forge only
         CapabilityRegistry.getMana(player).ifPresent(mana -> mana.setMana(((double) i) / getConvertRatio()));
