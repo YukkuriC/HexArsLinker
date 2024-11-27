@@ -69,7 +69,7 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public synchronized void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("tooltip.hex_ars_link.linker.ratio", getConvertRatio()).withStyle(ChatFormatting.GRAY));
         appendOwnerTooltip(pStack, pTooltipComponents);
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);

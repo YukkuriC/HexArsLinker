@@ -9,9 +9,10 @@ import vazkii.patchouli.api.IVariable;
 import vazkii.patchouli.api.IVariableProvider;
 
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
 public class RatioProcessor implements IComponentProcessor {
-    static ItemLinker[] TARGETS = {HexArsLinkItems.LINKER_BASE, HexArsLinkItems.LINKER_ADVANCED, HexArsLinkItems.LINKER_GREAT};
+    static Supplier<ItemLinker>[] TARGETS = new Supplier[]{HexArsLinkItems.LINKER_BASE, HexArsLinkItems.LINKER_ADVANCED, HexArsLinkItems.LINKER_GREAT};
 
     @Override
     public void setup(IVariableProvider iVariableProvider) {
@@ -22,7 +23,8 @@ public class RatioProcessor implements IComponentProcessor {
     public IVariable process(String s) {
         var linkId = 1;
         var sb = new StringBuilder();
-        for (var item : TARGETS) {
+        for (var itemGetter : TARGETS) {
+            var item = itemGetter.get();
             double valMana = 1, valDust = item.getConvertRatio() / MediaConstants.DUST_UNIT;
             if (valDust > 0 && valDust < 1) {
                 valMana = 1 / valDust;
