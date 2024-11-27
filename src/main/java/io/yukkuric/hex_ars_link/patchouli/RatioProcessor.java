@@ -4,6 +4,7 @@ import at.petrak.hexcasting.api.misc.MediaConstants;
 import io.yukkuric.hex_ars_link.items.HexArsLinkItems;
 import io.yukkuric.hex_ars_link.items.ItemLinker;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.Level;
 import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariable;
 import vazkii.patchouli.api.IVariableProvider;
@@ -15,12 +16,11 @@ public class RatioProcessor implements IComponentProcessor {
     static Supplier<ItemLinker>[] TARGETS = new Supplier[]{HexArsLinkItems.LINKER_BASE, HexArsLinkItems.LINKER_ADVANCED, HexArsLinkItems.LINKER_GREAT};
 
     @Override
-    public void setup(IVariableProvider iVariableProvider) {
-
+    public void setup(Level level, IVariableProvider iVariableProvider) {
     }
 
     @Override
-    public IVariable process(String s) {
+    public IVariable process(Level level, String s) {
         var linkId = 1;
         var sb = new StringBuilder();
         for (var itemGetter : TARGETS) {

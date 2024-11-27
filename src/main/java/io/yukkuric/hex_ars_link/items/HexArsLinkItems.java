@@ -21,7 +21,7 @@ public class HexArsLinkItems {
     public static final RegistryObject<ItemLinker> LINKER_GREAT = ITEMS.register("linker_great", () -> new ItemLinker(LinkConfig::ratioLv3, tool()));
 
     public static Item.Properties tool() {
-        return new Item.Properties().tab(IXplatAbstractions.INSTANCE.getTab()).stacksTo(1);
+        return new Item.Properties().stacksTo(1);
     }
 
     public static void register(IEventBus bus) {
