@@ -6,6 +6,7 @@ A Minecraft Forge 1.19.2 mod. Adds a set of 3 "Mana Linker" items auto-convertin
 
 ## Links: 
 - Curseforge: https://www.curseforge.com/minecraft/mc-mods/hex-ars-linker
+- Modrinth: https://modrinth.com/mod/hex-ars-linker/settings
 
 ## TODOs
 * [x] Patchouli on both side
