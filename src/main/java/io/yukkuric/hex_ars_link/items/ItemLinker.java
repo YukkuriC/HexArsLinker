@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
+    static final String KEY_MAXMEDIA = "maxMedia";
+
     public ItemLinker(Supplier<Double> convertRatioGetter, Properties pProperties) {
         super(pProperties);
         _convertRatioGetter = convertRatioGetter;
@@ -51,9 +53,18 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
 
     @Override
     public synchronized long getMaxMedia(ItemStack stack) {
-        var player = getOwner(stack);
+        var maxMedia = stack.getOrCreateTag().getLong(KEY_MAXMEDIA);
+        if (maxMedia <= 0) maxMedia = getMedia(stack);
+        return maxMedia;
+    }
+
+    long getMaxMediaRaw(Player player) {
         if (player == null) return 0;
         return (long) (ManaUtil.getMaxMana(player) * getConvertRatio());
+    }
+
+    void refreshCapCache(Player player, ItemStack stack) {
+        stack.getOrCreateTag().putLong(KEY_MAXMEDIA, getMaxMediaRaw(player));
     }
 
     @Override
@@ -61,12 +72,16 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
         var player = getOwner(stack);
         // forge only
         CapabilityRegistry.getMana(player).ifPresent(mana -> mana.setMana(((double) i) / getConvertRatio()));
+        refreshCapCache(player, stack);
     }
 
     // item methods
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        return OwnerBinder.super.use(world, player, hand);
+        var res = OwnerBinder.super.use(world, player, hand);
+        var stack = player.getItemInHand(hand);
+        refreshCapCache(getOwner(stack), stack);
+        return res;
     }
 
     @Override
