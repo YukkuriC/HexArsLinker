@@ -45,14 +45,14 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
     }
 
     @Override
-    public synchronized long getMedia(ItemStack stack) {
+    public long getMedia(ItemStack stack) {
         var player = getOwner(stack);
         if (player == null) return 0;
         return (long) (ManaUtil.getCurrentMana(player) * getConvertRatio());
     }
 
     @Override
-    public synchronized long getMaxMedia(ItemStack stack) {
+    public long getMaxMedia(ItemStack stack) {
         var maxMedia = stack.getOrCreateTag().getLong(KEY_MAXMEDIA);
         if (maxMedia <= 0) maxMedia = getMedia(stack);
         return maxMedia;
@@ -85,7 +85,7 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
     }
 
     @Override
-    public synchronized void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("tooltip.hex_ars_link.linker.ratio", getConvertRatio()).withStyle(ChatFormatting.GRAY));
         appendOwnerTooltip(pStack, pTooltipComponents);
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);

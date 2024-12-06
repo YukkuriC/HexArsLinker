@@ -27,6 +27,7 @@ public class HexArsLink {
         IEventBus modEventBus = context.getModEventBus();
         // modEventBus.addListener(this::commonSetup);
         HexArsLinkItems.register(modEventBus);
+        modEventBus.addListener(HexArsLinkItems::HookCreativeTabs);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
