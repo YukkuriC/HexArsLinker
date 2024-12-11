@@ -5,6 +5,7 @@ import io.yukkuric.hex_ars_link.config.LinkConfigForge;
 import io.yukkuric.hex_ars_link.items.HexArsLinkItems;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -40,5 +41,10 @@ public class HexArsLink {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         SERVER = event.getServer();
+    }
+
+    @SubscribeEvent
+    public void onServerEnding(ServerStoppingEvent event) {
+        SERVER = null;
     }
 }

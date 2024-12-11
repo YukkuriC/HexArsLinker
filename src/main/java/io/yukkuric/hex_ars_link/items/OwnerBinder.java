@@ -1,10 +1,10 @@
 package io.yukkuric.hex_ars_link.items;
 
+import at.petrak.hexcasting.api.utils.NBTHelper;
 import com.hollingsworth.arsnouveau.api.nbt.ItemstackData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -30,6 +30,7 @@ public interface OwnerBinder {
 
     default InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         var stack = player.getItemInHand(hand);
+        if (world.isClientSide) return InteractionResultHolder.pass(stack);
         if (player.isShiftKeyDown()) setOwner(stack, null);
         else setOwner(stack, player);
 
@@ -37,11 +38,11 @@ public interface OwnerBinder {
     }
 
     default void appendOwnerTooltip(ItemStack stack, List<Component> tooltips) {
-        var player = getOwner(stack);
-        if (player == null) {
+        var playerName = NBTHelper.getString(stack, "name");
+        if (playerName == null || playerName.isEmpty()) {
             tooltips.add(Component.translatable("hex_ars_link.tooltip.owner.null"));
         } else {
-            var nameComp = ((MutableComponent) player.getName()).withStyle(ChatFormatting.GOLD);
+            var nameComp = Component.literal(playerName).withStyle(ChatFormatting.GOLD);
             tooltips.add(Component.translatable("hex_ars_link.tooltip.owner", nameComp));
         }
     }
@@ -70,7 +71,6 @@ public interface OwnerBinder {
             tag.putUUID("owner", ownerUUID);
         }
 
-        @Nullable
         public ServerPlayer getOwner() {
             if (SERVER == null) return null;
             return SERVER.getPlayerList().getPlayer(ownerUUID);
