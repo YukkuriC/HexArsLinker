@@ -27,7 +27,8 @@ def push_file(file):
     filename = os.path.basename(file)
     print("UPLOADING:", filename)
     filename_body = os.path.splitext(filename)[0]
-    [mod_name, platform, game_version, mod_version] = filename_body.split('-')
+    [mod_name, game_version, mod_version] = filename_body.split('-')
+    platform = 'forge'
     mod_version_full = f"{game_version}-{mod_version}"
 
     # https://docs.modrinth.com/api/operations/createversion/
