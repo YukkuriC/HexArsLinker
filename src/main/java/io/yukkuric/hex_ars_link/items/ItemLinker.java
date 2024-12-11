@@ -1,5 +1,6 @@
 package io.yukkuric.hex_ars_link.items;
 
+import at.petrak.hexcasting.api.utils.NBTHelper;
 import at.petrak.hexcasting.common.items.magic.ItemMediaHolder;
 import com.hollingsworth.arsnouveau.api.util.ManaUtil;
 import com.hollingsworth.arsnouveau.common.capability.CapabilityRegistry;
@@ -7,6 +8,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -17,8 +19,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
-    static final String KEY_MAXMEDIA = "maxMedia";
-
     public ItemLinker(Supplier<Double> convertRatioGetter, Properties pProperties) {
         super(pProperties);
         _convertRatioGetter = convertRatioGetter;
@@ -43,18 +43,9 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
         return false;
     }
 
-    @Override
-    public int getMedia(ItemStack stack) {
-        var player = getOwner(stack);
+    int getMediaRaw(Player player) {
         if (player == null) return 0;
         return (int) (ManaUtil.getCurrentMana(player) * getConvertRatio());
-    }
-
-    @Override
-    public int getMaxMedia(ItemStack stack) {
-        var maxMedia = stack.getOrCreateTag().getInt(KEY_MAXMEDIA);
-        if (maxMedia <= 0) maxMedia = getMedia(stack);
-        return maxMedia;
     }
 
     int getMaxMediaRaw(Player player) {
@@ -62,25 +53,30 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
         return (int) (ManaUtil.getMaxMana(player) * getConvertRatio());
     }
 
-    void refreshCapCache(Player player, ItemStack stack) {
-        stack.getOrCreateTag().putInt(KEY_MAXMEDIA, getMaxMediaRaw(player));
-    }
-
     @Override
-    public synchronized void setMedia(ItemStack stack, int i) {
+    public void setMedia(ItemStack stack, int i) {
         var player = getOwner(stack);
         // forge only
         CapabilityRegistry.getMana(player).ifPresent(mana -> mana.setMana(((double) i) / getConvertRatio()));
-        refreshCapCache(player, stack);
+        super.setMedia(stack, i);
     }
 
     // item methods
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        var res = OwnerBinder.super.use(world, player, hand);
-        var stack = player.getItemInHand(hand);
-        refreshCapCache(player, stack);
-        return res;
+        return OwnerBinder.super.use(world, player, hand);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
+        if (level.isClientSide) return;
+        var owner = getOwner(stack);
+        var rawMedia = getMediaRaw(owner);
+        var rawCap = getMaxMediaRaw(owner);
+        if (rawMedia != super.getMedia(stack)) super.setMedia(stack, rawMedia);
+        if (rawCap != super.getMaxMedia(stack)) NBTHelper.putLong(stack, TAG_MAX_MEDIA, rawCap);
+        if (owner != null) NBTHelper.putString(stack, "name", owner.getName().getString());
+        else NBTHelper.remove(stack, "name");
     }
 
     @Override
