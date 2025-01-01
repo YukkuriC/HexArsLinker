@@ -85,4 +85,8 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
         appendOwnerTooltip(pStack, pTooltipComponents);
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
+
+    public int getConsumptionPriority(ItemStack stack) {
+        return super.getConsumptionPriority(stack) + 1;
+    }
 }
