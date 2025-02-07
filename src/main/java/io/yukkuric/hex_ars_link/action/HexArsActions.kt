@@ -14,7 +14,8 @@ class HexArsActions {
         private val CACHED: MutableMap<ResourceLocation, ActionRegistryEntry> = HashMap()
 
         init {
-            // TODO
+            wrap("cast_spell", "ewddwqwddwawawwawwqwwaww", HexDir.EAST, OpCastMyself)
+            wrap("cast_spell_as", "aqaeqwaawewaawdwawwawwqwwawwwded", HexDir.NORTH_WEST, OpCastMyself)
         }
 
         @JvmStatic
