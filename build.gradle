@@ -14,10 +14,13 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id "org.jetbrains.kotlin.jvm" version "1.7.20"
 }
+apply plugin: 'kotlin'
 
 //apply plugin: 'org.spongepowered.mixin'
 
+project.mod_version = "${minecraft_version}-${mod_version_base}"
 group = mod_group_id
 version = mod_version
 
@@ -136,6 +139,8 @@ repositories {
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
     mavenLocal()
     maven { url 'https://maven.blamejared.com' }
+    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+    mavenCentral()
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
     // flatDir {
@@ -169,6 +174,7 @@ dependencies {
 //    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${minecraft_version}-${patchouliVersion}")
     // ars nouveau
     implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${ars_version}")
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${gecko_version}")
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
