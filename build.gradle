@@ -146,6 +146,7 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
+    flatDir { dir "libs/$minecraft_version" }
 }
 
 dependencies {
@@ -182,6 +183,7 @@ dependencies {
 
 //    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
+    implementation fileTree(dir: "libs/$minecraft_version", include: '*.jar')
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

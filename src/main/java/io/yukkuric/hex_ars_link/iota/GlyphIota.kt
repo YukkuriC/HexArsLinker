@@ -12,6 +12,9 @@ import com.hollingsworth.arsnouveau.client.particle.ParticleColor
 import com.hollingsworth.arsnouveau.common.items.SpellBook
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
+import io.yukkuric.hex_ars_link.hexparse.Code2Glyph
+import io.yukkuric.hex_ars_link.hexparse.Glyph2Code
+import io.yukkuric.hexparse.parsers.ParserMain
 import net.minecraft.core.Registry
 import net.minecraft.nbt.StringTag
 import net.minecraft.nbt.Tag
@@ -36,8 +39,9 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
 
         override fun display(tag: Tag?): Component {
             val key = validateTag(tag) ?: return NullIota.DISPLAY
-            return Component.translatable(GlyphRegistry.getSpellPart(key)!!.localizationKey)
-                .withStyle({ s -> s.withColor(color()) })
+//            return Component.translatable(GlyphRegistry.getSpellPart(key)!!.localizationKey)
+//                .withStyle { s -> s.withColor(color()) }
+            return Component.literal("[item:$key]")
         }
 
         override fun color() = 0x66ccff
@@ -50,8 +54,17 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
 
     companion object {
         @JvmStatic
+        val ID = halModLoc("glyph")
+
+        @JvmStatic
         fun registerSelf() {
-            Registry.register(HexIotaTypes.REGISTRY, halModLoc("glyph"), TYPE)
+            Registry.register(HexIotaTypes.REGISTRY, ID, TYPE)
+            // hexparse compat
+            try {
+                ParserMain.AddForthParser(Code2Glyph)
+                ParserMain.AddBackParser(Glyph2Code)
+            } catch (e: NoClassDefFoundError) {
+            }
         }
 
         fun grabSpell(raw: SpellList): Spell {
