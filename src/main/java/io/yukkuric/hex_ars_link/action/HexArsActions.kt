@@ -15,8 +15,8 @@ class HexArsActions {
 
         init {
             wrap("cast_spell", "qwaawewaawdwawwawwqwwaww", HexDir.EAST, OpCastMyself)
-            wrap("cast_spell_as", "aqaeqwaawewaawdwawwawwqwwawwwded", HexDir.NORTH_WEST, OpCastMyself)
-            wrap("cast_spell_shoot", "qaeaqewqwaawewaawdwawwawwqwwaww", HexDir.NORTH_WEST, OpCastMyself)
+            wrap("cast_spell_as", "aqaeqwaawewaawdwawwawwqwwawwwded", HexDir.NORTH_WEST, OpCastFromPlayer)
+            wrap("cast_spell_shoot", "qaeaqewqwaawewaawdwawwawwqwwaww", HexDir.NORTH_WEST, OpShootCast)
         }
 
         @JvmStatic

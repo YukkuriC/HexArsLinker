@@ -28,7 +28,7 @@ object OpShootCast : SpellAction {
         val spell = GlyphIota.grabSpell(raw)
         return SpellAction.Result(
             Action(pos, dir, spell),
-            MediaConstants.DUST_UNIT * spell.spellSize,
+            MediaConstants.DUST_UNIT * spell.spellSize + MediaConstants.CRYSTAL_UNIT,
             listOf(),
             1 + spell.spellSize.toLong()
         )
@@ -51,6 +51,7 @@ object OpShootCast : SpellAction {
             proj.setPos(pos)
             val velocity = max(0.1f, 0.75f + resolver.castStats.accMultiplier / 2.0f) // MethodProjectile
             proj.shoot(dir.x, dir.y, dir.z, velocity, 0f)
+            world.addFreshEntity(proj)
         }
     }
 }
