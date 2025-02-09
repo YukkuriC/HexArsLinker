@@ -32,6 +32,12 @@ java {
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+
 minecraft {
     // The mappings can be changed at any time and must be in the following format.
     // Channel:   Version:
