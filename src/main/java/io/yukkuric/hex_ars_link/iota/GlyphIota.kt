@@ -3,10 +3,10 @@ package io.yukkuric.hex_ars_link.iota
 import at.petrak.hexcasting.api.casting.SpellList
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.IotaType
-import at.petrak.hexcasting.api.casting.iota.NullIota
 import at.petrak.hexcasting.api.utils.downcast
 import at.petrak.hexcasting.common.lib.hex.HexIotaTypes
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry
+import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.api.spell.Spell
 import com.hollingsworth.arsnouveau.client.particle.ParticleColor
 import com.hollingsworth.arsnouveau.common.items.SpellBook
@@ -24,7 +24,11 @@ import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack
 
 class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
+    constructor(spell: AbstractSpellPart) : this(spell.registryName)
+
     object TYPE : IotaType<GlyphIota>() {
+        val INVALID = Component.translatable("hexcasting.tooltip.null_iota").withStyle { s -> s.withColor(color()) }
+
         fun validateTag(tag: Tag?): ResourceLocation? {
             val key = tag?.downcast(StringTag.TYPE)?.asString ?: return null
             val loc = ResourceLocation(key)
@@ -38,7 +42,7 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
         }
 
         override fun display(tag: Tag?): Component {
-            val key = validateTag(tag) ?: return NullIota.DISPLAY
+            val key = validateTag(tag) ?: return INVALID
 //            return Component.translatable(GlyphRegistry.getSpellPart(key)!!.localizationKey)
 //                .withStyle { s -> s.withColor(color()) }
             return Component.literal("[item:$key]")
