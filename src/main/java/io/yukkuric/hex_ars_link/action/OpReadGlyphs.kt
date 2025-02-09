@@ -5,6 +5,7 @@ import at.petrak.hexcasting.api.casting.castables.ConstMediaAction
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.getEntity
 import at.petrak.hexcasting.api.casting.iota.Iota
+import com.hollingsworth.arsnouveau.api.item.ICasterTool
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.common.items.Glyph
@@ -28,7 +29,7 @@ object OpReadGlyphs : ConstMediaAction {
         if (target is ItemFrame) item = target.item
         else if (target is ItemEntity) item = target.item
         // TODO: what else?
-        if (item != null) return listOfNotNull(readFromItem(item)).asActionResult
+        if (item != null) return readFromItem(item).asActionResult
 
         // nothing found
         return listOf<Iota>().asActionResult
@@ -41,9 +42,10 @@ object OpReadGlyphs : ConstMediaAction {
         return ret.map { x -> GlyphIota(x) }
     }
 
-    private fun readFromItem(stack: ItemStack): GlyphIota? {
-        val glyph = stack.item
-        if (glyph !is Glyph) return null
-        return GlyphIota(glyph.spellPart)
+    private fun readFromItem(stack: ItemStack): List<GlyphIota> {
+        val src = stack.item
+        if (src is Glyph) return listOf(GlyphIota(src.spellPart))
+        if (src is ICasterTool) return src.getSpellCaster(stack).spell.recipe.map { x -> GlyphIota(x) }
+        return listOf()
     }
 }
