@@ -28,7 +28,7 @@ object OpShootCast : SpellAction {
         val spell = GlyphIota.grabSpell(raw)
         return SpellAction.Result(
             Action(pos, dir, spell),
-            MediaConstants.DUST_UNIT * spell.spellSize + MediaConstants.CRYSTAL_UNIT,
+            MediaConstants.DUST_UNIT * spell.spellSize + MediaConstants.SHARD_UNIT,
             listOf(),
             1 + spell.spellSize.toLong()
         )
