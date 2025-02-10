@@ -77,3 +77,11 @@ mandatory = true
 versionRange = "[0,)"
 ordering = "AFTER"
 side = "BOTH"
+
+# hexparse load first
+[[dependencies."${mod_id}"]]
+modId = "hexparse"
+mandatory = false
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
