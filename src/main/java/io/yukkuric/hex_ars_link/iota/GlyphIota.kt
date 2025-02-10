@@ -11,6 +11,7 @@ import com.hollingsworth.arsnouveau.api.spell.Spell
 import com.hollingsworth.arsnouveau.client.particle.ParticleColor
 import com.hollingsworth.arsnouveau.common.items.SpellBook
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry
+import io.yukkuric.hex_ars_link.HexArsLink
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
 import io.yukkuric.hex_ars_link.hexparse.Code2Glyph
 import io.yukkuric.hex_ars_link.hexparse.Glyph2Code
@@ -68,6 +69,8 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
                 ParserMain.AddForthParser(Code2Glyph)
                 ParserMain.AddBackParser(Glyph2Code)
             } catch (e: NoClassDefFoundError) {
+            } catch (e: Throwable) {
+                HexArsLink.LOGGER.error(e.stackTraceToString())
             }
         }
 

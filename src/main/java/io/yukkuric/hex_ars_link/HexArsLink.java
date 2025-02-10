@@ -26,7 +26,7 @@ public class HexArsLink {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "hex_ars_link";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public HexArsLink() {
         var context = FMLJavaModLoadingContext.get();
