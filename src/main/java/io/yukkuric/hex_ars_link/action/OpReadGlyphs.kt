@@ -8,6 +8,7 @@ import at.petrak.hexcasting.api.casting.iota.Iota
 import com.hollingsworth.arsnouveau.api.item.ICasterTool
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
+import com.hollingsworth.arsnouveau.common.items.AnnotatedCodex
 import com.hollingsworth.arsnouveau.common.items.Glyph
 import com.hollingsworth.arsnouveau.setup.registry.CapabilityRegistry
 import io.yukkuric.hex_ars_link.iota.GlyphIota
@@ -46,6 +47,7 @@ object OpReadGlyphs : ConstMediaAction {
         val src = stack.item
         if (src is Glyph) return listOf(GlyphIota(src.spellPart))
         if (src is ICasterTool) return src.getSpellCaster(stack).spell.recipe.map { x -> GlyphIota(x) }
+        if (src is AnnotatedCodex) return AnnotatedCodex.CodexData(stack).glyphs.map { x -> GlyphIota(x) }
         return listOf()
     }
 }
