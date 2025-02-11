@@ -181,7 +181,7 @@ dependencies {
 //    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${minecraft_version}-${patchouliVersion}")
     // ars nouveau
     implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${ars_version}")
-    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${gecko_version}")
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.19:${gecko_version}")
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html

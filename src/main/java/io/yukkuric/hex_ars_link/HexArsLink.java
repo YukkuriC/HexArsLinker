@@ -1,6 +1,6 @@
 package io.yukkuric.hex_ars_link;
 
-import at.petrak.hexcasting.common.lib.HexRegistries;
+import com.hollingsworth.arsnouveau.api.spell.*;
 import com.mojang.logging.LogUtils;
 import io.yukkuric.hex_ars_link.action.HexArsActions;
 import io.yukkuric.hex_ars_link.config.LinkConfigForge;
@@ -9,15 +9,17 @@ import io.yukkuric.hex_ars_link.items.HexArsLinkItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
+
+import java.lang.reflect.Method;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(HexArsLink.MODID)
@@ -27,6 +29,17 @@ public class HexArsLink {
     public static final String MODID = "hex_ars_link";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
+
+    private static final Method getterCastStat;
+
+    static {
+        try {
+            getterCastStat = SpellResolver.class.getDeclaredMethod("getCastStats");
+            getterCastStat.setAccessible(true);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public HexArsLink() {
         var context = FMLJavaModLoadingContext.get();
@@ -38,14 +51,9 @@ public class HexArsLink {
         MinecraftForge.EVENT_BUS.register(this);
 
         // hex iota interop
-        var modBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modBus.addListener((RegisterEvent event) -> {
-            var key = event.getRegistryKey();
-            if (key.equals(HexRegistries.ACTION)) {
-                HexArsActions.registerActions();
-            } else if (key.equals(HexRegistries.IOTA_TYPE)) {
-                GlyphIota.registerSelf();
-            }
+        modEventBus.addListener((FMLCommonSetupEvent e) -> {
+            HexArsActions.registerActions();
+            GlyphIota.registerSelf();
         });
 
         LinkConfigForge.register(ModLoadingContext.get());
@@ -65,5 +73,13 @@ public class HexArsLink {
 
     public static ResourceLocation halModLoc(String path) {
         return new ResourceLocation(MODID, path);
+    }
+
+    public static SpellStats getStatsFromResolver(SpellResolver sr) {
+        try {
+            return (SpellStats) getterCastStat.invoke(sr);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
     }
 }

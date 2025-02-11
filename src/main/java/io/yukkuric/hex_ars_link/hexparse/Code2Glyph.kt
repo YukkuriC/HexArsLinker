@@ -1,7 +1,7 @@
 package io.yukkuric.hex_ars_link.hexparse
 
 import com.hollingsworth.arsnouveau.ArsNouveau
-import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry
+import com.hollingsworth.arsnouveau.api.ArsNouveauAPI
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 import io.yukkuric.hexparse.parsers.IotaFactory.makeType
 import io.yukkuric.hexparse.parsers.str2nbt.BaseConstParser.Prefix
@@ -27,7 +27,7 @@ object Code2Glyph : Prefix("glyph_") {
         var payload: String? = null
         if (!path.startsWith("glyph_")) {
             var tester = ResourceLocation(namespace, "glyph_$path")
-            if (GlyphRegistry.getSpellPart(tester) != null) payload = tester.toString()
+            if (ArsNouveauAPI.getInstance().getSpellPart(tester) != null) payload = tester.toString()
         }
         if (payload == null) payload = ResourceLocation(namespace, path).toString()
         return makeType(KEY, StringTag.valueOf(payload))

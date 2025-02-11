@@ -1,12 +1,9 @@
 package io.yukkuric.hex_ars_link.action
 
-import at.petrak.hexcasting.api.casting.RenderedSpell
-import at.petrak.hexcasting.api.casting.castables.SpellAction
-import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
-import at.petrak.hexcasting.api.casting.getList
-import at.petrak.hexcasting.api.casting.getPlayer
-import at.petrak.hexcasting.api.casting.iota.Iota
+import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.misc.MediaConstants
+import at.petrak.hexcasting.api.spell.*
+import at.petrak.hexcasting.api.spell.casting.CastingContext
 import com.hollingsworth.arsnouveau.api.spell.ISpellCaster
 import com.hollingsworth.arsnouveau.api.spell.Spell
 import io.yukkuric.hex_ars_link.iota.GlyphIota
@@ -15,23 +12,22 @@ import net.minecraft.server.level.ServerPlayer
 object OpCastFromPlayer : SpellAction {
     override val argc = 2
 
-    override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
+    override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
         val target = args.getPlayer(0)
         val raw = args.getList(1)
         val spell = GlyphIota.grabSpell(raw)
         val caster = GlyphIota.CASTER.value
-        return SpellAction.Result(
+        return Triple(
             Action(spell, caster, target),
             MediaConstants.CRYSTAL_UNIT * spell.spellSize,
             listOf(),
-            1 + spell.spellSize.toLong()
         )
     }
 
     data class Action(val spell: Spell, val caster: ISpellCaster, val owner: ServerPlayer?) : RenderedSpell {
-        override fun cast(env: CastingEnvironment) {
+        override fun cast(ctx: CastingContext) {
             if (owner == null) return
-            caster.castSpell(env.world, owner, env.castingHand, null, spell)
+            caster.castSpell(ctx.world, owner, ctx.castingHand, null, spell)
         }
     }
 }

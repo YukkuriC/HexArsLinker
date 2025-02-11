@@ -1,16 +1,16 @@
 package io.yukkuric.hex_ars_link.iota
 
-import at.petrak.hexcasting.api.casting.SpellList
-import at.petrak.hexcasting.api.casting.iota.Iota
-import at.petrak.hexcasting.api.casting.iota.IotaType
+import at.petrak.hexcasting.api.spell.SpellList
+import at.petrak.hexcasting.api.spell.iota.Iota
+import at.petrak.hexcasting.api.spell.iota.IotaType
 import at.petrak.hexcasting.api.utils.downcast
 import at.petrak.hexcasting.common.lib.hex.HexIotaTypes
-import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry
+import com.hollingsworth.arsnouveau.api.ArsNouveauAPI
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.api.spell.Spell
 import com.hollingsworth.arsnouveau.client.particle.ParticleColor
 import com.hollingsworth.arsnouveau.common.items.SpellBook
-import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry
+import com.hollingsworth.arsnouveau.setup.ItemsRegistry
 import io.yukkuric.hex_ars_link.HexArsLink
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
 import io.yukkuric.hex_ars_link.hexparse.Code2Glyph
@@ -33,7 +33,7 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
         fun validateTag(tag: Tag?): ResourceLocation? {
             val key = tag?.downcast(StringTag.TYPE)?.asString ?: return null
             val loc = ResourceLocation(key)
-            if (GlyphRegistry.getSpellPart(loc) == null) return null
+            if (ArsNouveauAPI.getInstance().getSpellPart(loc) == null) return null
             return loc
         }
 
@@ -44,15 +44,15 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
 
         override fun display(tag: Tag?): Component {
             val key = validateTag(tag) ?: return INVALID
-//            return Component.translatable(GlyphRegistry.getSpellPart(key)!!.localizationKey)
-//                .withStyle { s -> s.withColor(color()) }
-            return Component.literal("[item:$key]")
+            return Component.translatable(ArsNouveauAPI.getInstance().getSpellPart(key)!!.localizationKey)
+                .withStyle { s -> s.withColor(color()) }
+//            return Component.literal("[item:$key]")
         }
 
         override fun color() = 0x66ccff
     }
 
-    fun getSpellPart() = GlyphRegistry.getSpellPart(key)
+    fun getSpellPart() = ArsNouveauAPI.getInstance().getSpellPart(key)
     override fun isTruthy() = true
     override fun toleratesOther(other: Iota?) = other is GlyphIota && key == other.key
     override fun serialize() = StringTag.valueOf(key.toString())

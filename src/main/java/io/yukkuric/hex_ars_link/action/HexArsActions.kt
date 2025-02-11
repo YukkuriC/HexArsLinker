@@ -1,37 +1,31 @@
 package io.yukkuric.hex_ars_link.action
 
-import at.petrak.hexcasting.api.casting.ActionRegistryEntry
-import at.petrak.hexcasting.api.casting.castables.Action
-import at.petrak.hexcasting.api.casting.math.HexDir
-import at.petrak.hexcasting.api.casting.math.HexPattern
-import at.petrak.hexcasting.common.lib.hex.HexActions
+import at.petrak.hexcasting.api.PatternRegistry
+import at.petrak.hexcasting.api.spell.Action
+import at.petrak.hexcasting.api.spell.math.HexDir
+import at.petrak.hexcasting.api.spell.math.HexPattern
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
 import net.minecraft.core.Registry
 import net.minecraft.resources.ResourceLocation
 
 class HexArsActions {
     companion object {
-        private val CACHED: MutableMap<ResourceLocation, ActionRegistryEntry> = HashMap()
-
         init {
             wrap("cast_spell", "qwaawewaawdwawwawwqwwaww", HexDir.EAST, OpCastMyself)
             wrap("cast_spell_as", "aqaeqwaawewaawdwawwawwqwwawwwded", HexDir.NORTH_WEST, OpCastFromPlayer)
-            wrap("cast_spell_shoot", "qaeaqewqwaawewaawdwawwawwqwwaww", HexDir.NORTH_WEST, OpShootCast)
+            wrap("cast_spell_shoot", "qaeaqewqwaawewaawdwawwawwqwwaww", HexDir.NORTH_WEST, OpShootCast, true)
             wrap("read_glyphs", "qwaawewaawdwaqwqqqwq", HexDir.EAST, OpReadGlyphs)
         }
 
         @JvmStatic
         fun registerActions() {
-            val reg = HexActions.REGISTRY
-            for ((key, value) in CACHED) Registry.register(reg, key, value)
+            // keep ref
         }
 
-        private fun wrap(name: String, signature: String, dir: HexDir, action: Action?): ActionRegistryEntry {
+        private fun wrap(name: String, signature: String, dir: HexDir, action: Action, isGreat: Boolean = false) {
             val pattern = HexPattern.fromAngles(signature, dir)
             val key = halModLoc(name)
-            val entry = ActionRegistryEntry(pattern, action)
-            CACHED[key] = entry
-            return entry
+            PatternRegistry.mapPattern(pattern, key, action, isGreat)
         }
     }
 }
