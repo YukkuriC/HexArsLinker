@@ -1,12 +1,11 @@
 package io.yukkuric.hex_ars_link.hexparse
 
+import at.petrak.hexcasting.common.lib.hex.HexIotaTypes
 import com.hollingsworth.arsnouveau.ArsNouveau
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI
 import io.yukkuric.hex_ars_link.iota.GlyphIota
-import io.yukkuric.hexparse.parsers.IotaFactory.makeType
 import io.yukkuric.hexparse.parsers.str2nbt.BaseConstParser.Prefix
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.nbt.StringTag
 import net.minecraft.resources.ResourceLocation
 
 object Code2Glyph : Prefix("glyph_") {
@@ -30,6 +29,11 @@ object Code2Glyph : Prefix("glyph_") {
             if (ArsNouveauAPI.getInstance().getSpellPart(tester) != null) payload = tester.toString()
         }
         if (payload == null) payload = ResourceLocation(namespace, path).toString()
-        return makeType(KEY, StringTag.valueOf(payload))
+
+        // avoid unstable api
+        val ret = CompoundTag()
+        ret.putString(HexIotaTypes.KEY_TYPE, KEY)
+        ret.putString(HexIotaTypes.KEY_DATA, payload)
+        return ret
     }
 }
