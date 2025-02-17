@@ -9,6 +9,7 @@ import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.misc.MediaConstants
 import com.hollingsworth.arsnouveau.api.spell.ISpellCaster
 import com.hollingsworth.arsnouveau.api.spell.Spell
+import io.yukkuric.hex_ars_link.action.spell.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 import net.minecraft.server.level.ServerPlayer
 
@@ -22,7 +23,7 @@ object OpCastFromPlayer : SpellAction {
         val caster = GlyphIota.CASTER.value
         return SpellAction.Result(
             Action(spell, caster, target),
-            MediaConstants.CRYSTAL_UNIT * spell.spellSize,
+            MediaConstants.CRYSTAL_UNIT * spell.spellSize + PatternResolver.getMediaCost(env, spell),
             listOf(),
             1 + spell.spellSize.toLong()
         )
