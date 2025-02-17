@@ -9,10 +9,10 @@ import com.hollingsworth.arsnouveau.api.ArsNouveauAPI
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.api.spell.Spell
 import com.hollingsworth.arsnouveau.client.particle.ParticleColor
-import com.hollingsworth.arsnouveau.common.items.SpellBook
 import com.hollingsworth.arsnouveau.setup.ItemsRegistry
 import io.yukkuric.hex_ars_link.HexArsLink
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
+import io.yukkuric.hex_ars_link.action.spell.PatternCaster
 import io.yukkuric.hex_ars_link.hexparse.Code2Glyph
 import io.yukkuric.hex_ars_link.hexparse.Glyph2Code
 import io.yukkuric.hexparse.parsers.ParserMain
@@ -86,8 +86,7 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
 
         val CASTER = lazy {
             val stack = ItemStack(ItemsRegistry.ARCHMAGE_SPELLBOOK)
-            val book = stack.item as SpellBook
-            val caster = book.getSpellCaster(stack)
+            val caster = PatternCaster(stack)
             caster.color = ParticleColor.fromInt(TYPE.color())
             return@lazy caster
         }

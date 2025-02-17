@@ -6,11 +6,11 @@ import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import com.hollingsworth.arsnouveau.api.spell.Spell
 import com.hollingsworth.arsnouveau.api.spell.SpellContext
-import com.hollingsworth.arsnouveau.api.spell.SpellResolver
 import com.hollingsworth.arsnouveau.api.spell.wrapped_caster.PlayerCaster
 import com.hollingsworth.arsnouveau.common.entity.EntityProjectileSpell
 import com.hollingsworth.arsnouveau.common.spell.method.MethodProjectile
 import io.yukkuric.hex_ars_link.HexArsLink
+import io.yukkuric.hex_ars_link.action.spell.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 import net.minecraft.world.phys.Vec3
 import kotlin.math.max
@@ -24,23 +24,25 @@ object OpShootCast : SpellAction {
         val dir = args.getVec3(1)
         val raw = args.getList(2)
         val spell = GlyphIota.grabSpell(raw)
+        val owner = ctx.caster
+        val world = ctx.world
+        val projSpell = Spell(MethodProjectile.INSTANCE)
+        projSpell.recipe.addAll(spell.recipe)
+        val resolver = PatternResolver(SpellContext(world, projSpell, owner, PlayerCaster.from(owner)), true)
         return Triple(
-            Action(pos, dir, spell),
-            MediaConstants.DUST_UNIT * spell.spellSize + MediaConstants.SHARD_UNIT,
+            Action(pos, dir, resolver),
+            MediaConstants.DUST_UNIT * spell.spellSize + MediaConstants.SHARD_UNIT + resolver.mediaCost,
             listOf(),
         )
     }
 
     data class Action(
         val pos: Vec3, val dir: Vec3,
-        val spell: Spell
+        val resolver: PatternResolver,
     ) : RenderedSpell {
-        override fun cast(ctx: CastingContext) {
-            val owner = ctx.caster ?: return
-            val world = ctx.world
-            val projSpell = Spell(MethodProjectile.INSTANCE)
-            projSpell.recipe.addAll(spell.recipe)
-            val resolver = SpellResolver(SpellContext(world, projSpell, owner, PlayerCaster.from(owner)))
+        override fun cast(env: CastingContext) {
+            val owner = env.caster ?: return
+            val world = env.world
             if (!resolver.canCast(owner)) return
             resolver.expendMana()
 

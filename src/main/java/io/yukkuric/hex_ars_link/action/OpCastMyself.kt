@@ -7,6 +7,7 @@ import at.petrak.hexcasting.api.spell.SpellAction
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.getList
 import at.petrak.hexcasting.api.spell.iota.Iota
+import io.yukkuric.hex_ars_link.action.spell.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 
 object OpCastMyself : SpellAction {
@@ -18,7 +19,7 @@ object OpCastMyself : SpellAction {
         val caster = GlyphIota.CASTER.value
         return Triple(
             OpCastFromPlayer.Action(spell, caster, ctx.caster),
-            MediaConstants.DUST_UNIT * spell.spellSize,
+            MediaConstants.DUST_UNIT * spell.spellSize + PatternResolver.getMediaCost(ctx, spell),
             listOf(),
         )
     }

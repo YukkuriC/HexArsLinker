@@ -1,11 +1,12 @@
 package io.yukkuric.hex_ars_link.action
 
-import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.misc.MediaConstants
 import at.petrak.hexcasting.api.spell.*
 import at.petrak.hexcasting.api.spell.casting.CastingContext
+import at.petrak.hexcasting.api.spell.iota.Iota
 import com.hollingsworth.arsnouveau.api.spell.ISpellCaster
 import com.hollingsworth.arsnouveau.api.spell.Spell
+import io.yukkuric.hex_ars_link.action.spell.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 import net.minecraft.server.level.ServerPlayer
 
@@ -19,7 +20,7 @@ object OpCastFromPlayer : SpellAction {
         val caster = GlyphIota.CASTER.value
         return Triple(
             Action(spell, caster, target),
-            MediaConstants.CRYSTAL_UNIT * spell.spellSize,
+            MediaConstants.CRYSTAL_UNIT * spell.spellSize + PatternResolver.getMediaCost(ctx, spell),
             listOf(),
         )
     }

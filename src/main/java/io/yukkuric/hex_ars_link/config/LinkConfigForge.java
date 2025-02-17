@@ -8,6 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class LinkConfigForge implements LinkConfig.API {
     public ForgeConfigSpec.DoubleValue cfgRatioLv1, cfgRatioLv2, cfgRatioLv3;
+    public ForgeConfigSpec.DoubleValue cfgRatioExtraMediaCasting, cfgCostRatePatternMana;
 
     @Override
     public double ratioLv1() {
@@ -24,13 +25,27 @@ public class LinkConfigForge implements LinkConfig.API {
         return cfgRatioLv3.get();
     }
 
+    @Override
+    public double ratioExtraMediaCasting() {
+        return cfgRatioExtraMediaCasting.get();
+    }
+
+    @Override
+    public double costRatePatternMana() {
+        return cfgCostRatePatternMana.get();
+    }
+
     public LinkConfigForge(ForgeConfigSpec.Builder builder) {
-        cfgRatioLv1 = builder.comment("convert ratio for lesser linker")
+        cfgRatioLv1 = builder.comment(COMMENT_RATIO_LV1)
                 .defineInRange("ratioLv1", MediaConstants.DUST_UNIT / 1000, 0, 1e10);
-        cfgRatioLv2 = builder.comment("convert ratio for advanced linker")
+        cfgRatioLv2 = builder.comment(COMMENT_RATIO_LV2)
                 .defineInRange("ratioLv2", MediaConstants.DUST_UNIT / 50, 0, 1e10);
-        cfgRatioLv3 = builder.comment("convert ratio for great linker")
+        cfgRatioLv3 = builder.comment(COMMENT_RATIO_LV3)
                 .defineInRange("ratioLv3", MediaConstants.SHARD_UNIT / 100, 0, 1e10);
+        cfgRatioExtraMediaCasting = builder.comment(COMMENT_RATIO_MEDIA_CASTING)
+                .defineInRange("ratioExtraMediaCasting", 0, 0, 1e10);
+        cfgCostRatePatternMana = builder.comment(COMMENT_MANA_CASTING_RATE)
+                .defineInRange("costRatePatternMana", 1, 0, 1e10);
     }
 
     private static final Pair<LinkConfigForge, ForgeConfigSpec> CFG_REGISTRY;
