@@ -1,5 +1,8 @@
 # Hex-Ars Linker MK.2
 
+[![Curseforge](https://badges.moddingx.org/curseforge/versions/1134295) ![CurseForge](https://badges.moddingx.org/curseforge/downloads/1134295)](https://www.curseforge.com/minecraft/mc-mods/hex-ars-linker)  
+[![Modrinth](https://badges.moddingx.org/modrinth/versions/Yntfg3XG) ![Modrinth](https://badges.moddingx.org/modrinth/downloads/Yntfg3XG)](https://modrinth.com/mod/hex-ars-linker)
+
 A Minecraft Forge 1.19.2/1.20.1 mod.
 
 ## Mana linker items
