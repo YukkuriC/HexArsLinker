@@ -14,6 +14,10 @@ enchanting apparatus.
 ## Casting Ars spell as Hex spell
 Adds a pattern to read glyphs as iotas, and several patterns to cast assembled glyph list as spell in different ways
 
+## __TODO__ Casting Hex spells inside Ars spell
+Adds `callback` glyph and corresponding `register_callback` pattern.  
+When `callback` glyph is executed at a position/an entity, the spell consumed by `register_callback` pattern will be executed with certain initial stack.
+
 ![img](src/main/resources/cover.png)
 
 ## Links:
