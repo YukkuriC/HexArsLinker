@@ -1,9 +1,11 @@
 package io.yukkuric.hex_ars_link;
 
 import at.petrak.hexcasting.common.lib.HexRegistries;
+import com.hollingsworth.arsnouveau.setup.registry.APIRegistry;
 import com.mojang.logging.LogUtils;
 import io.yukkuric.hex_ars_link.action.HexArsActions;
 import io.yukkuric.hex_ars_link.config.LinkConfigForge;
+import io.yukkuric.hex_ars_link.glyph.HexCallbackSpellPart;
 import io.yukkuric.hex_ars_link.iota.GlyphIota;
 import io.yukkuric.hex_ars_link.items.HexArsLinkItems;
 import net.minecraft.resources.ResourceLocation;
@@ -48,7 +50,9 @@ public class HexArsLink {
                 GlyphIota.registerSelf();
             }
         });
+        APIRegistry.registerSpell(HexCallbackSpellPart.INSTANCE);
 
+        // cfg
         LinkConfigForge.register(ModLoadingContext.get());
     }
 

@@ -2,8 +2,10 @@ package io.yukkuric.hex_ars_link.glyph;
 
 import at.petrak.hexcasting.api.casting.iota.*;
 import com.hollingsworth.arsnouveau.api.spell.*;
+import io.yukkuric.hex_ars_link.HexArsLink;
 import io.yukkuric.hex_ars_link.env.CallbackStorage;
 import io.yukkuric.hex_ars_link.env.GlyphCallbackCastEnv;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
@@ -14,9 +16,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 public class HexCallbackSpellPart extends AbstractEffect {
-    public static final String ID = "hex_callback";
+    public static final ResourceLocation ID = new ResourceLocation(HexArsLink.MODID, "hex_callback");
     public static final String DESCRIP = "HexCallback";
-    public HexCallbackSpellPart() {
+    public static final HexCallbackSpellPart INSTANCE = new HexCallbackSpellPart();
+
+    private HexCallbackSpellPart() {
         super(ID, DESCRIP);
     }
 
