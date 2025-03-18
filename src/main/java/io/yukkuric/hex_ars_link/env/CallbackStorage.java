@@ -12,6 +12,7 @@ public class CallbackStorage {
     public static void put(ServerPlayer player, SpellList callback) {
         POOL.computeIfAbsent(player, (p) -> new ArrayList<>());
         var dump = POOL.get(player);
+        dump.clear();
         callback.forEach(dump::add);
     }
 
