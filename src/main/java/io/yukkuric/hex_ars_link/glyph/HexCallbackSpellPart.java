@@ -2,8 +2,9 @@ package io.yukkuric.hex_ars_link.glyph;
 
 import at.petrak.hexcasting.api.casting.iota.*;
 import com.hollingsworth.arsnouveau.api.spell.*;
+import io.yukkuric.hex_ars_link.env.CallbackStorage;
+import io.yukkuric.hex_ars_link.env.GlyphCallbackCastEnv;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
@@ -40,6 +41,10 @@ public class HexCallbackSpellPart extends AbstractEffect {
         this.onCastWithInitStack(new Vec3Iota(rayTraceResult.getBlockPos().getCenter()), player);
     }
     public void onCastWithInitStack(Iota init, ServerPlayer player) {
-        var env = new GlyphCallbackCastEnv(player, InteractionHand.MAIN_HAND);
+        var spell = CallbackStorage.get(player);
+        if (spell == null) return;
+        var env = new GlyphCallbackCastEnv(player);
+        var vm = env.getVM(init);
+        vm.queueExecuteAndWrapIotas(spell, env.getWorld());
     }
 }
