@@ -33,6 +33,7 @@ public class CallbackStorage extends SavedData {
     }
     public List<Iota> get(ServerPlayer player) {
         var raw = pool.get(player.getUUID());
+        if (raw == null) return List.of();
         var ret = new ArrayList<Iota>();
         var boxed = ListIota.TYPE.deserialize(raw, player.serverLevel());
         boxed.getList().forEach(ret::add);
