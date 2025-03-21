@@ -24,6 +24,11 @@ public class HexCallbackSpellPart extends AbstractEffect {
     }
 
     @Override
+    public String getName() {
+        return getLocaleName();
+    }
+
+    @Override
     protected int getDefaultManaCost() {
         return 50;
     }

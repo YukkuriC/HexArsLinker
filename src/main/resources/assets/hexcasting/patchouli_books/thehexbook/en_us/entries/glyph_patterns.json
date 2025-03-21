@@ -22,7 +22,7 @@
     {
       "type": "hexcasting:pattern",
       "op_id": "hex_ars_link:cast_spell_shoot",
-      "anchor": "cast_spell",
+      "anchor": "cast_spell_shoot",
       "input": "vec, vec, [glyph]",
       "output": "",
       "text": "book.descrip.hex_ars_link:cast_spell_shoot"
@@ -30,10 +30,26 @@
     {
       "type": "hexcasting:pattern",
       "op_id": "hex_ars_link:cast_spell_as",
-      "anchor": "cast_spell",
+      "anchor": "cast_spell_as",
       "input": "player, [glyph]",
       "output": "",
       "text": "book.descrip.hex_ars_link:cast_spell_as"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hex_ars_link:set_callback",
+      "anchor": "set_callback",
+      "input": "list",
+      "output": "",
+      "text": "book.descrip.hex_ars_link:set_callback"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hex_ars_link:get_callback",
+      "anchor": "get_callback",
+      "input": "",
+      "output": "list",
+      "text": "book.descrip.hex_ars_link:get_callback"
     }
   ]
 }
