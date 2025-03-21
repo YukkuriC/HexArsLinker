@@ -46,7 +46,7 @@ public class HexCallbackSpellPart extends AbstractEffect {
         this.onCastWithInitStack(new Vec3Iota(pos), player, pos);
     }
     public void onCastWithInitStack(Iota init, ServerPlayer player, Vec3 pos) {
-        var spell = CallbackStorage.get(player);
+        var spell = CallbackStorage.Get(player);
         if (spell == null) return;
         var env = new GlyphCallbackCastEnv(player, pos);
         var vm = env.getVM(init);
