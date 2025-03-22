@@ -30,7 +30,7 @@ public class HexCallbackSpellPart extends AbstractEffect {
 
     @Override
     protected int getDefaultManaCost() {
-        return 50;
+        return 15;
     }
     @Override
     protected @NotNull Set<AbstractAugment> getCompatibleAugments() {
