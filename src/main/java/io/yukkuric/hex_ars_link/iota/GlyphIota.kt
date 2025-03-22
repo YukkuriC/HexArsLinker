@@ -12,9 +12,9 @@ import com.hollingsworth.arsnouveau.client.particle.ParticleColor
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry
 import io.yukkuric.hex_ars_link.HexArsLink
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
+import io.yukkuric.hex_ars_link.action.spell.PatternCaster
 import io.yukkuric.hex_ars_link.hexparse.Code2Glyph
 import io.yukkuric.hex_ars_link.hexparse.Glyph2Code
-import io.yukkuric.hex_ars_link.action.spell.PatternCaster
 import io.yukkuric.hexparse.parsers.ParserMain
 import net.minecraft.core.Registry
 import net.minecraft.nbt.StringTag
@@ -83,6 +83,9 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
             }
             return ret
         }
+
+        val CASTER_ITEM
+            get() = CASTER.value.stack
 
         val CASTER = lazy {
             val stack = ItemStack(ItemsRegistry.ARCHMAGE_SPELLBOOK)

@@ -8,7 +8,7 @@ import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 
-class PatternCaster(stack: ItemStack) : SpellCaster(stack) {
+class PatternCaster(val stack: ItemStack) : SpellCaster(stack) {
     override fun getSpellResolver(
         ctx: SpellContext,
         lvl: Level,
