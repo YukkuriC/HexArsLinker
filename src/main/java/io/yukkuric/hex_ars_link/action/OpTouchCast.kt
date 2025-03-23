@@ -36,7 +36,7 @@ object OpTouchCast : SpellAction {
         } else if (targetRaw is Vec3Iota) {
             pos = targetRaw.vec3
             Either.right(pos)
-        } else throw MishapInvalidIota.ofType(targetRaw, 0, "entity_or_pos")
+        } else throw MishapInvalidIota.ofType(targetRaw, 0, "entity_or_vector")
         env.assertVecInRange(pos)
 
         val spell = GlyphIota.grabSpell(args.getList(1))
