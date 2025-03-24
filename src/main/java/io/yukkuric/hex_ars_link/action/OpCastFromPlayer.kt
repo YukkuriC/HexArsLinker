@@ -9,6 +9,7 @@ import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.misc.MediaConstants
 import com.hollingsworth.arsnouveau.api.spell.ISpellCaster
 import com.hollingsworth.arsnouveau.api.spell.Spell
+import io.yukkuric.hex_ars_link.action.spell.PatternCaster
 import io.yukkuric.hex_ars_link.action.spell.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 import net.minecraft.server.level.ServerPlayer
@@ -20,7 +21,7 @@ object OpCastFromPlayer : SpellAction {
         val target = args.getPlayer(0)
         val raw = args.getList(1)
         val spell = GlyphIota.grabSpell(raw)
-        val caster = GlyphIota.CASTER.value
+        val caster = PatternCaster.buildCaster(env)
         return SpellAction.Result(
             Action(spell, caster, target),
             MediaConstants.CRYSTAL_UNIT * spell.spellSize + PatternResolver.getMediaCost(env, spell),

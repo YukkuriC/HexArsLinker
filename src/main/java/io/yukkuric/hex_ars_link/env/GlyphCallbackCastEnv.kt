@@ -4,15 +4,35 @@ import at.petrak.hexcasting.api.casting.eval.env.StaffCastEnv
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage
 import at.petrak.hexcasting.api.casting.eval.vm.CastingVM
 import at.petrak.hexcasting.api.casting.iota.Iota
+import com.hollingsworth.arsnouveau.api.spell.SpellResolver
+import io.yukkuric.hex_ars_link.action.spell.PatternResolver
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.phys.Vec3
 
-class GlyphCallbackCastEnv(caster: ServerPlayer, val hitPos: Vec3) : StaffCastEnv(caster, InteractionHand.MAIN_HAND) {
+class GlyphCallbackCastEnv(caster: ServerPlayer, val hitPos: Vec3, resolver: SpellResolver) :
+    StaffCastEnv(caster, InteractionHand.MAIN_HAND) {
+    val recursionDepth: Int
+
+    init {
+        recursionDepth = getNewDepthFrom(resolver)
+    }
+
     fun getVM(init: Iota) = CastingVM(CastingImage().copy(stack = listOf(init)), this)
     val GLYPH_RANGE = 8.0
     val GLYPH_RANGE_SQ = Math.pow(GLYPH_RANGE, 2.0) + 1e-8
 
     override fun isVecInRangeEnvironment(vec: Vec3) = if (vec.distanceToSqr(hitPos) <= GLYPH_RANGE_SQ) true
     else super.isVecInRangeEnvironment(vec)
+
+    companion object {
+        protected fun getNewDepthFrom(resolver: SpellResolver): Int {
+            var res = 0
+            if (resolver is PatternResolver) {
+                res++
+                if (resolver.env is GlyphCallbackCastEnv) res += resolver.env.recursionDepth
+            }
+            return res
+        }
+    }
 }

@@ -30,7 +30,10 @@ object OpShootCast : SpellAction {
         val world = env.world
         val projSpell = Spell(MethodProjectile.INSTANCE)
         projSpell.recipe.addAll(spell.recipe)
-        val resolver = PatternResolver(SpellContext(world, projSpell, owner, PlayerCaster.from(owner)), true)
+        val resolver = PatternResolver(
+            SpellContext(world, projSpell, owner, PlayerCaster.from(owner)),
+            env, MethodProjectile.INSTANCE.castingCost
+        )
         return SpellAction.Result(
             Action(pos, dir, resolver),
             MediaConstants.DUST_UNIT * spell.spellSize + MediaConstants.SHARD_UNIT + resolver.mediaCost,

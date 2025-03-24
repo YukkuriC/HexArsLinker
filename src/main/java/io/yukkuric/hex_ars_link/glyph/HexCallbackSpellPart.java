@@ -42,18 +42,18 @@ public class HexCallbackSpellPart extends AbstractEffect {
     public void onResolveEntity(EntityHitResult rayTraceResult, Level world, @NotNull LivingEntity shooter, SpellStats spellStats, SpellContext spellContext, SpellResolver resolver) {
         if (!(shooter instanceof ServerPlayer player)) return;
         var target = rayTraceResult.getEntity();
-        this.onCastWithInitStack(new EntityIota(target), player, target.position());
+        this.onCastWithInitStack(resolver, new EntityIota(target), player, target.position());
     }
     @Override
     public void onResolveBlock(BlockHitResult rayTraceResult, Level world, @NotNull LivingEntity shooter, SpellStats spellStats, SpellContext spellContext, SpellResolver resolver) {
         if (!(shooter instanceof ServerPlayer player)) return;
         var pos = rayTraceResult.getBlockPos().getCenter();
-        this.onCastWithInitStack(new Vec3Iota(pos), player, pos);
+        this.onCastWithInitStack(resolver, new Vec3Iota(pos), player, pos);
     }
-    public void onCastWithInitStack(Iota init, ServerPlayer player, Vec3 pos) {
+    public void onCastWithInitStack(SpellResolver resolver, Iota init, ServerPlayer player, Vec3 pos) {
         var spell = CallbackStorage.Get(player);
         if (spell == null) return;
-        var env = new GlyphCallbackCastEnv(player, pos);
+        var env = new GlyphCallbackCastEnv(player, pos, resolver);
         var vm = env.getVM(init);
         vm.queueExecuteAndWrapIotas(spell, env.getWorld());
     }

@@ -15,6 +15,7 @@ import com.hollingsworth.arsnouveau.api.spell.SpellContext
 import com.hollingsworth.arsnouveau.api.spell.wrapped_caster.PlayerCaster
 import com.hollingsworth.arsnouveau.common.spell.method.MethodTouch
 import com.mojang.datafixers.util.Either
+import io.yukkuric.hex_ars_link.action.spell.PatternCaster
 import io.yukkuric.hex_ars_link.action.spell.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 import net.minecraft.core.BlockPos
@@ -44,7 +45,10 @@ object OpTouchCast : SpellAction {
         touchSpell.recipe.addAll(spell.recipe)
         val owner = env.caster
         val world = env.world
-        val resolver = PatternResolver(SpellContext(world, touchSpell, owner, PlayerCaster.from(owner)))
+        val resolver = PatternResolver(
+            SpellContext(world, touchSpell, owner, PlayerCaster.from(owner)),
+            env, MethodTouch.INSTANCE.castingCost
+        )
         return SpellAction.Result(
             Action(target, resolver),
             MediaConstants.DUST_UNIT * spell.spellSize + MediaConstants.SHARD_UNIT + resolver.mediaCost,
@@ -59,11 +63,11 @@ object OpTouchCast : SpellAction {
     ) : RenderedSpell {
         override fun cast(env: CastingEnvironment) {
             if (env.caster == null) return
-            target.ifLeft { e -> resolver.onCastOnEntity(GlyphIota.CASTER_ITEM, e, env.castingHand) }
+            target.ifLeft { e -> resolver.onCastOnEntity(PatternCaster.CASTER_ITEM.value, e, env.castingHand) }
                 .ifRight { p ->
                     resolver.onCastOnBlock(
                         UseOnContext(
-                            env.world, env.caster, env.castingHand, GlyphIota.CASTER_ITEM,
+                            env.world, env.caster, env.castingHand, PatternCaster.CASTER_ITEM.value,
                             BlockHitResult(p, Direction.UP, BlockPos.containing(p), false)
                         )
                     )

@@ -1,6 +1,7 @@
 package io.yukkuric.hex_ars_link.iota
 
 import at.petrak.hexcasting.api.casting.SpellList
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.IotaType
 import at.petrak.hexcasting.api.utils.downcast
@@ -82,16 +83,6 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
                 ret.add(part)
             }
             return ret
-        }
-
-        val CASTER_ITEM
-            get() = CASTER.value.stack
-
-        val CASTER = lazy {
-            val stack = ItemStack(ItemsRegistry.ARCHMAGE_SPELLBOOK)
-            val caster = PatternCaster(stack)
-            caster.color = ParticleColor.fromInt(TYPE.color())
-            return@lazy caster
         }
     }
 }
