@@ -23,6 +23,10 @@ public class LinkConfig {
         return CFG.ratioExtraMediaCasting();
     }
 
+    public static int maxCallbackRecursionDepth() {
+        return CFG.maxCallbackRecursionDepth();
+    }
+
     public static double costRatePatternMana() {
         return CFG.costRatePatternMana();
     }
@@ -38,10 +42,13 @@ public class LinkConfig {
 
         double costRatePatternMana();
 
+        int maxCallbackRecursionDepth();
+
         String COMMENT_RATIO_LV1 = "convert ratio for lesser linker";
         String COMMENT_RATIO_LV2 = "convert ratio for advanced linker";
         String COMMENT_RATIO_LV3 = "convert ratio for great linker";
         String COMMENT_RATIO_MEDIA_CASTING = "ADDITIONAL media cost ratio for mana used in casting patterns (total media cost = base pattern cost + <ratio> * ORIGINAL spell mana cost); 0 by default.";
         String COMMENT_MANA_CASTING_RATE = "mana discount (or penalty) rate for pattern casters (final mana cost = <ratio> * ORIGINAL spell mana cost); 1 by default.";
+        String COMMENT_MAX_CALLBACK_RECURSION = "max depth nested callback could be triggered; spells deeper than this loses all ambit.";
     }
 }
