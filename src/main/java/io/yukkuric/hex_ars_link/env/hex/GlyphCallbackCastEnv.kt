@@ -21,7 +21,13 @@ class GlyphCallbackCastEnv(caster: ServerPlayer, val hitPos: Vec3, resolver: Spe
         hasAmbit = recursionDepth <= LinkConfig.maxCallbackRecursionDepth()
     }
 
-    fun getVM(init: Iota) = CastingVM(CastingImage().copy(stack = listOf(init)), this)
+    fun getVM(init: Iota) = CastingVM(
+        CastingImage().copy(
+            stack = listOf(init),
+            opsConsumed = LinkConfig.extraOpsConsumedForCallbacks().toLong()
+        ), this
+    )
+
     val GLYPH_RANGE = 8.0
     val GLYPH_RANGE_SQ = Math.pow(GLYPH_RANGE, 2.0) + 1e-8
 

@@ -1,6 +1,7 @@
 package io.yukkuric.hex_ars_link.config;
 
 import at.petrak.hexcasting.api.misc.MediaConstants;
+import at.petrak.hexcasting.api.mod.HexConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
@@ -9,7 +10,7 @@ import org.apache.commons.lang3.tuple.Pair;
 public class LinkConfigForge implements LinkConfig.API {
     public ForgeConfigSpec.DoubleValue cfgRatioLv1, cfgRatioLv2, cfgRatioLv3;
     public ForgeConfigSpec.DoubleValue cfgRatioExtraMediaCasting, cfgCostRatePatternMana;
-    public ForgeConfigSpec.IntValue cfgMaxCallbackRecursionDepth;
+    public ForgeConfigSpec.IntValue cfgMaxCallbackRecursionDepth, cfgExtraOpsConsumedForCallbacks;
 
     @Override
     public double ratioLv1() {
@@ -41,6 +42,11 @@ public class LinkConfigForge implements LinkConfig.API {
         return cfgMaxCallbackRecursionDepth.get();
     }
 
+    @Override
+    public int extraOpsConsumedForCallbacks() {
+        return cfgExtraOpsConsumedForCallbacks.get();
+    }
+
     public LinkConfigForge(ForgeConfigSpec.Builder builder) {
         cfgRatioLv1 = builder.comment(COMMENT_RATIO_LV1)
                 .defineInRange("ratioLv1", MediaConstants.DUST_UNIT / 1000, 0, 1e10);
@@ -54,6 +60,8 @@ public class LinkConfigForge implements LinkConfig.API {
                 .defineInRange("costRatePatternMana", 1, 0, 1e10);
         cfgMaxCallbackRecursionDepth = builder.comment(COMMENT_MAX_CALLBACK_RECURSION)
                 .defineInRange("maxCallbackRecursionDepth", 100, 1, 114514);
+        cfgExtraOpsConsumedForCallbacks = builder.comment(COMMENT_EXTRA_CALLBACK_OP)
+                .defineInRange("extraOpsConsumedForCallbacks", HexConfig.ServerConfigAccess.DEFAULT_MAX_OP_COUNT / 2, 0, Integer.MAX_VALUE);
     }
 
     private static final Pair<LinkConfigForge, ForgeConfigSpec> CFG_REGISTRY;
