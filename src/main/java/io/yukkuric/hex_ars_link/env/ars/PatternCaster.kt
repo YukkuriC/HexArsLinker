@@ -1,4 +1,4 @@
-package io.yukkuric.hex_ars_link.action.spell
+package io.yukkuric.hex_ars_link.env.ars
 
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import com.hollingsworth.arsnouveau.api.spell.SpellCaster

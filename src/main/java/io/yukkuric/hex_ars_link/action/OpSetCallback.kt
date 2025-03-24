@@ -4,7 +4,7 @@ import at.petrak.hexcasting.api.casting.castables.ConstMediaAction
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.getList
 import at.petrak.hexcasting.api.casting.iota.Iota
-import io.yukkuric.hex_ars_link.env.CallbackStorage
+import io.yukkuric.hex_ars_link.env.hex.CallbackStorage
 
 object OpSetCallback : ConstMediaAction {
     override val argc = 1

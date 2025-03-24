@@ -1,11 +1,11 @@
-package io.yukkuric.hex_ars_link.env
+package io.yukkuric.hex_ars_link.env.hex
 
 import at.petrak.hexcasting.api.casting.eval.env.StaffCastEnv
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage
 import at.petrak.hexcasting.api.casting.eval.vm.CastingVM
 import at.petrak.hexcasting.api.casting.iota.Iota
 import com.hollingsworth.arsnouveau.api.spell.SpellResolver
-import io.yukkuric.hex_ars_link.action.spell.PatternResolver
+import io.yukkuric.hex_ars_link.env.ars.PatternResolver
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.phys.Vec3

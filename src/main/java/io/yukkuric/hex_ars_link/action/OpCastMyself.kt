@@ -5,8 +5,8 @@ import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.getList
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.misc.MediaConstants
-import io.yukkuric.hex_ars_link.action.spell.PatternCaster
-import io.yukkuric.hex_ars_link.action.spell.PatternResolver
+import io.yukkuric.hex_ars_link.env.ars.PatternCaster
+import io.yukkuric.hex_ars_link.env.ars.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 
 object OpCastMyself : SpellAction {

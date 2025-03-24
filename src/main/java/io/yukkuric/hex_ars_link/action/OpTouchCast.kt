@@ -15,8 +15,8 @@ import com.hollingsworth.arsnouveau.api.spell.SpellContext
 import com.hollingsworth.arsnouveau.api.spell.wrapped_caster.PlayerCaster
 import com.hollingsworth.arsnouveau.common.spell.method.MethodTouch
 import com.mojang.datafixers.util.Either
-import io.yukkuric.hex_ars_link.action.spell.PatternCaster
-import io.yukkuric.hex_ars_link.action.spell.PatternResolver
+import io.yukkuric.hex_ars_link.env.ars.PatternCaster
+import io.yukkuric.hex_ars_link.env.ars.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction

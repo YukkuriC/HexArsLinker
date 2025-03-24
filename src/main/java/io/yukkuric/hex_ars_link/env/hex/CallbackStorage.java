@@ -1,4 +1,4 @@
-package io.yukkuric.hex_ars_link.env;
+package io.yukkuric.hex_ars_link.env.hex;
 
 import at.petrak.hexcasting.api.casting.SpellList;
 import at.petrak.hexcasting.api.casting.iota.*;

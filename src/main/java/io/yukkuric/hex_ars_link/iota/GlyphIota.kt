@@ -1,7 +1,6 @@
 package io.yukkuric.hex_ars_link.iota
 
 import at.petrak.hexcasting.api.casting.SpellList
-import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.IotaType
 import at.petrak.hexcasting.api.utils.downcast
@@ -9,11 +8,8 @@ import at.petrak.hexcasting.common.lib.hex.HexIotaTypes
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.api.spell.Spell
-import com.hollingsworth.arsnouveau.client.particle.ParticleColor
-import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry
 import io.yukkuric.hex_ars_link.HexArsLink
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
-import io.yukkuric.hex_ars_link.action.spell.PatternCaster
 import io.yukkuric.hex_ars_link.hexparse.Code2Glyph
 import io.yukkuric.hex_ars_link.hexparse.Glyph2Code
 import io.yukkuric.hexparse.parsers.ParserMain
@@ -23,7 +19,6 @@ import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.world.item.ItemStack
 
 class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
     constructor(spell: AbstractSpellPart) : this(spell.registryName)
