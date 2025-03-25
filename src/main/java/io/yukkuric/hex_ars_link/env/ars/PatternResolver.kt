@@ -1,18 +1,18 @@
-package io.yukkuric.hex_ars_link.action.spell
+package io.yukkuric.hex_ars_link.env.ars
 
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import com.hollingsworth.arsnouveau.api.spell.Spell
 import com.hollingsworth.arsnouveau.api.spell.SpellContext
 import com.hollingsworth.arsnouveau.api.spell.SpellResolver
 import com.hollingsworth.arsnouveau.api.spell.wrapped_caster.PlayerCaster
-import com.hollingsworth.arsnouveau.common.spell.method.MethodProjectile
 import io.yukkuric.hex_ars_link.config.LinkConfig
 
-class PatternResolver(ctx: SpellContext?, val omitProjectiles: Boolean = false) : SpellResolver(ctx) {
+class PatternResolver(ctx: SpellContext?, val env: CastingEnvironment, val omitCost: Int = 0) :
+    SpellResolver(ctx) {
     val resolveCostBase: Int
         get() {
             var res = super.getResolveCost()
-            if (omitProjectiles) res -= MethodProjectile.INSTANCE.castingCost
+            res -= omitCost
             return res
         }
 
@@ -33,7 +33,7 @@ class PatternResolver(ctx: SpellContext?, val omitProjectiles: Boolean = false) 
         fun fromEnv(env: CastingContext, spell: Spell): PatternResolver {
             val owner = env.caster
             val world = env.world
-            return PatternResolver(SpellContext(world, spell, owner, PlayerCaster.from(owner)))
+            return PatternResolver(SpellContext(world, spell, owner, PlayerCaster.from(owner)), env)
         }
 
         fun getMediaCost(env: CastingContext, spell: Spell) = fromEnv(env, spell).mediaCost

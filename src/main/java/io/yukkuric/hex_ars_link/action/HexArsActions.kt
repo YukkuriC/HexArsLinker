@@ -12,7 +12,10 @@ class HexArsActions {
             wrap("cast_spell", "qwaawewaawdwawwawwqwwaww", HexDir.EAST, OpCastMyself)
             wrap("cast_spell_as", "aqaeqwaawewaawdwawwawwqwwawwwded", HexDir.NORTH_WEST, OpCastFromPlayer, true)
             wrap("cast_spell_shoot", "qaeaqewqwaawewaawdwawwawwqwwaww", HexDir.NORTH_WEST, OpShootCast)
+            wrap("cast_spell_touch", "wwqwaawewaawdwawwawwqwwaww", HexDir.EAST, OpTouchCast)
             wrap("read_glyphs", "qwaawewaawdwaqwqqqwq", HexDir.EAST, OpReadGlyphs)
+            wrap("set_callback", "qwaawewaawdqqwawwqwwawqdqdeaqq", HexDir.EAST, OpSetCallback)
+            wrap("get_callback", "qwaawewaawdqqwawwqwwawqdeqqqqqa", HexDir.EAST, OpGetCallback)
         }
 
         @JvmStatic

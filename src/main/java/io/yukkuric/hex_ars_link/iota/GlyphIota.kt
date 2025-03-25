@@ -8,8 +8,6 @@ import at.petrak.hexcasting.common.lib.hex.HexIotaTypes
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.api.spell.Spell
-import com.hollingsworth.arsnouveau.client.particle.ParticleColor
-import com.hollingsworth.arsnouveau.setup.ItemsRegistry
 import io.yukkuric.hex_ars_link.HexArsLink
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
 import io.yukkuric.hex_ars_link.action.spell.PatternCaster
@@ -22,7 +20,6 @@ import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.world.item.ItemStack
 
 class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
     constructor(spell: AbstractSpellPart) : this(spell.registryName)
@@ -82,13 +79,6 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
                 ret.add(part)
             }
             return ret
-        }
-
-        val CASTER = lazy {
-            val stack = ItemStack(ItemsRegistry.ARCHMAGE_SPELLBOOK)
-            val caster = PatternCaster(stack)
-            caster.color = ParticleColor.fromInt(TYPE.color())
-            return@lazy caster
         }
     }
 }
