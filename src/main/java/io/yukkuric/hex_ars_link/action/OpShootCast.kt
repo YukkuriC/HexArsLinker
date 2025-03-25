@@ -9,6 +9,7 @@ import com.hollingsworth.arsnouveau.api.spell.SpellContext
 import com.hollingsworth.arsnouveau.api.spell.wrapped_caster.PlayerCaster
 import com.hollingsworth.arsnouveau.common.entity.EntityProjectileSpell
 import com.hollingsworth.arsnouveau.common.spell.method.MethodProjectile
+import io.yukkuric.hex_ars_link.HexArsLink
 import io.yukkuric.hex_ars_link.env.ars.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 import net.minecraft.world.phys.Vec3

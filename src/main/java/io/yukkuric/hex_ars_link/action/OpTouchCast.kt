@@ -1,14 +1,15 @@
 package io.yukkuric.hex_ars_link.action
 
-import at.petrak.hexcasting.api.casting.RenderedSpell
-import at.petrak.hexcasting.api.casting.castables.SpellAction
-import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
-import at.petrak.hexcasting.api.casting.getList
-import at.petrak.hexcasting.api.casting.iota.EntityIota
-import at.petrak.hexcasting.api.casting.iota.Iota
-import at.petrak.hexcasting.api.casting.iota.Vec3Iota
-import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import at.petrak.hexcasting.api.misc.MediaConstants
+import at.petrak.hexcasting.api.spell.ParticleSpray
+import at.petrak.hexcasting.api.spell.RenderedSpell
+import at.petrak.hexcasting.api.spell.SpellAction
+import at.petrak.hexcasting.api.spell.casting.CastingContext
+import at.petrak.hexcasting.api.spell.getList
+import at.petrak.hexcasting.api.spell.iota.EntityIota
+import at.petrak.hexcasting.api.spell.iota.Iota
+import at.petrak.hexcasting.api.spell.iota.Vec3Iota
+import at.petrak.hexcasting.api.spell.mishaps.MishapInvalidIota
 import at.petrak.hexcasting.ktxt.UseOnContext
 import com.hollingsworth.arsnouveau.api.spell.Spell
 import com.hollingsworth.arsnouveau.api.spell.SpellContext
@@ -27,7 +28,8 @@ import net.minecraft.world.phys.Vec3
 object OpTouchCast : SpellAction {
     override val argc = 2
 
-    override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
+    override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
+        val env = ctx
         val targetRaw = args.get(0)
         val pos: Vec3
         val target: Either<Entity, Vec3> = if (targetRaw is EntityIota) {
@@ -49,11 +51,10 @@ object OpTouchCast : SpellAction {
             SpellContext(world, touchSpell, owner, PlayerCaster.from(owner)),
             env, MethodTouch.INSTANCE.castingCost
         )
-        return SpellAction.Result(
+        return Triple(
             Action(target, resolver),
             MediaConstants.DUST_UNIT * spell.spellSize + MediaConstants.SHARD_UNIT + resolver.mediaCost,
             listOf(),
-            1 + spell.spellSize.toLong()
         )
     }
 
@@ -61,7 +62,8 @@ object OpTouchCast : SpellAction {
         val target: Either<Entity, Vec3>,
         val resolver: PatternResolver,
     ) : RenderedSpell {
-        override fun cast(env: CastingEnvironment) {
+        override fun cast(ctx: CastingContext) {
+            val env = ctx
             if (env.caster == null) return
             target.ifLeft { e -> resolver.onCastOnEntity(PatternCaster.CASTER_ITEM.value, e, env.castingHand) }
                 .ifRight { p ->

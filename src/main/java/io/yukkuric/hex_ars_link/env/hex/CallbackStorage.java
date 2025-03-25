@@ -1,7 +1,8 @@
 package io.yukkuric.hex_ars_link.env.hex;
 
-import at.petrak.hexcasting.api.casting.SpellList;
-import at.petrak.hexcasting.api.casting.iota.*;
+import at.petrak.hexcasting.api.spell.SpellList;
+import at.petrak.hexcasting.api.spell.iota.Iota;
+import at.petrak.hexcasting.api.spell.iota.ListIota;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,10 +21,10 @@ public class CallbackStorage extends SavedData {
         return ds.computeIfAbsent(CallbackStorage::new, CallbackStorage::new, SAVENAME);
     }
     public static void Put(ServerPlayer player, SpellList callback) {
-        getInstance(player.serverLevel()).put(player, callback);
+        getInstance(player.getLevel()).put(player, callback);
     }
     public static List<Iota> Get(ServerPlayer player) {
-        return getInstance(player.serverLevel()).get(player);
+        return getInstance(player.getLevel()).get(player);
     }
 
     public void put(ServerPlayer player, SpellList callback) {
@@ -35,7 +36,7 @@ public class CallbackStorage extends SavedData {
         var raw = pool.get(player.getUUID());
         if (raw == null) return List.of();
         var ret = new ArrayList<Iota>();
-        var boxed = ListIota.TYPE.deserialize(raw, player.serverLevel());
+        var boxed = ListIota.TYPE.deserialize(raw, player.getLevel());
         boxed.getList().forEach(ret::add);
         return ret;
     }

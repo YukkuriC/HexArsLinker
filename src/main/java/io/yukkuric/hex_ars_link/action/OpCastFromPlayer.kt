@@ -18,7 +18,7 @@ object OpCastFromPlayer : SpellAction {
         val target = args.getPlayer(0)
         val raw = args.getList(1)
         val spell = GlyphIota.grabSpell(raw)
-        val caster = PatternCaster.buildCaster(env)
+        val caster = PatternCaster.buildCaster(ctx)
         return Triple(
             Action(spell, caster, target),
             MediaConstants.CRYSTAL_UNIT * spell.spellSize + PatternResolver.getMediaCost(ctx, spell),

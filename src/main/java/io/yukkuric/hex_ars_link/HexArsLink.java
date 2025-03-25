@@ -1,7 +1,8 @@
 package io.yukkuric.hex_ars_link;
 
-import at.petrak.hexcasting.common.lib.HexRegistries;
-import com.hollingsworth.arsnouveau.setup.registry.APIRegistry;
+import com.hollingsworth.arsnouveau.api.spell.SpellResolver;
+import com.hollingsworth.arsnouveau.api.spell.SpellStats;
+import com.hollingsworth.arsnouveau.setup.APIRegistry;
 import com.mojang.logging.LogUtils;
 import io.yukkuric.hex_ars_link.action.HexArsActions;
 import io.yukkuric.hex_ars_link.config.LinkConfigForge;
