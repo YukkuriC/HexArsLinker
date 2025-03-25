@@ -59,7 +59,7 @@ public class LinkConfigForge implements LinkConfig.API {
         cfgCostRatePatternMana = builder.comment(COMMENT_MANA_CASTING_RATE)
                 .defineInRange("costRatePatternMana", 1, 0, 1e10);
         cfgMaxCallbackRecursionDepth = builder.comment(COMMENT_MAX_CALLBACK_RECURSION)
-                .defineInRange("maxCallbackRecursionDepth", 100, 1, 114514);
+                .defineInRange("maxCallbackRecursionDepth", 10, 1, 114514);
         cfgExtraOpsConsumedForCallbacks = builder.comment(COMMENT_EXTRA_CALLBACK_OP)
                 .defineInRange("extraOpsConsumedForCallbacks", HexConfig.ServerConfigAccess.DEFAULT_MAX_OP_COUNT / 2, 0, Integer.MAX_VALUE);
     }
