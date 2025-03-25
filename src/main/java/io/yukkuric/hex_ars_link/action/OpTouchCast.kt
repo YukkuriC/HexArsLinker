@@ -21,6 +21,7 @@ import io.yukkuric.hex_ars_link.env.ars.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.util.Mth
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.phys.BlockHitResult
 import net.minecraft.world.phys.Vec3
@@ -70,7 +71,12 @@ object OpTouchCast : SpellAction {
                     resolver.onCastOnBlock(
                         UseOnContext(
                             env.world, env.caster, env.castingHand, PatternCaster.CASTER_ITEM.value,
-                            BlockHitResult(p, Direction.UP, BlockPos.containing(p), false)
+                            BlockHitResult(
+                                p,
+                                Direction.UP,
+                                BlockPos(Mth.floor(p.x()), Mth.floor(p.y()), Mth.floor(p.z())),
+                                false
+                            )
                         )
                     )
                 }
