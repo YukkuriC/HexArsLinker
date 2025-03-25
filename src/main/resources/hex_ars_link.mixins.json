@@ -5,6 +5,7 @@
   "refmap": "hex_ars_link.refmap.json",
   "package": "io.yukkuric.hex_ars_link.mixin",
   "mixins": [
+    "MixinCastingContext"
   ],
   "client": [
   ]

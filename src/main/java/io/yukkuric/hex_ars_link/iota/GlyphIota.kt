@@ -10,7 +10,6 @@ import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.api.spell.Spell
 import io.yukkuric.hex_ars_link.HexArsLink
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
-import io.yukkuric.hex_ars_link.action.spell.PatternCaster
 import io.yukkuric.hex_ars_link.hexparse.Code2Glyph
 import io.yukkuric.hex_ars_link.hexparse.Glyph2Code
 import io.yukkuric.hexparse.parsers.ParserMain
