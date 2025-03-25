@@ -13,6 +13,7 @@ import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
 import io.yukkuric.hex_ars_link.hexparse.Code2Glyph
 import io.yukkuric.hex_ars_link.hexparse.Glyph2Code
 import io.yukkuric.hexparse.parsers.ParserMain
+import io.yukkuric.hexparse.parsers.str2nbt.ToDialect
 import net.minecraft.core.Registry
 import net.minecraft.nbt.StringTag
 import net.minecraft.nbt.Tag
@@ -64,6 +65,7 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
             try {
                 ParserMain.AddForthParser(Code2Glyph)
                 ParserMain.AddBackParser(Glyph2Code)
+                ToDialect.INSTANCE.mapper["glyph_callback"] = "glyph_hex_ars_link:hex_callback"
             } catch (e: NoClassDefFoundError) {
             } catch (e: Throwable) {
                 HexArsLink.LOGGER.error(e.stackTraceToString())
