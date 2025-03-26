@@ -15,8 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class HexCallbackSpellPart extends AbstractEffect {
     public static final ResourceLocation ID = new ResourceLocation(HexArsLink.MODID, "hex_callback");
@@ -60,7 +59,9 @@ public class HexCallbackSpellPart extends AbstractEffect {
         var ctxRaw = new CastingContext(player, InteractionHand.MAIN_HAND, CastingContext.CastSource.STAFF);
         GlyphCallbackCastEnvContext.create(ctxRaw, pos, resolver);
         var vm = new CastingHarness(ctxRaw);
-        vm.setStack(List.of(init));
+        vm.setStack(new ArrayList<>() {{
+            add(init);
+        }});
         vm.executeIotas(spell, ctxRaw.getWorld());
     }
 }
