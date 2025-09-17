@@ -7,6 +7,7 @@ import com.hollingsworth.arsnouveau.api.spell.*;
 import io.yukkuric.hex_ars_link.HexArsLink;
 import io.yukkuric.hex_ars_link.env.hex.CallbackStorage;
 import io.yukkuric.hex_ars_link.env.hex.GlyphCallbackCastEnvContext;
+import io.yukkuric.hex_ars_link.mixin_interface.HarnessCallbackMarker;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -59,6 +60,7 @@ public class HexCallbackSpellPart extends AbstractEffect {
         var ctxRaw = new CastingContext(player, InteractionHand.MAIN_HAND, CastingContext.CastSource.STAFF);
         GlyphCallbackCastEnvContext.create(ctxRaw, pos, resolver);
         var vm = new CastingHarness(ctxRaw);
+        HarnessCallbackMarker.class.cast(vm).setForceDrainInventory();
         vm.setStack(new ArrayList<>() {{
             add(init);
         }});
