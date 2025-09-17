@@ -1,22 +1,13 @@
 package io.yukkuric.hex_ars_link.items;
 
-import at.petrak.hexcasting.api.misc.MediaConstants;
 import at.petrak.hexcasting.common.lib.HexCreativeTabs;
-import at.petrak.hexcasting.common.lib.HexRegistries;
-import at.petrak.hexcasting.xplat.IXplatAbstractions;
 import com.hollingsworth.arsnouveau.setup.registry.CreativeTabRegistry;
 import io.yukkuric.hex_ars_link.HexArsLink;
 import io.yukkuric.hex_ars_link.config.LinkConfig;
-import net.minecraft.core.Registry;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
-import net.minecraftforge.registries.RegistryObject;
-
-import java.util.function.Supplier;
+import net.minecraftforge.registries.*;
 
 public class HexArsLinkItems {
     public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HexArsLink.MODID);
