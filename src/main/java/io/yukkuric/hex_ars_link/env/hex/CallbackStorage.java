@@ -31,6 +31,7 @@ public class CallbackStorage extends SavedData {
         var uuid = player.getUUID();
         var boxed = new ListIota(callback);
         pool.put(uuid, boxed.serialize());
+        setDirty();
     }
     public List<Iota> get(ServerPlayer player) {
         var raw = pool.get(player.getUUID());
@@ -68,6 +69,8 @@ public class CallbackStorage extends SavedData {
             keys.add(NbtUtils.createUUID(pair.getKey()));
             values.add(pair.getValue());
         }
+        toDump.put(NBT_K, keys);
+        toDump.put(NBT_V, values);
         return toDump;
     }
 }
