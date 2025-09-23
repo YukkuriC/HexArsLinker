@@ -6,20 +6,20 @@
   "pages": [
     "hex_ars_link.page.linkers.0.hex",
     {
-      "type": "hexcasting:linker_ratio"
+      "type": "hexcasting:hex_ars_link/linker_ratio"
     },
     {
-      "type": "hexcasting:apparatus_recipe",
+      "type": "hexcasting:hex_ars_link/apparatus_recipe",
       "recipe": "hex_ars_link:linker_lv1",
       "anchor": "lv1"
     },
     {
-      "type": "hexcasting:apparatus_recipe",
+      "type": "hexcasting:hex_ars_link/apparatus_recipe",
       "recipe": "hex_ars_link:linker_lv2",
       "anchor": "lv2"
     },
     {
-      "type": "hexcasting:apparatus_recipe",
+      "type": "hexcasting:hex_ars_link/apparatus_recipe",
       "recipe": "hex_ars_link:linker_lv3",
       "anchor": "lv3"
     }

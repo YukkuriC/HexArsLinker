@@ -1,7 +1,7 @@
 {
   "name": "hex_ars_link.book.patterns.entry",
   "category": "hexcasting:patterns",
-  "icon": "ars_nouveau:glyph_projectile",
+  "icon": "hex_ars_link:hex_callback",
   "pages": [
     {
       "type": "hexcasting:pattern",

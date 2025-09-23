@@ -4,6 +4,7 @@
 [![Modrinth](https://badges.moddingx.org/modrinth/versions/Yntfg3XG) ![Modrinth](https://badges.moddingx.org/modrinth/downloads/Yntfg3XG)](https://modrinth.com/mod/hex-ars-linker)
 
 A Minecraft Forge 1.19.2/1.20.1 mod.
+[Online HexBook](https://yukkuric.github.io/HexArsLinker)
 
 ## Mana linker items
 Adds a set of 3 "Mana Linker" items auto-converting the

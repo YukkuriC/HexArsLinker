@@ -6,7 +6,7 @@
   "pages": [
     "hex_ars_link.page.linkers.0",
     {
-      "type": "ars_nouveau:linker_ratio"
+      "type": "ars_nouveau:hex_ars_link/linker_ratio"
     },
     {
       "type": "ars_nouveau:apparatus_recipe",
