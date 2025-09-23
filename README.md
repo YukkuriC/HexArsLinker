@@ -1,6 +1,7 @@
 # Hex-Ars Linker MK.2
 
 A Minecraft Forge 1.19.2/1.20.1 mod.
+[Online HexBook](https://yukkuric.github.io/HexArsLinker)
 
 ## Mana linker items
 Adds a set of 3 "Mana Linker" items auto-converting the
