@@ -1,3 +1,4 @@
+# type: ignore
 from importlib.resources import Package
 from typing_extensions import override
 
@@ -19,7 +20,28 @@ class HexArsLinkerPlugin(ModPluginImpl):
     @staticmethod
     @hookimpl
     def hexdoc_mod_plugin(branch: str) -> ModPlugin:
+        HexArsLinkerPlugin.disable_custom_pages()
         return HexArsLinkerModPlugin(branch=branch)
+
+    @staticmethod
+    def disable_custom_pages():
+        from hexdoc.patchouli import Entry
+
+        @classmethod
+        def wrap_load(cls, resource_dir, id, data, context):
+            data['pages'] = list(
+                filter(
+                    (
+                        lambda p: isinstance(p, str)
+                        or not p['type'].startswith('hexcasting:hex_ars_link')
+                    ),
+                    data['pages'],
+                )
+            )
+            return Entry._load_original(resource_dir, id, data, context)
+
+        Entry._load_original = Entry.load
+        Entry.load = wrap_load
 
 
 class HexArsLinkerModPlugin(ModPluginWithBook):
@@ -51,7 +73,7 @@ class HexArsLinkerModPlugin(ModPluginWithBook):
         from ._export import generated
 
         return generated
-    
+
     @override
     def jinja_template_root(self) -> tuple[Package, str]:
         return hexdoc_hex_ars_link, "_templates"
