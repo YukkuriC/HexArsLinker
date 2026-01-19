@@ -1,0 +1,24 @@
+- name: ratioLv1
+  type: double
+  default: MediaConstants.DUST_UNIT / 1000, 0, 1e10
+  descrip: convert ratio for lesser linker
+- name: ratioLv2
+  type: double
+  default: MediaConstants.DUST_UNIT / 50, 0, 1e10
+  descrip: convert ratio for advanced linker
+- name: ratioLv3
+  type: double
+  default: MediaConstants.SHARD_UNIT / 100, 0, 1e10
+  descrip: convert ratio for great linker
+- name: ratioExtraMediaCasting
+  type: double
+  default: 0, 0, 1e10
+  descrip: "ADDITIONAL media cost ratio for mana used in casting patterns (total media cost = base pattern cost + <ratio> * ORIGINAL spell mana cost)."
+- name: costRatePatternMana
+  type: double
+  default: 1, 0, 1e10
+  descrip: "mana discount (or penalty) rate for pattern casters (final mana cost = <ratio> * ORIGINAL spell mana cost)."
+- name: maxCallbackRecursionDepth
+  type: int
+  default: 10, 1, 114514
+  descrip: max depth nested callback could be triggered; spells deeper than this loses all ambit.
