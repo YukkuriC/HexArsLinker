@@ -26,3 +26,7 @@
   type: int
   default: 10, 1, 114514
   descrip: max depth nested callback could be triggered; spells deeper than this loses all ambit.
+- name: useLegacyGlyphDisplay
+  type: boolean
+  default: "false"
+  descrip: enable to disable full inline rendering and prevent compatibility issues.

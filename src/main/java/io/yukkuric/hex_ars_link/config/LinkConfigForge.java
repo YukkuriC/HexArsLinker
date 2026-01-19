@@ -17,6 +17,8 @@ public class LinkConfigForge implements LinkConfig.API {
     public static ForgeConfigSpec.IntValue
             Cfg_extraOpsConsumedForCallbacks,
             Cfg_maxCallbackRecursionDepth;
+    public static ForgeConfigSpec.BooleanValue
+            Cfg_useLegacyGlyphDisplay;
 
     @Override
     public double ratioLv1() {
@@ -46,6 +48,10 @@ public class LinkConfigForge implements LinkConfig.API {
     public int maxCallbackRecursionDepth() {
         return Cfg_maxCallbackRecursionDepth.get();
     }
+    @Override
+    public boolean useLegacyGlyphDisplay() {
+        return Cfg_useLegacyGlyphDisplay.get();
+    }
 
 
     public LinkConfigForge(ForgeConfigSpec.Builder builder) {
@@ -63,6 +69,8 @@ public class LinkConfigForge implements LinkConfig.API {
                 .defineInRange("costRatePatternMana", 1, 0, 1e10);
         Cfg_maxCallbackRecursionDepth = builder.comment(COMMENT_maxCallbackRecursionDepth)
                 .defineInRange("maxCallbackRecursionDepth", 10, 1, 114514);
+        Cfg_useLegacyGlyphDisplay = builder.comment(COMMENT_useLegacyGlyphDisplay)
+                .define("useLegacyGlyphDisplay", false);
     }
 
     private static final Pair<LinkConfigForge, ForgeConfigSpec> CFG_REGISTRY;
