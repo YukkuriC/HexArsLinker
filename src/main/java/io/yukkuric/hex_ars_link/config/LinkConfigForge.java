@@ -8,60 +8,61 @@ import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class LinkConfigForge implements LinkConfig.API {
-    public ForgeConfigSpec.DoubleValue cfgRatioLv1, cfgRatioLv2, cfgRatioLv3;
-    public ForgeConfigSpec.DoubleValue cfgRatioExtraMediaCasting, cfgCostRatePatternMana;
-    public ForgeConfigSpec.IntValue cfgMaxCallbackRecursionDepth, cfgExtraOpsConsumedForCallbacks;
+    public static ForgeConfigSpec.DoubleValue
+            Cfg_ratioLv1,
+            Cfg_ratioLv2,
+            Cfg_ratioLv3,
+            Cfg_ratioExtraMediaCasting,
+            Cfg_costRatePatternMana;
+    public static ForgeConfigSpec.IntValue
+            Cfg_extraOpsConsumedForCallbacks,
+            Cfg_maxCallbackRecursionDepth;
 
     @Override
     public double ratioLv1() {
-        return cfgRatioLv1.get();
+        return Cfg_ratioLv1.get();
     }
-
     @Override
     public double ratioLv2() {
-        return cfgRatioLv2.get();
+        return Cfg_ratioLv2.get();
     }
-
     @Override
     public double ratioLv3() {
-        return cfgRatioLv3.get();
+        return Cfg_ratioLv3.get();
     }
-
     @Override
     public double ratioExtraMediaCasting() {
-        return cfgRatioExtraMediaCasting.get();
+        return Cfg_ratioExtraMediaCasting.get();
     }
-
-    @Override
-    public double costRatePatternMana() {
-        return cfgCostRatePatternMana.get();
-    }
-
-    @Override
-    public int maxCallbackRecursionDepth() {
-        return cfgMaxCallbackRecursionDepth.get();
-    }
-
     @Override
     public int extraOpsConsumedForCallbacks() {
-        return cfgExtraOpsConsumedForCallbacks.get();
+        return Cfg_extraOpsConsumedForCallbacks.get();
+    }
+    @Override
+    public double costRatePatternMana() {
+        return Cfg_costRatePatternMana.get();
+    }
+    @Override
+    public int maxCallbackRecursionDepth() {
+        return Cfg_maxCallbackRecursionDepth.get();
     }
 
+
     public LinkConfigForge(ForgeConfigSpec.Builder builder) {
-        cfgRatioLv1 = builder.comment(COMMENT_RATIO_LV1)
+        Cfg_ratioLv1 = builder.comment(COMMENT_ratioLv1)
                 .defineInRange("ratioLv1", MediaConstants.DUST_UNIT / 1000, 0, 1e10);
-        cfgRatioLv2 = builder.comment(COMMENT_RATIO_LV2)
+        Cfg_ratioLv2 = builder.comment(COMMENT_ratioLv2)
                 .defineInRange("ratioLv2", MediaConstants.DUST_UNIT / 50, 0, 1e10);
-        cfgRatioLv3 = builder.comment(COMMENT_RATIO_LV3)
+        Cfg_ratioLv3 = builder.comment(COMMENT_ratioLv3)
                 .defineInRange("ratioLv3", MediaConstants.SHARD_UNIT / 100, 0, 1e10);
-        cfgRatioExtraMediaCasting = builder.comment(COMMENT_RATIO_MEDIA_CASTING)
+        Cfg_ratioExtraMediaCasting = builder.comment(COMMENT_ratioExtraMediaCasting)
                 .defineInRange("ratioExtraMediaCasting", 0, 0, 1e10);
-        cfgCostRatePatternMana = builder.comment(COMMENT_MANA_CASTING_RATE)
-                .defineInRange("costRatePatternMana", 1, 0, 1e10);
-        cfgMaxCallbackRecursionDepth = builder.comment(COMMENT_MAX_CALLBACK_RECURSION)
-                .defineInRange("maxCallbackRecursionDepth", 10, 1, 114514);
-        cfgExtraOpsConsumedForCallbacks = builder.comment(COMMENT_EXTRA_CALLBACK_OP)
+        Cfg_extraOpsConsumedForCallbacks = builder.comment(COMMENT_extraOpsConsumedForCallbacks)
                 .defineInRange("extraOpsConsumedForCallbacks", HexConfig.ServerConfigAccess.DEFAULT_MAX_OP_COUNT / 2, 0, Integer.MAX_VALUE);
+        Cfg_costRatePatternMana = builder.comment(COMMENT_costRatePatternMana)
+                .defineInRange("costRatePatternMana", 1, 0, 1e10);
+        Cfg_maxCallbackRecursionDepth = builder.comment(COMMENT_maxCallbackRecursionDepth)
+                .defineInRange("maxCallbackRecursionDepth", 10, 1, 114514);
     }
 
     private static final Pair<LinkConfigForge, ForgeConfigSpec> CFG_REGISTRY;
