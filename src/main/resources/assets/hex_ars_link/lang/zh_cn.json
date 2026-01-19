@@ -17,7 +17,7 @@
   "hexcasting.spell.hex_ars_link:cast_spell_as": "代理法术",
   "hexcasting.spell.hex_ars_link:get_callback": "获取回调",
   "hexcasting.spell.hex_ars_link:set_callback": "注册回调",
-  "book.descrip.hex_ars_link:read_glyphs": "从给定的实体读取所有魔符：可以是一个道具例如魔符、施法道具、法术羊皮纸等，或包含上述道具的展示框，或一个学习了魔符的玩家。$(br)如果我选择拒绝$(thing)HexParse./$的邪恶力量，这将是唯一的获取魔符iota的方式。",
+  "book.descrip.hex_ars_link:read_glyphs": "从给定的实体读取所有魔符：可以是一个道具例如魔符、施法道具、法术羊皮纸等，或包含上述道具的展示框，或一个学习了魔符的玩家。$(br)如果我选择拒绝$(thing)HexParse/$的邪恶力量，这将是唯一的获取魔符iota的方式。",
   "book.descrip.hex_ars_link:cast_spell": "从我自己施放给定的法术。$(br)所使用的每个魔符将花费$(media)1 粉末/$媒质。",
   "book.descrip.hex_ars_link:cast_spell_shoot": "从给定位置与角度施放弹射物法术。给定法术列表前将自动添加一个$(item)魔符：弹射物/$。$(br)所使用的每个魔符将花费$(media)1 粉末/$媒质，并且额外花费$(media)1 紫水晶/$媒质。",
   "book.descrip.hex_ars_link:cast_spell_touch": "在给定的位置或实体上施放给定法术。法术列表前将自动添加一个$(item)魔符：触摸/$。$(br)所使用的每个魔符将花费$(media)1 粉末/$媒质，并且额外花费$(media)1 紫水晶/$媒质。",
