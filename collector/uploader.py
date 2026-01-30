@@ -2,5 +2,5 @@ from YukkuriC.minecraft.uploader import *
 
 load_cfg_changelog()
 
-push_file = build_pusher()
+push_file = build_pusher('mod_name,game_version,mod_version')
 push_all('.', push_file)
