@@ -2,6 +2,7 @@
   "name": "hex_ars_link.book.patterns.entry",
   "category": "hexcasting:patterns",
   "icon": "hex_ars_link:hex_callback",
+  "advancement": "hexcasting:root",
   "pages": [
     {
       "type": "hexcasting:pattern",
