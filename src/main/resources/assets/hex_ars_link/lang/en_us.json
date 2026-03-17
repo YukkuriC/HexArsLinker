@@ -17,6 +17,8 @@
   "hexcasting.action.hex_ars_link:cast_spell_as": "Delegated Spell",
   "hexcasting.action.hex_ars_link:get_callback": "Get Current Callback",
   "hexcasting.action.hex_ars_link:set_callback": "Register Callback",
+  "hexcasting.action.hex_ars_link:query_mana": "Mana Reflection",
+  "hexcasting.action.hex_ars_link:query_mana_max": "Arcane Reflection",
   "book.descrip.hex_ars_link:read_glyphs": "Read all glyphs from a given entity: could be an item like glyph, spellcaster and parchment, or item frames containing those, or a player with learnt glyphs.$(br)This could be the only way to obtain a glyph iota if I choose to deny the evil power of $(thing)HexParse./$",
   "book.descrip.hex_ars_link:cast_spell": "Cast the given spell from myself.$(br)Costs $(media)1 dust/$ for each glyph used.",
   "book.descrip.hex_ars_link:cast_spell_shoot": "Cast the given spell as a projectile shooting from certain position & angle. One $(item)Glyph of Projectile/$ will be inserted before the given glyphs.$(br)Costs $(media)1 shard/$ plus $(media)1 dust/$ for each glyph used.",
@@ -25,5 +27,8 @@
   "book.descrip.hex_ars_link:get_callback": "Read the callback spell list registered.",
   "book.descrip.hex_ars_link:set_callback": "Register the given spell list as callback, which will be executed when $(item)\"Trigger Callback\"/$ glyph executes.",
   "hex_ars_link.glyph_name.hex_callback": "Trigger Callback",
-  "hex_ars_link.glyph_desc.hex_callback": "Execute the spell registered by \"Register Callback\" pattern."
+  "hex_ars_link.glyph_desc.hex_callback": "Execute the spell registered by \"Register Callback\" pattern.",
+  "book.descrip.hex_ars_link:query_mana": "Gets how many points of current mana I have.",
+  "book.descrip.hex_ars_link:query_mana_max": "Gets how many points of mana I could have at most.",
+  "foo": "no end comma."
 }
