@@ -30,3 +30,7 @@
   type: boolean
   default: "false"
   descrip: enable to disable full inline rendering and prevent compatibility issues.
+- name: maxGlyphLimitForPatterns
+  type: int
+  default: 10, 1, 114514
+  descrip: a glyph list longer than this run by cross-casting patterns causes a mishap.

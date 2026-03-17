@@ -16,7 +16,8 @@ public class LinkConfigForge implements LinkConfig.API {
             Cfg_costRatePatternMana;
     public static ForgeConfigSpec.IntValue
             Cfg_extraOpsConsumedForCallbacks,
-            Cfg_maxCallbackRecursionDepth;
+            Cfg_maxCallbackRecursionDepth,
+            Cfg_maxGlyphLimitForPatterns;
     public static ForgeConfigSpec.BooleanValue
             Cfg_useLegacyGlyphDisplay;
 
@@ -52,6 +53,10 @@ public class LinkConfigForge implements LinkConfig.API {
     public boolean useLegacyGlyphDisplay() {
         return Cfg_useLegacyGlyphDisplay.get();
     }
+    @Override
+    public int maxGlyphLimitForPatterns() {
+        return Cfg_maxGlyphLimitForPatterns.get();
+    }
 
 
     public LinkConfigForge(ForgeConfigSpec.Builder builder) {
@@ -71,6 +76,8 @@ public class LinkConfigForge implements LinkConfig.API {
                 .defineInRange("maxCallbackRecursionDepth", 10, 1, 114514);
         Cfg_useLegacyGlyphDisplay = builder.comment(COMMENT_useLegacyGlyphDisplay)
                 .define("useLegacyGlyphDisplay", false);
+        Cfg_maxGlyphLimitForPatterns = builder.comment(COMMENT_maxGlyphLimitForPatterns)
+                .defineInRange("maxGlyphLimitForPatterns", 10, 1, 114514);
     }
 
     private static final Pair<LinkConfigForge, ForgeConfigSpec> CFG_REGISTRY;

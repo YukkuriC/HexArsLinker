@@ -3,6 +3,7 @@ package io.yukkuric.hex_ars_link.iota
 import at.petrak.hexcasting.api.casting.SpellList
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.IotaType
+import at.petrak.hexcasting.api.casting.mishaps.MishapEvalTooMuch
 import at.petrak.hexcasting.api.utils.downcast
 import at.petrak.hexcasting.common.lib.hex.HexIotaTypes
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry
@@ -80,6 +81,7 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
                 val part = sub.getSpellPart() ?: continue
                 ret.add(part)
             }
+            if (ret.spellSize > LinkConfig.maxGlyphLimitForPatterns()) throw MishapEvalTooMuch()
             return ret
         }
     }

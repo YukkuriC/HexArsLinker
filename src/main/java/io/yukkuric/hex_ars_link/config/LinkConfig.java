@@ -30,6 +30,9 @@ public class LinkConfig {
     public static boolean useLegacyGlyphDisplay() {
         return CFG.useLegacyGlyphDisplay();
     }
+    public static int maxGlyphLimitForPatterns() {
+        return CFG.maxGlyphLimitForPatterns();
+    }
 
     public interface API {
         double ratioLv1();
@@ -40,6 +43,7 @@ public class LinkConfig {
         double costRatePatternMana();
         int maxCallbackRecursionDepth();
         boolean useLegacyGlyphDisplay();
+        int maxGlyphLimitForPatterns();
         String COMMENT_ratioLv1 = "convert ratio for lesser linker";
         String COMMENT_ratioLv2 = "convert ratio for advanced linker";
         String COMMENT_ratioLv3 = "convert ratio for great linker";
@@ -48,5 +52,6 @@ public class LinkConfig {
         String COMMENT_costRatePatternMana = "mana discount (or penalty) rate for pattern casters (final mana cost = <ratio> * ORIGINAL spell mana cost).";
         String COMMENT_maxCallbackRecursionDepth = "max depth nested callback could be triggered; spells deeper than this loses all ambit.";
         String COMMENT_useLegacyGlyphDisplay = "enable to disable full inline rendering and prevent compatibility issues.";
+        String COMMENT_maxGlyphLimitForPatterns = "a glyph list longer than this run by cross-casting patterns causes a mishap.";
     }
 }
