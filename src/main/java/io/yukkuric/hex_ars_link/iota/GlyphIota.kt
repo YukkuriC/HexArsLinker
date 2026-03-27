@@ -3,6 +3,8 @@ package io.yukkuric.hex_ars_link.iota
 import at.petrak.hexcasting.api.spell.SpellList
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.iota.IotaType
+import at.petrak.hexcasting.api.spell.mishaps.MishapEvalTooDeep
+import at.petrak.hexcasting.api.utils.asTranslatedComponent
 import at.petrak.hexcasting.api.utils.downcast
 import at.petrak.hexcasting.common.lib.hex.HexIotaTypes
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI
@@ -10,8 +12,11 @@ import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.api.spell.Spell
 import io.yukkuric.hex_ars_link.HexArsLink
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
+import io.yukkuric.hex_ars_link.config.LinkConfig
+import io.yukkuric.hex_ars_link.env.hex.MishapDisallowedGlyph
 import io.yukkuric.hex_ars_link.hexparse.Code2Glyph
 import io.yukkuric.hex_ars_link.hexparse.Glyph2Code
+import io.yukkuric.hex_ars_link.tag.HALTags
 import io.yukkuric.hexparse.parsers.ParserMain
 import io.yukkuric.hexparse.parsers.str2nbt.ToDialect
 import net.minecraft.core.Registry
@@ -72,13 +77,20 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
             }
         }
 
-        fun grabSpell(raw: SpellList): Spell {
+        fun grabSpell(raw: SpellList, isDelegated: Boolean = false): Spell {
             val ret = Spell()
             for (sub in raw) {
                 if (sub !is GlyphIota) continue
                 val part = sub.getSpellPart() ?: continue
+                var tagChecker = part.glyphItem.defaultInstance
+                if (tagChecker.`is`(HALTags.Item.DISALLOWED)
+                    || (isDelegated && tagChecker.`is`(HALTags.Item.DISALLOWED_DELEGATED))
+                ) {
+                    throw MishapDisallowedGlyph(part.localizationKey.asTranslatedComponent)
+                }
                 ret.add(part)
             }
+            if (ret.spellSize > LinkConfig.maxGlyphLimitForPatterns()) throw MishapEvalTooDeep()
             return ret
         }
     }

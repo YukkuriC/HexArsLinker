@@ -14,7 +14,8 @@ public class LinkConfigForge implements LinkConfig.API {
             Cfg_ratioExtraMediaCasting,
             Cfg_costRatePatternMana;
     public static ForgeConfigSpec.IntValue
-            Cfg_maxCallbackRecursionDepth;
+            Cfg_maxCallbackRecursionDepth,
+            Cfg_maxGlyphLimitForPatterns;
 
     @Override
     public double ratioLv1() {
@@ -40,6 +41,10 @@ public class LinkConfigForge implements LinkConfig.API {
     public int maxCallbackRecursionDepth() {
         return Cfg_maxCallbackRecursionDepth.get();
     }
+    @Override
+    public int maxGlyphLimitForPatterns() {
+        return Cfg_maxGlyphLimitForPatterns.get();
+    }
 
 
     public LinkConfigForge(ForgeConfigSpec.Builder builder) {
@@ -55,6 +60,8 @@ public class LinkConfigForge implements LinkConfig.API {
                 .defineInRange("costRatePatternMana", 1, 0, 1e10);
         Cfg_maxCallbackRecursionDepth = builder.comment(COMMENT_maxCallbackRecursionDepth)
                 .defineInRange("maxCallbackRecursionDepth", 10, 1, 114514);
+        Cfg_maxGlyphLimitForPatterns = builder.comment(COMMENT_maxGlyphLimitForPatterns)
+                .defineInRange("maxGlyphLimitForPatterns", 10, 1, 114514);
     }
 
     private static final Pair<LinkConfigForge, ForgeConfigSpec> CFG_REGISTRY;

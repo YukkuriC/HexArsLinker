@@ -22,3 +22,7 @@
   type: int
   default: 10, 1, 114514
   descrip: max depth nested callback could be triggered; spells deeper than this loses all ambit.
+- name: maxGlyphLimitForPatterns
+  type: int
+  default: 10, 1, 114514
+  descrip: a glyph list longer than this run by cross-casting patterns causes a mishap.

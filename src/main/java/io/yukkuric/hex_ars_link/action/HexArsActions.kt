@@ -16,6 +16,8 @@ class HexArsActions {
             wrap("read_glyphs", "qwaawewaawdwaqwqqqwq", HexDir.EAST, OpReadGlyphs)
             wrap("set_callback", "qwaawewaawdqqwawwqwwawqdqdeaqq", HexDir.EAST, OpSetCallback)
             wrap("get_callback", "qwaawewaawdqqwawwqwwawqdeqqqqqa", HexDir.EAST, OpGetCallback)
+            wrap("query_mana", "qwaawewaawdwea", HexDir.EAST, OpQueryMana.Cur)
+            wrap("query_mana_max", "qwaawewaawdwqd", HexDir.EAST, OpQueryMana.Max)
         }
 
         @JvmStatic

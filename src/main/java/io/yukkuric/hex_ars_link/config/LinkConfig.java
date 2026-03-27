@@ -24,6 +24,9 @@ public class LinkConfig {
     public static int maxCallbackRecursionDepth() {
         return CFG.maxCallbackRecursionDepth();
     }
+    public static int maxGlyphLimitForPatterns() {
+        return CFG.maxGlyphLimitForPatterns();
+    }
 
     public interface API {
         double ratioLv1();
@@ -32,11 +35,13 @@ public class LinkConfig {
         double ratioExtraMediaCasting();
         double costRatePatternMana();
         int maxCallbackRecursionDepth();
+        int maxGlyphLimitForPatterns();
         String COMMENT_ratioLv1 = "convert ratio for lesser linker";
         String COMMENT_ratioLv2 = "convert ratio for advanced linker";
         String COMMENT_ratioLv3 = "convert ratio for great linker";
         String COMMENT_ratioExtraMediaCasting = "ADDITIONAL media cost ratio for mana used in casting patterns (total media cost = base pattern cost + <ratio> * ORIGINAL spell mana cost).";
         String COMMENT_costRatePatternMana = "mana discount (or penalty) rate for pattern casters (final mana cost = <ratio> * ORIGINAL spell mana cost).";
         String COMMENT_maxCallbackRecursionDepth = "max depth nested callback could be triggered; spells deeper than this loses all ambit.";
+        String COMMENT_maxGlyphLimitForPatterns = "a glyph list longer than this run by cross-casting patterns causes a mishap.";
     }
 }
