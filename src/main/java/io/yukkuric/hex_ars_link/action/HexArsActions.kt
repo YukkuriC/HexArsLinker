@@ -8,6 +8,7 @@ import at.petrak.hexcasting.common.lib.hex.HexActions
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
 import net.minecraft.core.Registry
 import net.minecraft.resources.ResourceLocation
+import java.util.*
 
 class HexArsActions {
     companion object {
@@ -21,6 +22,8 @@ class HexArsActions {
             wrap("read_glyphs", "qwaawewaawdwaqwqqqwq", HexDir.EAST, OpReadGlyphs)
             wrap("set_callback", "qwaawewaawdqqwawwqwwawqdqdeaqq", HexDir.EAST, OpSetCallback)
             wrap("get_callback", "qwaawewaawdqqwawwqwwawqdeqqqqqa", HexDir.EAST, OpGetCallback)
+            wrap("query_mana", "qwaawewaawdwea", HexDir.EAST, OpQueryMana.Cur)
+            wrap("query_mana_max", "qwaawewaawdwqd", HexDir.EAST, OpQueryMana.Max)
         }
 
         @JvmStatic

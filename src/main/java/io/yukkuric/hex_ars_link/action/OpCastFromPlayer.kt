@@ -20,7 +20,7 @@ object OpCastFromPlayer : SpellAction {
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
         val target = args.getPlayer(0)
         val raw = args.getList(1)
-        val spell = GlyphIota.grabSpell(raw)
+        val spell = GlyphIota.grabSpell(raw, true)
         val caster = PatternCaster.buildCaster(env)
         return SpellAction.Result(
             Action(spell, caster, target),

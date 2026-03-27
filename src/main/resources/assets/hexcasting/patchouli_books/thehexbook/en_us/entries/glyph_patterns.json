@@ -2,6 +2,7 @@
   "name": "hex_ars_link.book.patterns.entry",
   "category": "hexcasting:patterns",
   "icon": "hex_ars_link:hex_callback",
+  "advancement": "hexcasting:root",
   "pages": [
     {
       "type": "hexcasting:pattern",
@@ -58,6 +59,22 @@
       "input": "",
       "output": "list",
       "text": "book.descrip.hex_ars_link:get_callback"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hex_ars_link:query_mana",
+      "anchor": "hex_ars_link:query_mana",
+      "input": "",
+      "output": "list",
+      "text": "book.descrip.hex_ars_link:query_mana"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hex_ars_link:query_mana_max",
+      "anchor": "hex_ars_link:query_mana_max",
+      "input": "",
+      "output": "list",
+      "text": "book.descrip.hex_ars_link:query_mana_max"
     }
   ]
 }
