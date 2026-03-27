@@ -21,17 +21,3 @@ Adds `callback` glyph and corresponding `set_callback` pattern.
 When `callback` glyph is executed at a position/an entity, the spell consumed by `set_callback` pattern will be executed with certain initial stack.
 
 ![img](src/main/resources/cover.png)
-
-## Links:
-
-[<img src="https://static-beta.curseforge.com/images/favicon.ico" style="width:1em"/>
-CurseForge](https://www.curseforge.com/minecraft/mc-mods/hex-ars-linker)
-[<img src="https://modrinth.com/favicon.ico" style="width:1em"/>Modrinth](https://modrinth.com/mod/hex-ars-linker)
-
-## TODOs
-
-* [x] Patchouli on both side
-* [x] Configurable conversion ratio
-    * [x] Dynamic Patchouli
-* [ ] _(if ars on fabric)_ port to architectury & fabric/neoforge
-* [x] port to newer version
