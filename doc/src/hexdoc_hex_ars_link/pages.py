@@ -1,10 +1,12 @@
-from hexdoc.patchouli.page import EmptyPage
+from hexdoc.patchouli.page import EmptyPage, PageWithText
+from .recipes import ApparatusRecipe
 
 
-class EmptyConfigPage(EmptyPage, type="hexcasting:hex_ars_link/linker_ratio"):
+class ConfigPage(EmptyPage, type="hexcasting:hex_ars_link/linker_ratio"):
     pass
 
 
-class EmptyRecipePage(EmptyPage, type="hexcasting:hex_ars_link/apparatus_recipe"):
-    recipe: str
-    anchor: str
+class ApparatusRecipePage(
+    PageWithText, type="hexcasting:hex_ars_link/apparatus_recipe"
+):
+    recipe: ApparatusRecipe
