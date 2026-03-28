@@ -49,11 +49,11 @@ public class LinkConfigForge implements LinkConfig.API {
 
     public LinkConfigForge(ForgeConfigSpec.Builder builder) {
         Cfg_ratioLv1 = builder.comment(COMMENT_ratioLv1)
-                .defineInRange("ratioLv1", MediaConstants.DUST_UNIT / 1000, 0, 1e10);
+                .defineInRange("ratioLv1", MediaConstants.DUST_UNIT / 100, 0, 1e10);
         Cfg_ratioLv2 = builder.comment(COMMENT_ratioLv2)
-                .defineInRange("ratioLv2", MediaConstants.DUST_UNIT / 50, 0, 1e10);
+                .defineInRange("ratioLv2", MediaConstants.DUST_UNIT / 5, 0, 1e10);
         Cfg_ratioLv3 = builder.comment(COMMENT_ratioLv3)
-                .defineInRange("ratioLv3", MediaConstants.SHARD_UNIT / 100, 0, 1e10);
+                .defineInRange("ratioLv3", MediaConstants.DUST_UNIT / 2, 0, 1e10);
         Cfg_ratioExtraMediaCasting = builder.comment(COMMENT_ratioExtraMediaCasting)
                 .defineInRange("ratioExtraMediaCasting", 0, 0, 1e10);
         Cfg_costRatePatternMana = builder.comment(COMMENT_costRatePatternMana)

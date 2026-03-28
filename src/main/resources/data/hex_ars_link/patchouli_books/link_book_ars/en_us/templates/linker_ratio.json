@@ -4,6 +4,11 @@
     {
       "type": "patchouli:text",
       "text": "#foo"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "hex_ars_link.page.linkers.1.note",
+      "y": 120
     }
   ]
 }

@@ -1,5 +1,6 @@
 {
   "type": "ars_nouveau:enchanting_apparatus",
+  "keepNbtOfReagent": true,
   "output": {
     "item": "hex_ars_link:linker_advanced"
   },
