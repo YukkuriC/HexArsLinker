@@ -3,11 +3,16 @@
 
 
 from hexdoc.minecraft.recipe import ItemIngredientList, ItemResult, Recipe
+from pydantic import Field
 
 
-class ApparatusRecipe(Recipe, type="ars_nouveau:enchanting_apparatus"):
+class ApparatusRecipe(
+    Recipe,
+    type="ars_nouveau:enchanting_apparatus",
+    workstation="ars_nouveau:enchanting_apparatus",
+):
     output: ItemResult
-    pedestalItems: ItemIngredientList
+    pedestalItems: list[ItemIngredientList]
     reagent: ItemIngredientList
     sourceCost: int
     keepNbtOfReagent: bool = False

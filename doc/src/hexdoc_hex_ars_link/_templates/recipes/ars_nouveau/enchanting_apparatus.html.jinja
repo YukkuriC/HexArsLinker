@@ -1,0 +1,52 @@
+{% extends "recipes/base.html.jinja" %}
+
+{% import "macros/recipes.html.jinja" as recipe_macros with context %}
+{% import "macros/formatting.html.jinja" as fmt with context %}
+
+{% block recipe_class -%}
+crafting-table recipe
+{%- endblock %}
+
+{% block title_value -%}
+{{ recipe.output.item.name }}
+{%- endblock %}
+
+{% block content %}
+<div class="recipe-item-slot" style="top: 50px; left:50px">
+  {# center item #}
+  {{ recipe_macros.render_ingredients(recipe.reagent) }}
+  <div class="recipe-item-slot" style="top: 0px; left:0px"> {# sub items #}
+    {% for item in recipe.pedestalItems %}
+    <div class="recipe-item-slot texture item-texture multi-textures cycle-textures">
+      {{ recipe_macros.render_ingredients(item) }}
+    </div>
+    {% endfor %}
+    <script>
+      (() => {
+        let me = document.currentScript
+        let parent = me.parentElement
+        let items = Array.from(parent.childNodes).filter(x => x.tagName == 'DIV')
+        let offset = 0
+        let radius = 40
+        applyPositions()
+        // setInterval(applyPositions, 1000)
+        function applyPositions() {
+          for (let i = 0; i < items.length; i++) {
+            let angle = Math.PI * 2 * (i + offset) / items.length + offset
+            let dx = radius * Math.cos(angle)
+            let dy = radius * Math.sin(angle)
+            Object.assign(items[i].style, {
+              left: dx + 'px',
+              top: dy + 'px'
+            })
+          }
+          // offset = (offset + 0.05) % items.length
+        }
+      })()
+    </script>
+  </div>
+</div>
+<div class="crafting-table-result recipe-item-slot">
+  {{ texture_macros.render_item(recipe.output.item) }}
+</div>
+{% endblock content %}
