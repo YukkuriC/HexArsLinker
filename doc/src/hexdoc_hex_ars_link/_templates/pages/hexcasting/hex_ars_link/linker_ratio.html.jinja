@@ -1,13 +1,23 @@
 {% extends "pages/patchouli/page.html.jinja" %}
+{% import "macros/formatting.html.jinja" as fmt with context %}
 
 {% block body %}
-<script id='remove_me'>
-    window.addEventListener('load',()=>{
-        let me=document.getElementById('remove_me')
-        let parent=me.parentNode
-        console.error(parent)
-        parent.removeChild(me.nextSibling)
-        parent.removeChild(me)
-    })
-</script>
+<div>
+    {{ fmt.styled(_f(_("hex_ars_link.page.linkers.1.unit") % (
+        'lv1', _("item.hex_ars_link.linker_base"),
+        100, 1
+    ))) }}
+</div>
+<div>
+    {{ fmt.styled(_f(_("hex_ars_link.page.linkers.1.unit") % (
+        'lv2', _("item.hex_ars_link.linker_advanced"),
+        20, 1
+    ))) }}
+</div>
+<div>
+    {{ fmt.styled(_f(_("hex_ars_link.page.linkers.1.unit") % (
+        'lv3', _("item.hex_ars_link.linker_great"),
+        4, 1
+    ))) }}
+</div>
 {% endblock body %}
