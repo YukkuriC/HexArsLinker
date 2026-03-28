@@ -1,10 +1,5 @@
 {
-  hexdoc: {
-    "hex_ars_link": {
-      title: "Hex-Ars Linker Book",
-      description: "The Hex-Ars Linker Book, all in one place.",
-    },
-  },
+  "hex_ars_link.page.linkers.1.note": "$(o)注：全部转换率可配置，此处显示为默认值。/$",
   item: {
     ars_nouveau: {
       wilden_tribute: "荒野供物"

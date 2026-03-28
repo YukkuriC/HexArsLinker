@@ -1,4 +1,5 @@
 {
+  "hex_ars_link.page.linkers.1.note": "$(o)Note: all ratios are configurable, showing default values here./$",
   hexdoc: {
     "hex_ars_link": {
       title: "Hex-Ars Linker Book",
