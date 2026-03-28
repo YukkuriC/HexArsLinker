@@ -1,0 +1,12 @@
+{% extends "pages/patchouli/page.html.jinja" %}
+{% block body %}
+<script id='remove_everything_after_me'>
+    window.addEventListener('load',()=>{
+        let me=document.getElementById('remove_everything_after_me')
+        let parent=me.parentNode
+        console.error(parent)
+        for(let x=me.nextSibling;x;x=me.nextSibling) parent.removeChild(x)
+        parent.removeChild(me)
+    })
+</script>
+{% endblock body %}
