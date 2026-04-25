@@ -4,15 +4,11 @@ import at.petrak.hexcasting.api.misc.MediaConstants;
 import io.yukkuric.hex_ars_link.items.HexArsLinkItems;
 import io.yukkuric.hex_ars_link.items.ItemLinker;
 import net.minecraft.network.chat.Component;
-import vazkii.patchouli.api.IComponentProcessor;
-import vazkii.patchouli.api.IVariable;
-import vazkii.patchouli.api.IVariableProvider;
-
-import java.util.ArrayList;
-import java.util.function.Supplier;
+import net.minecraft.world.level.Level;
+import vazkii.patchouli.api.*;
 
 public class RatioProcessor implements IComponentProcessor {
-    static Supplier<ItemLinker>[] TARGETS = new Supplier[]{HexArsLinkItems.LINKER_BASE, HexArsLinkItems.LINKER_ADVANCED, HexArsLinkItems.LINKER_GREAT};
+    static ItemLinker[] TARGETS = new ItemLinker[]{HexArsLinkItems.LINKER_BASE, HexArsLinkItems.LINKER_ADVANCED, HexArsLinkItems.LINKER_GREAT};
 
     @Override
     public void setup(IVariableProvider iVariableProvider) {
@@ -23,8 +19,7 @@ public class RatioProcessor implements IComponentProcessor {
     public IVariable process(String s) {
         var linkId = 1;
         var sb = new StringBuilder();
-        for (var itemGetter : TARGETS) {
-            var item = itemGetter.get();
+        for (var item : TARGETS) {
             double valMana = 1, valDust = item.getConvertRatio() / MediaConstants.DUST_UNIT;
             if (valDust > 0 && valDust < 1) {
                 valMana = 1 / valDust;
