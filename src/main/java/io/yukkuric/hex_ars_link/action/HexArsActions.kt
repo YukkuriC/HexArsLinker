@@ -4,11 +4,9 @@ import at.petrak.hexcasting.api.casting.ActionRegistryEntry
 import at.petrak.hexcasting.api.casting.castables.Action
 import at.petrak.hexcasting.api.casting.math.HexDir
 import at.petrak.hexcasting.api.casting.math.HexPattern
-import at.petrak.hexcasting.common.lib.hex.HexActions
 import io.yukkuric.hex_ars_link.HexArsLink.halModLoc
-import net.minecraft.core.Registry
 import net.minecraft.resources.ResourceLocation
-import java.util.*
+import java.util.function.BiConsumer
 
 class HexArsActions {
     companion object {
@@ -27,9 +25,8 @@ class HexArsActions {
         }
 
         @JvmStatic
-        fun registerActions() {
-            val reg = HexActions.REGISTRY
-            for ((key, value) in CACHED) Registry.register(reg, key, value)
+        fun registerActions(regFunc: BiConsumer<ResourceLocation, ActionRegistryEntry>) {
+            for ((key, value) in CACHED) regFunc.accept(key, value)
         }
 
         private fun wrap(name: String, signature: String, dir: HexDir, action: Action?): ActionRegistryEntry {

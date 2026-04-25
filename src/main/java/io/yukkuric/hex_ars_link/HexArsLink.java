@@ -8,18 +8,25 @@ import io.yukkuric.hex_ars_link.config.LinkConfigForge;
 import io.yukkuric.hex_ars_link.glyph.HexCallbackSpellPart;
 import io.yukkuric.hex_ars_link.iota.GlyphIota;
 import io.yukkuric.hex_ars_link.items.HexArsLinkItems;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
+
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(HexArsLink.MODID)
@@ -34,8 +41,7 @@ public class HexArsLink {
         var context = FMLJavaModLoadingContext.get();
         IEventBus modEventBus = context.getModEventBus();
         // modEventBus.addListener(this::commonSetup);
-        HexArsLinkItems.register(modEventBus);
-        modEventBus.addListener(HexArsLinkItems::HookCreativeTabs);
+        modEventBus.addListener((BuildCreativeModeTabContentsEvent event) -> HexArsLinkItems.HookCreativeTabs(event.getTab(), event::accept));
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -43,17 +49,18 @@ public class HexArsLink {
         // hex iota interop
         var modBus = FMLJavaModLoadingContext.get().getModEventBus();
         modBus.addListener((RegisterEvent event) -> {
-            var key = event.getRegistryKey();
-            if (key.equals(HexRegistries.ACTION)) {
-                HexArsActions.registerActions();
-            } else if (key.equals(HexRegistries.IOTA_TYPE)) {
-                GlyphIota.registerSelf();
-            }
+            buildRegBinder(event, Registries.ITEM, HexArsLinkItems::register);
+            buildRegBinder(event, HexRegistries.ACTION, HexArsActions::registerActions);
+            buildRegBinder(event, HexRegistries.IOTA_TYPE, GlyphIota::registerSelf);
         });
         APIRegistry.registerSpell(HexCallbackSpellPart.INSTANCE);
 
         // cfg
         LinkConfigForge.register(ModLoadingContext.get());
+    }
+    private static <T> void buildRegBinder(RegisterEvent e, ResourceKey<Registry<T>> key, Consumer<BiConsumer<ResourceLocation, T>> regFunc) {
+        if (!key.equals(e.getRegistryKey())) return;
+        regFunc.accept((id, obj) -> e.register(key, id, () -> obj));
     }
 
     public static MinecraftServer SERVER;

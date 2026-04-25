@@ -3,8 +3,8 @@
 [![Curseforge](https://badges.moddingx.org/curseforge/versions/1134295) ![CurseForge](https://badges.moddingx.org/curseforge/downloads/1134295)](https://www.curseforge.com/minecraft/mc-mods/hex-ars-linker)  
 [![Modrinth](https://badges.moddingx.org/modrinth/versions/Yntfg3XG) ![Modrinth](https://badges.moddingx.org/modrinth/downloads/Yntfg3XG)](https://modrinth.com/mod/hex-ars-linker)
 
-A Minecraft Forge 1.19.2/1.20.1 mod.
-[Online HexBook](https://yukkuric.github.io/HexArsLinker)
+[<img src="https://github.com/SamsTheNerd/HexGloop/blob/73ea39b3becd/externalassets/hexdoc-badgecozy.svg?raw=true" alt="A badge for hexdoc in the style of Devins Badges" width=180>](https://yukkuric.github.io/HexArsLinker)
+[<img src="https://github.com/SamsTheNerd/HexGloop/blob/73ea39b3becd/externalassets/addon-badge-cozy.svg?raw=true" alt="A badge for addons.hexxy.media in the style of Devins Badges" width=160>](https://addons.hexxy.media)
 
 ## Mana linker items
 Adds a set of 3 "Mana Linker" items auto-converting the
