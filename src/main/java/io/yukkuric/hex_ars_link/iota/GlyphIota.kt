@@ -6,7 +6,6 @@ import at.petrak.hexcasting.api.casting.iota.IotaType
 import at.petrak.hexcasting.api.casting.mishaps.MishapEvalTooMuch
 import at.petrak.hexcasting.api.utils.asTranslatedComponent
 import at.petrak.hexcasting.api.utils.downcast
-import at.petrak.hexcasting.common.lib.hex.HexIotaTypes
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.api.spell.Spell
@@ -19,12 +18,12 @@ import io.yukkuric.hex_ars_link.hexparse.Glyph2Code
 import io.yukkuric.hex_ars_link.tag.HALTags
 import io.yukkuric.hexparse.parsers.ParserMain
 import io.yukkuric.hexparse.parsers.str2nbt.ToDialect
-import net.minecraft.core.Registry
 import net.minecraft.nbt.StringTag
 import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
+import java.util.function.BiConsumer
 
 class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
     constructor(spell: AbstractSpellPart) : this(spell.registryName)
@@ -64,8 +63,8 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
         val ID = halModLoc("glyph")
 
         @JvmStatic
-        fun registerSelf() {
-            Registry.register(HexIotaTypes.REGISTRY, ID, TYPE)
+        fun registerSelf(regFunc: BiConsumer<ResourceLocation, IotaType<*>>) {
+            regFunc.accept(ID, TYPE)
             // hexparse compat
             try {
                 ParserMain.AddForthParser(Code2Glyph)
