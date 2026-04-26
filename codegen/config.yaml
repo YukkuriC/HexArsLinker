@@ -4,11 +4,11 @@
   descrip: convert ratio for lesser linker
 - name: ratioLv2
   type: double
-  default: MediaConstants.DUST_UNIT / 20, 0, 1e10
+  default: MediaConstants.DUST_UNIT / 5, 0, 1e10
   descrip: convert ratio for advanced linker
 - name: ratioLv3
   type: double
-  default: MediaConstants.DUST_UNIT / 4, 0, 1e10
+  default: MediaConstants.DUST_UNIT / 2, 0, 1e10
   descrip: convert ratio for great linker
 - name: ratioExtraMediaCasting
   type: double

@@ -5,7 +5,6 @@ import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.IotaType
 import at.petrak.hexcasting.api.casting.mishaps.MishapEvalTooMuch
 import at.petrak.hexcasting.api.utils.asTranslatedComponent
-import at.petrak.hexcasting.api.utils.downcast
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.api.spell.Spell
@@ -18,32 +17,32 @@ import io.yukkuric.hex_ars_link.hexparse.Glyph2Code
 import io.yukkuric.hex_ars_link.tag.HALTags
 import io.yukkuric.hexparse.parsers.ParserMain
 import io.yukkuric.hexparse.parsers.str2nbt.ToDialect
-import net.minecraft.nbt.StringTag
-import net.minecraft.nbt.Tag
+import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.Component
+import net.minecraft.network.codec.StreamCodec
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.server.level.ServerLevel
 import java.util.function.BiConsumer
 
-class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
+class GlyphIota(val key: ResourceLocation) : Iota({ TYPE }) {
     constructor(spell: AbstractSpellPart) : this(spell.registryName)
 
     object TYPE : IotaType<GlyphIota>() {
         val INVALID = Component.translatable("hexcasting.tooltip.null_iota").withStyle { s -> s.withColor(color()) }
 
-        fun validateTag(tag: Tag?): ResourceLocation? {
-            val key = tag?.downcast(StringTag.TYPE)?.asString ?: return null
-            val loc = ResourceLocation(key)
+        val CODEC = ResourceLocation.CODEC.xmap(::GlyphIota, GlyphIota::key).fieldOf("key")
+        val STREAM_CODEC: StreamCodec<RegistryFriendlyByteBuf, GlyphIota> =
+            ResourceLocation.STREAM_CODEC.map(::GlyphIota, GlyphIota::key).mapStream({ it })
+
+        override fun codec() = CODEC
+        override fun streamCodec() = STREAM_CODEC
+
+        fun validateTag(tag: GlyphIota): ResourceLocation? {
+            val loc = tag.key
             if (GlyphRegistry.getSpellPart(loc) == null) return null
             return loc
         }
 
-        override fun deserialize(tag: Tag?, p1: ServerLevel?): GlyphIota? {
-            val key = validateTag(tag) ?: return null
-            return GlyphIota(key)
-        }
-
-        override fun display(tag: Tag?): Component {
+        fun display(tag: GlyphIota): Component {
             val key = validateTag(tag) ?: return INVALID
             if (LinkConfig.useLegacyGlyphDisplay()) return Component.translatable(GlyphRegistry.getSpellPart(key)!!.localizationKey)
                 .withStyle { s -> s.withColor(color()) }
@@ -56,7 +55,8 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
     fun getSpellPart() = GlyphRegistry.getSpellPart(key)
     override fun isTruthy() = true
     override fun toleratesOther(other: Iota?) = other is GlyphIota && key == other.key
-    override fun serialize() = StringTag.valueOf(key.toString())
+    override fun display() = TYPE.display(this)
+    override fun hashCode() = key.hashCode()
 
     companion object {
         @JvmStatic
@@ -89,7 +89,7 @@ class GlyphIota(val key: ResourceLocation) : Iota(TYPE, key) {
                 }
                 ret.add(part)
             }
-            if (ret.spellSize > LinkConfig.maxGlyphLimitForPatterns()) throw MishapEvalTooMuch()
+            if (ret.size() > LinkConfig.maxGlyphLimitForPatterns()) throw MishapEvalTooMuch()
             return ret
         }
     }

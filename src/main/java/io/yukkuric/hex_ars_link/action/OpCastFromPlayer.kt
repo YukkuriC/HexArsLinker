@@ -7,8 +7,8 @@ import at.petrak.hexcasting.api.casting.getList
 import at.petrak.hexcasting.api.casting.getPlayer
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.misc.MediaConstants
-import com.hollingsworth.arsnouveau.api.spell.ISpellCaster
 import com.hollingsworth.arsnouveau.api.spell.Spell
+import com.hollingsworth.arsnouveau.api.spell.SpellCaster
 import io.yukkuric.hex_ars_link.env.ars.PatternCaster
 import io.yukkuric.hex_ars_link.env.ars.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
@@ -18,19 +18,19 @@ object OpCastFromPlayer : SpellAction {
     override val argc = 2
 
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
-        val target = args.getPlayer(0)
+        val target = args.getPlayer(env.world, 0)
         val raw = args.getList(1)
         val spell = GlyphIota.grabSpell(raw, true)
-        val caster = PatternCaster.buildCaster(env)
+        val caster = PatternCaster(env)
         return SpellAction.Result(
             Action(spell, caster, target),
-            MediaConstants.CRYSTAL_UNIT * spell.spellSize + PatternResolver.getMediaCost(env, spell),
+            MediaConstants.CRYSTAL_UNIT * spell.size() + PatternResolver.getMediaCost(env, spell),
             listOf(),
-            1 + spell.spellSize.toLong()
+            1 + spell.size().toLong()
         )
     }
 
-    data class Action(val spell: Spell, val caster: ISpellCaster, val owner: ServerPlayer?) : RenderedSpell {
+    data class Action(val spell: Spell, val caster: SpellCaster, val owner: ServerPlayer?) : RenderedSpell {
         override fun cast(env: CastingEnvironment) {
             if (owner == null) return
             caster.castSpell(env.world, owner, env.castingHand, null, spell)

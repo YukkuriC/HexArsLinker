@@ -12,7 +12,7 @@ abstract class OpQueryMana : ConstMediaAction {
     override val argc = 0
     override fun execute(args: List<Iota>, env: CastingEnvironment): List<Iota> {
         val player = env.caster ?: throw MishapBadCaster()
-        val manaCap = CapabilityRegistry.getMana(player).orElse(null) ?: throw MishapBadCaster()
+        val manaCap = CapabilityRegistry.getMana(player) ?: throw MishapBadCaster()
         return readValue(manaCap).asActionResult
     }
 

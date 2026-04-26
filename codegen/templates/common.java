@@ -19,7 +19,7 @@ public class LinkConfig {
         {%- endfor %}
 
         {%- for line in data %}
-        String COMMENT_{{line.name}} = "{{line.descrip}}";
+        String COMMENT_{{line.name}} = {{line.descrip | tojson_raw}};
         {%- endfor %}
     }
 }

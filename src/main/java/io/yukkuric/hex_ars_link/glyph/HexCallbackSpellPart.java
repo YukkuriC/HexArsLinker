@@ -12,10 +12,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Set;
+import java.util.*;
 
 public class HexCallbackSpellPart extends AbstractEffect {
-    public static final ResourceLocation ID = new ResourceLocation(HexArsLink.MODID, "hex_callback");
+    public static final ResourceLocation ID = HexArsLink.halModLoc("hex_callback");
     public static final String DESCRIP = "HexCallback";
     public static final HexCallbackSpellPart INSTANCE = new HexCallbackSpellPart();
 
@@ -55,6 +55,8 @@ public class HexCallbackSpellPart extends AbstractEffect {
         if (spell == null) return;
         var env = new GlyphCallbackCastEnv(player, pos, resolver);
         var vm = env.getVM(init);
-        vm.queueExecuteAndWrapIotas(spell, env.getWorld());
+        var spellList = new ArrayList<Iota>();
+        spell.forEach(spellList::add);
+        vm.queueExecuteAndWrapIotas(spellList, env.getWorld());
     }
 }

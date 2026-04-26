@@ -15,12 +15,12 @@ object OpCastMyself : SpellAction {
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
         val raw = args.getList(0)
         val spell = GlyphIota.grabSpell(raw)
-        val caster = PatternCaster.buildCaster(env)
+        val caster = PatternCaster(env)
         return SpellAction.Result(
             OpCastFromPlayer.Action(spell, caster, env.caster),
-            MediaConstants.DUST_UNIT * spell.spellSize + PatternResolver.getMediaCost(env, spell),
+            MediaConstants.DUST_UNIT * spell.size() + PatternResolver.getMediaCost(env, spell),
             listOf(),
-            1 + spell.spellSize.toLong()
+            1 + spell.size().toLong()
         )
     }
 }

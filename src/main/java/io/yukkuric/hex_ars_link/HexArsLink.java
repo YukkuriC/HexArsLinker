@@ -13,16 +13,14 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
-import net.minecraftforge.event.server.ServerStoppingEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegisterEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.event.server.ServerStoppingEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 
 import java.util.function.BiConsumer;
@@ -37,17 +35,15 @@ public class HexArsLink {
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public HexArsLink() {
-        var context = FMLJavaModLoadingContext.get();
-        IEventBus modEventBus = context.getModEventBus();
+    public HexArsLink(ModContainer container) {
+        var modBus = container.getEventBus();
         // modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener((BuildCreativeModeTabContentsEvent event) -> HexArsLinkItems.HookCreativeTabs(event.getTab(), event::accept));
+        modBus.addListener((BuildCreativeModeTabContentsEvent event) -> HexArsLinkItems.HookCreativeTabs(event.getTab(), event::accept));
 
         // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(this);
 
         // hex iota interop
-        var modBus = FMLJavaModLoadingContext.get().getModEventBus();
         modBus.addListener((RegisterEvent event) -> {
             buildRegBinder(event, Registries.ITEM, HexArsLinkItems::register);
             buildRegBinder(event, HexRegistries.ACTION, HexArsActions::registerActions);
@@ -56,7 +52,7 @@ public class HexArsLink {
         APIRegistry.registerSpell(HexCallbackSpellPart.INSTANCE);
 
         // cfg
-        LinkConfigForge.register(ModLoadingContext.get());
+        LinkConfigForge.register(container);
     }
     private static <T> void buildRegBinder(RegisterEvent e, ResourceKey<Registry<T>> key, Consumer<BiConsumer<ResourceLocation, T>> regFunc) {
         if (!key.equals(e.getRegistryKey())) return;
@@ -76,6 +72,6 @@ public class HexArsLink {
     }
 
     public static ResourceLocation halModLoc(String path) {
-        return new ResourceLocation(MODID, path);
+        return ResourceLocation.tryBuild(MODID, path);
     }
 }

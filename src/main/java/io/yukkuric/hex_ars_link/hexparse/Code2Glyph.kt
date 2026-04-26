@@ -1,17 +1,14 @@
 package io.yukkuric.hex_ars_link.hexparse
 
-import at.petrak.hexcasting.common.lib.hex.HexIotaTypes
+import at.petrak.hexcasting.api.casting.iota.Iota
 import com.hollingsworth.arsnouveau.ArsNouveau
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry
 import io.yukkuric.hex_ars_link.iota.GlyphIota
 import io.yukkuric.hexparse.parsers.str2nbt.BaseConstParser.Prefix
-import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceLocation
 
 object Code2Glyph : Prefix("glyph_") {
-    val KEY = GlyphIota.ID.toString()
-
-    override fun parse(node: String): CompoundTag {
+    override fun parse(node: String): Iota {
         var path = node.substring(6)
         var namespace: String
         var colonIdx = path.indexOf(":")
@@ -23,17 +20,14 @@ object Code2Glyph : Prefix("glyph_") {
         }
 
         // try match glyph
-        var payload: String? = null
+        var payload: ResourceLocation? = null
         if (!path.startsWith("glyph_")) {
-            var tester = ResourceLocation(namespace, "glyph_$path")
-            if (GlyphRegistry.getSpellPart(tester) != null) payload = tester.toString()
+            var tester = ResourceLocation.tryBuild(namespace, "glyph_$path")
+            if (GlyphRegistry.getSpellPart(tester) != null) payload = tester
         }
-        if (payload == null) payload = ResourceLocation(namespace, path).toString()
+        if (payload == null) payload = ResourceLocation.tryBuild(namespace, path)!!
 
-        // avoid unstable api
-        val ret = CompoundTag()
-        ret.putString(HexIotaTypes.KEY_TYPE, KEY)
-        ret.putString(HexIotaTypes.KEY_DATA, payload)
-        return ret
+        // direct iota
+        return GlyphIota(payload)
     }
 }

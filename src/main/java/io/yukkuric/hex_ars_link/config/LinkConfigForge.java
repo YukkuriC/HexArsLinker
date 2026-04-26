@@ -2,23 +2,23 @@ package io.yukkuric.hex_ars_link.config;
 
 import at.petrak.hexcasting.api.misc.MediaConstants;
 import at.petrak.hexcasting.api.mod.HexConfig;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.config.ModConfig;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class LinkConfigForge implements LinkConfig.API {
-    public static ForgeConfigSpec.DoubleValue
+    public static ModConfigSpec.DoubleValue
             Cfg_ratioLv1,
             Cfg_ratioLv2,
             Cfg_ratioLv3,
             Cfg_ratioExtraMediaCasting,
             Cfg_costRatePatternMana;
-    public static ForgeConfigSpec.IntValue
+    public static ModConfigSpec.IntValue
             Cfg_extraOpsConsumedForCallbacks,
             Cfg_maxCallbackRecursionDepth,
             Cfg_maxGlyphLimitForPatterns;
-    public static ForgeConfigSpec.BooleanValue
+    public static ModConfigSpec.BooleanValue
             Cfg_useLegacyGlyphDisplay;
 
     @Override
@@ -59,7 +59,7 @@ public class LinkConfigForge implements LinkConfig.API {
     }
 
 
-    public LinkConfigForge(ForgeConfigSpec.Builder builder) {
+    public LinkConfigForge(ModConfigSpec.Builder builder) {
         Cfg_ratioLv1 = builder.comment(COMMENT_ratioLv1)
                 .defineInRange("ratioLv1", MediaConstants.DUST_UNIT / 100, 0, 1e10);
         Cfg_ratioLv2 = builder.comment(COMMENT_ratioLv2)
@@ -80,14 +80,14 @@ public class LinkConfigForge implements LinkConfig.API {
                 .defineInRange("maxGlyphLimitForPatterns", 10, 1, 114514);
     }
 
-    private static final Pair<LinkConfigForge, ForgeConfigSpec> CFG_REGISTRY;
+    private static final Pair<LinkConfigForge, ModConfigSpec> CFG_REGISTRY;
 
     static {
-        CFG_REGISTRY = new ForgeConfigSpec.Builder().configure(LinkConfigForge::new);
+        CFG_REGISTRY = new ModConfigSpec.Builder().configure(LinkConfigForge::new);
     }
 
-    public static void register(ModLoadingContext ctx) {
+    public static void register(ModContainer container) {
         LinkConfig.bind(CFG_REGISTRY.getKey());
-        ctx.registerConfig(ModConfig.Type.COMMON, CFG_REGISTRY.getValue());
+        container.registerConfig(ModConfig.Type.COMMON, CFG_REGISTRY.getValue());
     }
 }

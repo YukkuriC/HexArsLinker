@@ -12,7 +12,11 @@ import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 
-class PatternCaster(stack: ItemStack, val env: CastingEnvironment) : SpellCaster(stack) {
+class PatternCaster(val env: CastingEnvironment) : SpellCaster(1) {
+    init {
+        color = ParticleColor.fromInt(TYPE.color())
+    }
+
     override fun getSpellResolver(
         ctx: SpellContext,
         lvl: Level,
@@ -23,12 +27,6 @@ class PatternCaster(stack: ItemStack, val env: CastingEnvironment) : SpellCaster
     }
 
     companion object {
-        fun buildCaster(env: CastingEnvironment): PatternCaster {
-            val res = PatternCaster(CASTER_ITEM.value, env)
-            res.color = ParticleColor.fromInt(TYPE.color())
-            return res
-        }
-
         val CASTER_ITEM = lazy { ItemStack(ItemsRegistry.ARCHMAGE_SPELLBOOK) }
     }
 }

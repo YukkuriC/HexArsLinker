@@ -10,6 +10,7 @@ import at.petrak.hexcasting.api.casting.iota.Vec3Iota
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import at.petrak.hexcasting.api.misc.MediaConstants
 import at.petrak.hexcasting.ktxt.UseOnContext
+import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.api.spell.Spell
 import com.hollingsworth.arsnouveau.api.spell.SpellContext
 import com.hollingsworth.arsnouveau.api.spell.wrapped_caster.PlayerCaster
@@ -31,7 +32,8 @@ object OpTouchCast : SpellAction {
         val targetRaw = args.get(0)
         val pos: Vec3
         val target: Either<Entity, Vec3> = if (targetRaw is EntityIota) {
-            val inner = targetRaw.entity
+            val inner =
+                targetRaw.getOrFindEntity(env.world) ?: throw MishapInvalidIota.ofType(targetRaw, 0, "entity_or_vector")
             pos = inner.position()
             Either.left(inner)
         } else if (targetRaw is Vec3Iota) {
@@ -41,8 +43,9 @@ object OpTouchCast : SpellAction {
         env.assertVecInRange(pos)
 
         val spell = GlyphIota.grabSpell(args.getList(1))
-        val touchSpell = Spell(MethodTouch.INSTANCE)
-        touchSpell.recipe.addAll(spell.recipe)
+        val parts = arrayListOf<AbstractSpellPart>(MethodTouch.INSTANCE)
+        parts.addAll(spell.recipe())
+        val touchSpell = Spell(parts)
         val owner = env.caster
         val world = env.world
         val resolver = PatternResolver(
@@ -51,9 +54,9 @@ object OpTouchCast : SpellAction {
         )
         return SpellAction.Result(
             Action(target, resolver),
-            MediaConstants.DUST_UNIT * spell.spellSize + MediaConstants.SHARD_UNIT + resolver.mediaCost,
+            MediaConstants.DUST_UNIT * spell.size() + MediaConstants.SHARD_UNIT + resolver.mediaCost,
             listOf(),
-            1 + spell.spellSize.toLong()
+            1 + spell.size().toLong()
         )
     }
 

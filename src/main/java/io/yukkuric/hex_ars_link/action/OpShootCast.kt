@@ -7,6 +7,7 @@ import at.petrak.hexcasting.api.casting.getList
 import at.petrak.hexcasting.api.casting.getVec3
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.misc.MediaConstants
+import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
 import com.hollingsworth.arsnouveau.api.spell.Spell
 import com.hollingsworth.arsnouveau.api.spell.SpellContext
 import com.hollingsworth.arsnouveau.api.spell.wrapped_caster.PlayerCaster
@@ -28,17 +29,18 @@ object OpShootCast : SpellAction {
         val spell = GlyphIota.grabSpell(raw)
         val owner = env.caster
         val world = env.world
-        val projSpell = Spell(MethodProjectile.INSTANCE)
-        projSpell.recipe.addAll(spell.recipe)
+        val parts = arrayListOf<AbstractSpellPart>(MethodProjectile.INSTANCE)
+        parts.addAll(spell.recipe())
+        val projSpell = Spell(parts)
         val resolver = PatternResolver(
             SpellContext(world, projSpell, owner, PlayerCaster.from(owner)),
             env, MethodProjectile.INSTANCE.castingCost
         )
         return SpellAction.Result(
             Action(pos, dir, resolver),
-            MediaConstants.DUST_UNIT * spell.spellSize + MediaConstants.SHARD_UNIT + resolver.mediaCost,
+            MediaConstants.DUST_UNIT * spell.size() + MediaConstants.SHARD_UNIT + resolver.mediaCost,
             listOf(),
-            1 + spell.spellSize.toLong()
+            1 + spell.size().toLong()
         )
     }
 
