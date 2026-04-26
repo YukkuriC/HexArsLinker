@@ -46,6 +46,7 @@ public class HexArsLink {
         // hex iota interop
         modBus.addListener((RegisterEvent event) -> {
             buildRegBinder(event, Registries.ITEM, HexArsLinkItems::register);
+            buildRegBinder(event, Registries.DATA_COMPONENT_TYPE, HexArsLinkItems.DataComps::register);
             buildRegBinder(event, HexRegistries.ACTION, HexArsActions::registerActions);
             buildRegBinder(event, HexRegistries.IOTA_TYPE, GlyphIota::registerSelf);
         });

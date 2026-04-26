@@ -1,7 +1,7 @@
 package io.yukkuric.hex_ars_link.items;
 
-import at.petrak.hexcasting.api.utils.NBTHelper;
 import at.petrak.hexcasting.common.items.magic.ItemMediaHolder;
+import at.petrak.hexcasting.common.lib.HexDataComponents;
 import com.hollingsworth.arsnouveau.api.util.ManaUtil;
 import com.hollingsworth.arsnouveau.setup.registry.CapabilityRegistry;
 import net.minecraft.ChatFormatting;
@@ -13,7 +13,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -57,7 +56,8 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
     public void setMedia(ItemStack stack, long i) {
         var player = getOwner(stack);
         // forge only
-        CapabilityRegistry.getMana(player).ifPresent(mana -> mana.setMana(((double) i) / getConvertRatio()));
+        var mana = CapabilityRegistry.getMana(player);
+        mana.setMana(((double) i) / getConvertRatio());
         super.setMedia(stack, i);
     }
 
@@ -74,16 +74,14 @@ public class ItemLinker extends ItemMediaHolder implements OwnerBinder {
         var rawMedia = getMediaRaw(owner);
         var rawCap = getMaxMediaRaw(owner);
         if (rawMedia != super.getMedia(stack)) super.setMedia(stack, rawMedia);
-        if (rawCap != super.getMaxMedia(stack)) NBTHelper.putLong(stack, TAG_MAX_MEDIA, rawCap);
-        if (owner != null) NBTHelper.putString(stack, "name", owner.getName().getString());
-        else NBTHelper.remove(stack, "name");
+        if (rawCap != super.getMaxMedia(stack)) stack.set(HexDataComponents.MEDIA_MAX, rawCap);
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public void appendHoverText(ItemStack pStack, TooltipContext context, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("tooltip.hex_ars_link.linker.ratio", getConvertRatio()).withStyle(ChatFormatting.GRAY));
         appendOwnerTooltip(pStack, pTooltipComponents);
-        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        super.appendHoverText(pStack, context, pTooltipComponents, pIsAdvanced);
     }
 
     public int getConsumptionPriority(ItemStack stack) {
