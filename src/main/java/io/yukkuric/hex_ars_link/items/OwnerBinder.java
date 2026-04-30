@@ -29,7 +29,7 @@ public interface OwnerBinder {
         if (player.isShiftKeyDown()) setOwner(stack, null);
         else setOwner(stack, player);
 
-        return InteractionResultHolder.success(player.getItemInHand(hand));
+        return InteractionResultHolder.success(stack);
     }
 
     default void appendOwnerTooltip(ItemStack stack, List<Component> tooltips) {
