@@ -6,13 +6,13 @@
   },
   "pedestalItems": [
     {
-      "tag": "forge:ingots/netherite"
+      "tag": "c:ingots/netherite"
     },
     {
       "item": "minecraft:dragon_breath"
     },
     {
-      "tag": "forge:ingots/netherite"
+      "tag": "c:ingots/netherite"
     },
     {
       "item": "ars_nouveau:wilden_tribute"
