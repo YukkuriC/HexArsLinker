@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+      <title>Hex-Ars Linker Book</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="description" content="The Hex-Ars Linker Book, all in one place." />
+      <meta name="author" content="YukkuriC" />
+        <link rel="None" type="image/ico" href="favicon.ico" />
+        <link rel="icon" type="image/png" href="favicon-16x16.png" />
+        <link rel="icon" type="image/png" href="favicon-32x32.png" />
+        <link rel="icon" type="image/png" href="favicon-64x64.png" />
+        <link rel="icon" type="image/png" href="favicon-96x96.png" />
+        <link rel="icon" type="image/png" href="favicon-180x180.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-152x152.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-167x167.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-180x180.png" />
+        <link rel="None" type="image/png" href="mstile-70x70.png" />
+        <link rel="None" type="image/png" href="mstile-270x270.png" />
+        <link rel="None" type="image/png" href="mstile-310x310.png" />
+        <link rel="None" type="image/png" href="mstile-310x150.png" />
+        <link rel="shortcut icon" type="image/png" href="favicon-196x196.png" />
+      <link rel="mask-icon" href="https://raw.githubusercontent.com/hexdoc-dev/hexdoc/main/media/safari-pinned-tab.svg" color="#332233">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Hex-Ars Linker Book" />
+<meta property="og:image" content="http://hexarslink.hexxy.media/v/0.9.5.1/1.1/zh_cn/cover.png" />
+<meta property="og:url" content="http://hexarslink.hexxy.media/v/0.9.5.1/1.1/zh_cn" />
+<meta property="og:description" content="The Hex-Ars Linker Book, all in one place." />
+<meta property="og:site_name" content="Hex-Ars Linker (0.9.5.1)" />
+      <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="index.css">
+      <link rel="stylesheet" href="textures.css">
+      <noscript>
+        <style>
+          /* for accessibility */
+          .spoilered {
+            filter: none !important;
+          }
+        </style>
+      </noscript>
+        <script type="module" src="index.js"></script>
+  <script type="module" src="hexcasting.js"></script>
+  <script type="module" src="hexcasting_render.js"></script>
+  </head>
+  <body>
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button
+        type="button"
+        class="navbar-toggle collapsed"
+        data-toggle="collapse"
+        data-target="#navbar-collapse"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../..">Hex-Ars Linker Book</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+            <li>
+    <a
+      href="https://github.com/YukkuriC/HexArsLinker/tree/30ba3913a16b3bac718866fe19be8476945d0ebb"
+        target="_blank"
+      class="navbar-link"
+      role="button"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >GitHub <i class="bi bi-box-arrow-up-right external-link-icon"></i></a>
+  </li>
+        <li class="dropdown">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >0.9.5.1 <span class="caret"></span></a>
+          <ul class="dropdown-menu" id="version-dropdown"></ul>
+        </li>
+        <li class="dropdown">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >简体中文 (中国大陆) <span class="caret"></span></a>
+          <ul class="dropdown-menu dropdown-menu-left" id="lang-dropdown"></ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container" style="margin-top: 3em;">
+  <blockquote>
+      <h1><p>这是Hex-Ars Linker文档的在线版本。</p></h1>
+      <p><strong>条目的模糊处理相当于剧透警告</strong>。点击条目即可取消模糊，不过这么做有可能破坏游戏后期的进程与体验。也可点击<a href="?nospoiler">此处</a>以取消所有模糊。</p>
+      <span id="old-version-notice" class="hidden">
+        <br />
+        <p><i>往事犹若异乡；他们在那里做的事情都不一样。</i></p>
+      </span>
+  </blockquote>
+</div>
+<div class="container">
+<div id="table-of-contents"></div>
+<nav class="toc-container">
+  <h2 class="page-header">
+    <span class="nobr">目录<a
+      href="javascript:void(0)"
+      class="permalink toggle-link small"
+      data-target="toc-category"
+      title="显示或收起全部"
+    ><i class="bi bi-list-nested"></i></a><a
+    href="#table-of-contents"
+    class="permalink small toc-permalink"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></span>
+  </h2>
+    <details class="toc-category">
+      <summary><a href="#items" class="toc-elem "><img
+      title="核心"
+      alt="核心"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/eefaf2d411b6360519c9f56fbfe6b0dfba047425/Common/src/main/resources/assets/hexcasting/textures/item/cad/0_focus_empty.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 物品</a></summary>
+      <ul>
+          <li><a href="#hex_ars_link/linkers" class="toc-elem "><img
+      title="魔力媒质链接 (大杯)"
+      alt="魔力媒质链接 (大杯)"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/src/main/resources/assets/hex_ars_link/textures/item/linker_advanced.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 魔力媒质链接</a></li>
+      </ul>
+    </details>
+    <details class="toc-category">
+      <summary><a href="#patterns" class="toc-elem "><img
+      title="书架"
+      alt="书架"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/bookshelf.png"
+      loading="lazy"
+      class="item-texture  texture "
+    > 图案</a></summary>
+      <ul>
+          <li><a href="#hex_ars_link/glyph_patterns" class="toc-elem "><img
+      title="item.hex_ars_link.hex_callback"
+      alt="item.hex_ars_link.hex_callback"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/src/main/resources/assets/hex_ars_link/textures/item/hex_callback.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 魔符操纵图案</a></li>
+      </ul>
+    </details>
+</nav>
+  <main class="book-body">
+<section id="items">
+    <h2 class="category-title page-header">
+    <img
+      title="核心"
+      alt="核心"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/eefaf2d411b6360519c9f56fbfe6b0dfba047425/Common/src/main/resources/assets/hexcasting/textures/item/cad/0_focus_empty.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >物品<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#items"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>这部分主要介绍我在研究过程中可能要用到的魔法物品和各类神秘物品。</p>
+<div id="hex_ars_link/linkers" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="魔力媒质链接 (大杯)"
+      alt="魔力媒质链接 (大杯)"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/src/main/resources/assets/hex_ars_link/textures/item/linker_advanced.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >魔力媒质链接<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#hex_ars_link/linkers"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>可以将我的<span style="color: #8d6acc">魔力值</span>转化为<span style="color: #74b3f2">媒质</span>的神奇妙妙工具。当我使用它时，它将绑定至我的蓝条；若我潜行时使用它则会解绑。<br />绑定的链接道具类似一个<span style="color: #b0b">媒质之瓶</span>，在从中抽取媒质时会相应抽取我的魔力。更高级的链接道具有着更高的转换率。</p>
+<br />
+  <div>
+    <p><a href="#hex_ars_link/linkers@lv1"><span style="color: #b0b">魔力媒质链接 (中杯)</span></a>将每<strong>100.00</strong>点魔力转换为等量于<strong>1.00</strong><span style="color: #b0b">紫水晶粉</span>的媒质。<br /></p>
+</div>
+<div>
+    <p><a href="#hex_ars_link/linkers@lv2"><span style="color: #b0b">魔力媒质链接 (大杯)</span></a>将每<strong>20.00</strong>点魔力转换为等量于<strong>1.00</strong><span style="color: #b0b">紫水晶粉</span>的媒质。<br /></p>
+</div>
+<div>
+    <p><a href="#hex_ars_link/linkers@lv3"><span style="color: #b0b">魔力媒质链接 (超大杯)</span></a>将每<strong>4.00</strong>点魔力转换为等量于<strong>1.00</strong><span style="color: #b0b">紫水晶粉</span>的媒质。<br /></p>
+</div>
+<div>
+    <p><i>注：全部转换率可配置，此处显示为默认值。</i></p>
+</div>
+<br />
+  <div id="hex_ars_link/linkers@lv1" class="">
+  <details class="details-collapsible recipe-details">
+      <summary class="collapse-details">
+    <span class="collapse-recipe-show">点击以显示配方</span>
+    <span class="collapse-recipe-hide">点击以隐藏配方</span>
+  </summary>
+    <div class="">
+<div>
+    <h5>魔力媒质链接 (中杯)</h5>
+    <div class="crafting-table recipe">
+        <img
+      title="item.ars_nouveau.enchanting_apparatus"
+      alt="item.ars_nouveau.enchanting_apparatus"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/doc/resources/assets/ars_nouveau/textures/gui/hexdoc/enchanting_apparatus.png"
+      class="texture pixelated"
+    >
+<div class="recipe-item-slot" style="top: 50px; left:50px">
+        <img
+      title="紫水晶碎片"
+      alt="紫水晶碎片"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/amethyst_shard.png"
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+  <div class="recipe-item-slot" style="top: 0px; left:0px">     <div class="recipe-item-slot texture item-texture multi-textures cycle-textures">
+            <img
+      title="Tag: Gold Ingots"
+      alt="Tag: Gold Ingots"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAC4jAAAuIwF4pT92AAAANUlEQVQ4y2NgGJRAXV39v7q6+n9cfGTARKllFBvAiOxMUjTevHmTkSouGPhAHA0DWnmBrgAANLIZgSXEQxIAAAAASUVORK5CYII="
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+      <img
+      title="金锭"
+      alt="金锭"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/gold_ingot.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >
+    </div>
+    <div class="recipe-item-slot texture item-texture multi-textures cycle-textures">
+            <img
+      title="Tag: Gold Ingots"
+      alt="Tag: Gold Ingots"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAC4jAAAuIwF4pT92AAAANUlEQVQ4y2NgGJRAXV39v7q6+n9cfGTARKllFBvAiOxMUjTevHmTkSouGPhAHA0DWnmBrgAANLIZgSXEQxIAAAAASUVORK5CYII="
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+      <img
+      title="金锭"
+      alt="金锭"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/gold_ingot.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >
+    </div>
+    <script>
+      (() => {
+        let me = document.currentScript
+        let parent = me.parentElement
+        let items = Array.from(parent.childNodes).filter(x => x.tagName == 'DIV')
+        let offset = 0
+        let radius = 40
+        applyPositions()
+        // setInterval(applyPositions, 1000)
+        function applyPositions() {
+          for (let i = 0; i < items.length; i++) {
+            let angle = Math.PI * 2 * (i + offset) / items.length + offset
+            let dx = radius * Math.cos(angle)
+            let dy = radius * Math.sin(angle)
+            Object.assign(items[i].style, {
+              left: dx + 'px',
+              top: dy + 'px'
+            })
+          }
+          // offset = (offset + 0.05) % items.length
+        }
+      })()
+    </script>
+  </div>
+</div>
+<div class="crafting-table-result recipe-item-slot">
+  <img
+      title="魔力媒质链接 (中杯)"
+      alt="魔力媒质链接 (中杯)"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/src/main/resources/assets/hex_ars_link/textures/item/linker_base.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >
+</div>
+    </div>
+</div>
+    </div>
+  </details>
+  </div>
+<br />
+  <div id="hex_ars_link/linkers@lv2" class="">
+  <details class="details-collapsible recipe-details">
+      <summary class="collapse-details">
+    <span class="collapse-recipe-show">点击以显示配方</span>
+    <span class="collapse-recipe-hide">点击以隐藏配方</span>
+  </summary>
+    <div class="">
+<div>
+    <h5>魔力媒质链接 (大杯)</h5>
+    <div class="crafting-table recipe">
+        <img
+      title="item.ars_nouveau.enchanting_apparatus"
+      alt="item.ars_nouveau.enchanting_apparatus"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/doc/resources/assets/ars_nouveau/textures/gui/hexdoc/enchanting_apparatus.png"
+      class="texture pixelated"
+    >
+<div class="recipe-item-slot" style="top: 50px; left:50px">
+        <img
+      title="魔力媒质链接 (中杯)"
+      alt="魔力媒质链接 (中杯)"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/src/main/resources/assets/hex_ars_link/textures/item/linker_base.png"
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+  <div class="recipe-item-slot" style="top: 0px; left:0px">     <div class="recipe-item-slot texture item-texture multi-textures cycle-textures">
+            <img
+      title="Tag: Diamond Gems"
+      alt="Tag: Diamond Gems"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAC4jAAAuIwF4pT92AAAANUlEQVQ4y2NgGJRAXV39v7q6+n9cfGTARKllFBvAiOxMUjTevHmTkSouGPhAHA0DWnmBrgAANLIZgSXEQxIAAAAASUVORK5CYII="
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+      <img
+      title="钻石"
+      alt="钻石"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/diamond.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >
+    </div>
+    <div class="recipe-item-slot texture item-texture multi-textures cycle-textures">
+            <img
+      title="回响碎片"
+      alt="回响碎片"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/echo_shard.png"
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+    </div>
+    <div class="recipe-item-slot texture item-texture multi-textures cycle-textures">
+            <img
+      title="Tag: Diamond Gems"
+      alt="Tag: Diamond Gems"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAC4jAAAuIwF4pT92AAAANUlEQVQ4y2NgGJRAXV39v7q6+n9cfGTARKllFBvAiOxMUjTevHmTkSouGPhAHA0DWnmBrgAANLIZgSXEQxIAAAAASUVORK5CYII="
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+      <img
+      title="钻石"
+      alt="钻石"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/diamond.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >
+    </div>
+    <div class="recipe-item-slot texture item-texture multi-textures cycle-textures">
+            <img
+      title="下界之星"
+      alt="下界之星"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/nether_star.png"
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+    </div>
+    <script>
+      (() => {
+        let me = document.currentScript
+        let parent = me.parentElement
+        let items = Array.from(parent.childNodes).filter(x => x.tagName == 'DIV')
+        let offset = 0
+        let radius = 40
+        applyPositions()
+        // setInterval(applyPositions, 1000)
+        function applyPositions() {
+          for (let i = 0; i < items.length; i++) {
+            let angle = Math.PI * 2 * (i + offset) / items.length + offset
+            let dx = radius * Math.cos(angle)
+            let dy = radius * Math.sin(angle)
+            Object.assign(items[i].style, {
+              left: dx + 'px',
+              top: dy + 'px'
+            })
+          }
+          // offset = (offset + 0.05) % items.length
+        }
+      })()
+    </script>
+  </div>
+</div>
+<div class="crafting-table-result recipe-item-slot">
+  <img
+      title="魔力媒质链接 (大杯)"
+      alt="魔力媒质链接 (大杯)"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/src/main/resources/assets/hex_ars_link/textures/item/linker_advanced.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >
+</div>
+    </div>
+</div>
+    </div>
+  </details>
+  </div>
+<br />
+  <div id="hex_ars_link/linkers@lv3" class="">
+  <details class="details-collapsible recipe-details">
+      <summary class="collapse-details">
+    <span class="collapse-recipe-show">点击以显示配方</span>
+    <span class="collapse-recipe-hide">点击以隐藏配方</span>
+  </summary>
+    <div class="">
+<div>
+    <h5>魔力媒质链接 (超大杯)</h5>
+    <div class="crafting-table recipe">
+        <img
+      title="item.ars_nouveau.enchanting_apparatus"
+      alt="item.ars_nouveau.enchanting_apparatus"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/doc/resources/assets/ars_nouveau/textures/gui/hexdoc/enchanting_apparatus.png"
+      class="texture pixelated"
+    >
+<div class="recipe-item-slot" style="top: 50px; left:50px">
+        <img
+      title="魔力媒质链接 (大杯)"
+      alt="魔力媒质链接 (大杯)"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/src/main/resources/assets/hex_ars_link/textures/item/linker_advanced.png"
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+  <div class="recipe-item-slot" style="top: 0px; left:0px">     <div class="recipe-item-slot texture item-texture multi-textures cycle-textures">
+            <img
+      title="Tag: Netherite Ingots"
+      alt="Tag: Netherite Ingots"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAC4jAAAuIwF4pT92AAAANUlEQVQ4y2NgGJRAXV39v7q6+n9cfGTARKllFBvAiOxMUjTevHmTkSouGPhAHA0DWnmBrgAANLIZgSXEQxIAAAAASUVORK5CYII="
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+      <img
+      title="下界合金锭"
+      alt="下界合金锭"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/netherite_ingot.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >
+    </div>
+    <div class="recipe-item-slot texture item-texture multi-textures cycle-textures">
+            <img
+      title="龙息"
+      alt="龙息"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/dragon_breath.png"
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+    </div>
+    <div class="recipe-item-slot texture item-texture multi-textures cycle-textures">
+            <img
+      title="Tag: Netherite Ingots"
+      alt="Tag: Netherite Ingots"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAC4jAAAuIwF4pT92AAAANUlEQVQ4y2NgGJRAXV39v7q6+n9cfGTARKllFBvAiOxMUjTevHmTkSouGPhAHA0DWnmBrgAANLIZgSXEQxIAAAAASUVORK5CYII="
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+      <img
+      title="下界合金锭"
+      alt="下界合金锭"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/netherite_ingot.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >
+    </div>
+    <div class="recipe-item-slot texture item-texture multi-textures cycle-textures">
+            <img
+      title="荒野供物"
+      alt="荒野供物"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/doc/resources/assets/ars_nouveau/textures/item/wilden_tribute.png"
+      loading="lazy"
+      class="item-texture multi-texture-active texture pixelated"
+    >
+    </div>
+    <script>
+      (() => {
+        let me = document.currentScript
+        let parent = me.parentElement
+        let items = Array.from(parent.childNodes).filter(x => x.tagName == 'DIV')
+        let offset = 0
+        let radius = 40
+        applyPositions()
+        // setInterval(applyPositions, 1000)
+        function applyPositions() {
+          for (let i = 0; i < items.length; i++) {
+            let angle = Math.PI * 2 * (i + offset) / items.length + offset
+            let dx = radius * Math.cos(angle)
+            let dy = radius * Math.sin(angle)
+            Object.assign(items[i].style, {
+              left: dx + 'px',
+              top: dy + 'px'
+            })
+          }
+          // offset = (offset + 0.05) % items.length
+        }
+      })()
+    </script>
+  </div>
+</div>
+<div class="crafting-table-result recipe-item-slot">
+  <img
+      title="魔力媒质链接 (超大杯)"
+      alt="魔力媒质链接 (超大杯)"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/src/main/resources/assets/hex_ars_link/textures/item/linker_great.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >
+</div>
+    </div>
+</div>
+    </div>
+  </details>
+  </div>
+<br />
+</div>
+</section>
+<section id="patterns">
+    <h2 class="category-title page-header">
+    <img
+      title="书架"
+      alt="书架"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/bookshelf.png"
+      loading="lazy"
+      class="item-texture  texture "
+    >图案<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#patterns"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>我所发现的各式图案，和它们的功用。</p>
+<div id="hex_ars_link/glyph_patterns" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="item.hex_ars_link.hex_callback"
+      alt="item.hex_ars_link.hex_callback"
+      src="https://raw.githubusercontent.com/YukkuriC/HexArsLinker/30ba3913a16b3bac718866fe19be8476945d0ebb/src/main/resources/assets/hex_ars_link/textures/item/hex_callback.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >魔符操纵图案<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#hex_ars_link/glyph_patterns"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+  <div id="hex_ars_link/glyph_patterns@hex_ars_link:read_glyphs" class="">
+<h4 class="pattern-title">读取魔符 (entity → [glyph])<a
+    href="#hex_ars_link/glyph_patterns@hex_ars_link:read_glyphs"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="qwaawewaawdwaqwqqqwq"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：qwaawewaawdwaqwqqqwq</canvas>
+  </details>
+      <p>从给定的实体读取所有魔符：可以是一个道具例如魔符、施法道具、法术羊皮纸等，或包含上述道具的展示框，或一个学习了魔符的玩家。<br />如果我选择拒绝<span style="color: #8d6acc">HexParse</span>的邪恶力量，这将是唯一的获取魔符iota的方式。</p>
+  </div>
+<br />
+  <div id="hex_ars_link/glyph_patterns@hex_ars_link:cast_spell" class="">
+<h4 class="pattern-title">施放法术 ([glyph] →)<a
+    href="#hex_ars_link/glyph_patterns@hex_ars_link:cast_spell"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="qwaawewaawdwawwawwqwwaww"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：qwaawewaawdwawwawwqwwaww</canvas>
+  </details>
+      <p>从我自己施放给定的法术。<br />所使用的每个魔符将花费<span style="color: #74b3f2">1 粉末</span>媒质。</p>
+  </div>
+<br />
+  <div id="hex_ars_link/glyph_patterns@hex_ars_link:cast_spell_shoot" class="">
+<h4 class="pattern-title">弹射物法术 (vec, vec, [glyph] →)<a
+    href="#hex_ars_link/glyph_patterns@hex_ars_link:cast_spell_shoot"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="qaeaqewqwaawewaawdwawwawwqwwaww"
+        data-start="north_west"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：qaeaqewqwaawewaawdwawwawwqwwaww</canvas>
+  </details>
+      <p>从给定位置与角度施放弹射物法术。给定法术列表前将自动添加一个<span style="color: #b0b">魔符：弹射物</span>。<br />所使用的每个魔符将花费<span style="color: #74b3f2">1 粉末</span>媒质，并且额外花费<span style="color: #74b3f2">1 紫水晶</span>媒质。</p>
+  </div>
+<br />
+  <div id="hex_ars_link/glyph_patterns@hex_ars_link:cast_spell_touch" class="">
+<h4 class="pattern-title">触摸法术 (vec/entity, [glyph] →)<a
+    href="#hex_ars_link/glyph_patterns@hex_ars_link:cast_spell_touch"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="wwqwaawewaawdwawwawwqwwaww"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：wwqwaawewaawdwawwawwqwwaww</canvas>
+  </details>
+      <p>在给定的位置或实体上施放给定法术。法术列表前将自动添加一个<span style="color: #b0b">魔符：触摸</span>。<br />所使用的每个魔符将花费<span style="color: #74b3f2">1 粉末</span>媒质，并且额外花费<span style="color: #74b3f2">1 紫水晶</span>媒质。</p>
+  </div>
+<br />
+  <div id="hex_ars_link/glyph_patterns@hex_ars_link:cast_spell_as" class="">
+<h4 class="pattern-title">代理法术 (player, [glyph] →)<a
+    href="#hex_ars_link/glyph_patterns@hex_ars_link:cast_spell_as"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="aqaeqwaawewaawdwawwawwqwwawwwded"
+        data-start="north_west"
+        data-per-world="True"
+      >浏览器不支持图案的可视化。图案代码见此：aqaeqwaawewaawdwawwawwqwwawwwded</canvas>
+  </details>
+      <p>使用给定玩家的真名施放法术。<br />所使用的每个魔符将花费<span style="color: #74b3f2">1 充能水晶</span>媒质。</p>
+  </div>
+<br />
+  <div id="hex_ars_link/glyph_patterns@hex_ars_link:set_callback" class="">
+<h4 class="pattern-title">注册回调 (list →)<a
+    href="#hex_ars_link/glyph_patterns@hex_ars_link:set_callback"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="qwaawewaawdqqwawwqwwawqdqdeaqq"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：qwaawewaawdqqwawwqwwawqdqdeaqq</canvas>
+  </details>
+      <p>将给定法术列表注册为回调，其将会在<span style="color: #b0b">&#34;触发回调&#34;</span>符文执行时运行。</p>
+  </div>
+<br />
+  <div id="hex_ars_link/glyph_patterns@hex_ars_link:get_callback" class="">
+<h4 class="pattern-title">获取回调 (→ list)<a
+    href="#hex_ars_link/glyph_patterns@hex_ars_link:get_callback"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="qwaawewaawdqqwawwqwwawqdeqqqqqa"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：qwaawewaawdqqwawwqwwawqdeqqqqqa</canvas>
+  </details>
+      <p>读取已注册的回调法术。</p>
+  </div>
+<br />
+  <div id="hex_ars_link/glyph_patterns@hex_ars_link:query_mana" class="">
+<h4 class="pattern-title">新生法力之精思 (→ list)<a
+    href="#hex_ars_link/glyph_patterns@hex_ars_link:query_mana"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="qwaawewaawdwea"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：qwaawewaawdwea</canvas>
+  </details>
+      <p>获取我当前的魔力值</p>
+  </div>
+<br />
+  <div id="hex_ars_link/glyph_patterns@hex_ars_link:query_mana_max" class="">
+<h4 class="pattern-title">新生奥术之精思 (→ list)<a
+    href="#hex_ars_link/glyph_patterns@hex_ars_link:query_mana_max"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="qwaawewaawdwqd"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：qwaawewaawdwqd</canvas>
+  </details>
+      <p>获取我最大可拥有的魔力值。</p>
+  </div>
+<br />
+</div>
+</section>
+  </main>
+</div>
+      <footer class="footer">
+        <div class="container text-muted">
+          <p>该页面不是Minecraft的官方产品，不隶属于Mojang和Microsoft，且不代表Mojang和Microsoft的意见。</p><p>Minecraft的游戏内容和资源均为各自所有者的知识财产。</p><p>使用<a href="https://pypi.org/project/hexdoc/" target="_blank">hexdoc</a>精心制作。❤️</p>
+        </div>
+      </footer>
+  </body>
+</html>
