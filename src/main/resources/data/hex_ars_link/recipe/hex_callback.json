@@ -1,28 +1,22 @@
 {
   "type": "ars_nouveau:glyph",
-  "count": 1,
   "exp": 27,
-  "inputItems": [
+  "inputs": [
     {
-      "item": {
-        "item": "ars_nouveau:manipulation_essence"
-      }
+      "item": "ars_nouveau:manipulation_essence"
     },
     {
-      "item": {
-        "item": "hexcasting:focus"
-      }
+      "item": "hexcasting:focus"
     },
     {
-      "item": {
-        "item": "hexcasting:artifact"
-      }
+      "item": "hexcasting:artifact"
     },
     {
-      "item": {
-        "item": "hexcasting:charged_amethyst"
-      }
+      "item": "hexcasting:charged_amethyst"
     }
   ],
-  "output": "hex_ars_link:hex_callback"
+  "output": {
+    "count": 1,
+    "id": "hex_ars_link:hex_callback"
+  }
 }

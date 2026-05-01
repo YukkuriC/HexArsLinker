@@ -1,8 +1,9 @@
 {
   "type": "ars_nouveau:enchanting_apparatus",
   "keepNbtOfReagent": true,
-  "output": {
-    "item": "hex_ars_link:linker_advanced"
+  "result": {
+    "count": 1,
+    "id": "hex_ars_link:linker_advanced"
   },
   "pedestalItems": [
     {
