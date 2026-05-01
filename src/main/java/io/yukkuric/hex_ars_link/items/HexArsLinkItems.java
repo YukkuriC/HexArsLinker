@@ -4,26 +4,34 @@ import at.petrak.hexcasting.common.lib.HexCreativeTabs;
 import com.hollingsworth.arsnouveau.setup.registry.CreativeTabRegistry;
 import io.yukkuric.hex_ars_link.HexArsLink;
 import io.yukkuric.hex_ars_link.config.LinkConfig;
+import kotlin.Lazy;
+import kotlin.LazyKt;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
-import java.util.*;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.*;
 
 public class HexArsLinkItems {
-    public static Map<ResourceLocation, Item> ITEMS = new LinkedHashMap<>();
+    public static Map<ResourceLocation, Lazy<? extends Item>> ITEMS = new LinkedHashMap<>();
 
     // levelled linkers
-    public static final ItemLinker LINKER_BASE = bind("linker_base", new ItemLinker(LinkConfig::ratioLv1, tool()));
-    public static final ItemLinker LINKER_ADVANCED = bind("linker_advanced", new ItemLinker(LinkConfig::ratioLv2, tool()));
-    public static final ItemLinker LINKER_GREAT = bind("linker_great", new ItemLinker(LinkConfig::ratioLv3, tool()));
+    public static final Lazy<ItemLinker> LINKER_BASE = bind("linker_base", () -> new ItemLinker(LinkConfig::ratioLv1, tool()));
+    public static final Lazy<ItemLinker> LINKER_ADVANCED = bind("linker_advanced", () -> new ItemLinker(LinkConfig::ratioLv2, tool()));
+    public static final Lazy<ItemLinker> LINKER_GREAT = bind("linker_great", () -> new ItemLinker(LinkConfig::ratioLv3, tool()));
+    public static final Lazy<ItemLinker[]> ALL_LINKERS = LazyKt.lazy(() -> new ItemLinker[]{
+            LINKER_BASE.getValue(),
+            LINKER_ADVANCED.getValue(),
+            LINKER_GREAT.getValue(),
+    });
 
-    static <T extends Item> T bind(String id, T obj) {
-        ITEMS.put(HexArsLink.halModLoc(id), obj);
-        return obj;
+    static <T extends Item> Lazy<T> bind(String id, Supplier<T> obj) {
+        var lazyObj = LazyKt.lazy(obj::get);
+        ITEMS.put(HexArsLink.halModLoc(id), lazyObj);
+        return lazyObj;
     }
 
     public static Item.Properties tool() {
@@ -32,13 +40,13 @@ public class HexArsLinkItems {
 
     public static void register(BiConsumer<ResourceLocation, Item> regFunc) {
         for (var entry : ITEMS.entrySet()) {
-            regFunc.accept(entry.getKey(), entry.getValue());
+            regFunc.accept(entry.getKey(), entry.getValue().getValue());
         }
     }
 
     public static void HookCreativeTabs(CreativeModeTab tab, Consumer<Item> regFunc) {
         if (tab.equals(HexCreativeTabs.HEX) || tab.equals(CreativeTabRegistry.BLOCKS.get())) {
-            for (var item : ITEMS.values()) regFunc.accept(item);
+            for (var item : ITEMS.values()) regFunc.accept(item.getValue());
         }
     }
 

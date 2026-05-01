@@ -17,12 +17,12 @@ object HALDocuments : Documentation() {
     fun addPages(event: AddEntries) {
         addPage(
             MyBuilder(DocumentationRegistry.ITEMS, "linkers")
-                .withIcon(HexArsLinkItems.LINKER_ADVANCED)
+                .withIcon(HexArsLinkItems.LINKER_ADVANCED.value)
                 .withTitle(Component.translatable("item.hex_ars_link.linkers"))
                 .withTextPage("hex_ars_link.page.linkers.0.ars")
-                .withCraftingPages("linker_lv1", HexArsLinkItems.LINKER_BASE)
-                .withCraftingPages("linker_lv2", HexArsLinkItems.LINKER_ADVANCED)
-                .withCraftingPages("linker_lv3", HexArsLinkItems.LINKER_GREAT)
+                .withCraftingPages("linker_lv1", HexArsLinkItems.LINKER_BASE.value)
+                .withCraftingPages("linker_lv2", HexArsLinkItems.LINKER_ADVANCED.value)
+                .withCraftingPages("linker_lv3", HexArsLinkItems.LINKER_GREAT.value)
         )
     }
 

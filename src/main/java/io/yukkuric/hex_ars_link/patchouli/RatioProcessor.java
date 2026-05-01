@@ -1,15 +1,13 @@
 package io.yukkuric.hex_ars_link.patchouli;
 
 import at.petrak.hexcasting.api.misc.MediaConstants;
-import io.yukkuric.hex_ars_link.items.HexArsLinkItems;
-import io.yukkuric.hex_ars_link.items.ItemLinker;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import vazkii.patchouli.api.*;
 
-public class RatioProcessor implements IComponentProcessor {
-    static ItemLinker[] TARGETS = new ItemLinker[]{HexArsLinkItems.LINKER_BASE, HexArsLinkItems.LINKER_ADVANCED, HexArsLinkItems.LINKER_GREAT};
+import static io.yukkuric.hex_ars_link.items.HexArsLinkItems.ALL_LINKERS;
 
+public class RatioProcessor implements IComponentProcessor {
     @Override
     public void setup(Level level, IVariableProvider iVariableProvider) {
     }
@@ -18,7 +16,7 @@ public class RatioProcessor implements IComponentProcessor {
     public IVariable process(Level level, String s) {
         var linkId = 1;
         var sb = new StringBuilder();
-        for (var item : TARGETS) {
+        for (var item : ALL_LINKERS.getValue()) {
             double valMana = 1, valDust = item.getConvertRatio() / MediaConstants.DUST_UNIT;
             if (valDust > 0 && valDust < 1) {
                 valMana = 1 / valDust;
