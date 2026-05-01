@@ -77,7 +77,7 @@ class GlyphIota(val key: ResourceLocation) : Iota({ TYPE }) {
         }
 
         fun grabSpell(raw: SpellList, isDelegated: Boolean = false): Spell {
-            val ret = Spell()
+            val ret = ArrayList<AbstractSpellPart>()
             for (sub in raw) {
                 if (sub !is GlyphIota) continue
                 val part = sub.getSpellPart() ?: continue
@@ -89,8 +89,8 @@ class GlyphIota(val key: ResourceLocation) : Iota({ TYPE }) {
                 }
                 ret.add(part)
             }
-            if (ret.size() > LinkConfig.maxGlyphLimitForPatterns()) throw MishapEvalTooMuch()
-            return ret
+            if (ret.size > LinkConfig.maxGlyphLimitForPatterns()) throw MishapEvalTooMuch()
+            return Spell(ret)
         }
     }
 }
