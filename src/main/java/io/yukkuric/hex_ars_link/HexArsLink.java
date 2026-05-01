@@ -5,6 +5,7 @@ import com.hollingsworth.arsnouveau.setup.registry.APIRegistry;
 import com.mojang.logging.LogUtils;
 import io.yukkuric.hex_ars_link.action.HexArsActions;
 import io.yukkuric.hex_ars_link.config.LinkConfigForge;
+import io.yukkuric.hex_ars_link.doc.HALDocuments;
 import io.yukkuric.hex_ars_link.glyph.HexCallbackSpellPart;
 import io.yukkuric.hex_ars_link.iota.GlyphIota;
 import io.yukkuric.hex_ars_link.items.HexArsLinkItems;
@@ -42,6 +43,7 @@ public class HexArsLink {
 
         // Register ourselves for server and other game events we are interested in
         NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(HALDocuments.INSTANCE);
 
         // hex iota interop
         modBus.addListener((RegisterEvent event) -> {
