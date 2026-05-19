@@ -17,6 +17,7 @@ import net.minecraft.server.MinecraftServer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -43,7 +44,8 @@ public class HexArsLink {
 
         // Register ourselves for server and other game events we are interested in
         NeoForge.EVENT_BUS.register(this);
-        NeoForge.EVENT_BUS.register(HALDocuments.INSTANCE);
+        if (FMLEnvironment.dist.isClient())
+            NeoForge.EVENT_BUS.register(HALDocuments.INSTANCE);
 
         // hex iota interop
         modBus.addListener((RegisterEvent event) -> {
