@@ -33,7 +33,7 @@ object OpTouchCast : SpellAction {
         val pos: Vec3
         val target: Either<Entity, Vec3> = if (targetRaw is EntityIota) {
             val inner =
-                targetRaw.getOrFindEntity(env.world) ?: throw MishapInvalidIota.ofType(targetRaw, 0, "entity_or_vector")
+                targetRaw.getEntity(env.world) ?: throw MishapInvalidIota.ofType(targetRaw, 0, "entity_or_vector")
             pos = inner.position()
             Either.left(inner)
         } else if (targetRaw is Vec3Iota) {

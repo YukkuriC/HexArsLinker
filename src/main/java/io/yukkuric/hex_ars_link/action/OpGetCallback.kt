@@ -11,7 +11,7 @@ object OpGetCallback : ConstMediaAction {
     override val argc = 0
 
     override fun execute(args: List<Iota>, env: CastingEnvironment): List<Iota> {
-        val spell = CallbackStorage.Get(env.caster) ?: return listOf(NullIota.INSTANCE)
+        val spell = CallbackStorage.Get(env.caster) ?: return listOf(NullIota())
         return listOf(ListIota(spell))
     }
 }
