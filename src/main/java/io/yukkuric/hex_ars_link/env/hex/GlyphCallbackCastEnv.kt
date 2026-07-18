@@ -4,6 +4,7 @@ import at.petrak.hexcasting.api.casting.eval.env.StaffCastEnv
 import at.petrak.hexcasting.api.casting.eval.vm.CastingImage
 import at.petrak.hexcasting.api.casting.eval.vm.CastingVM
 import at.petrak.hexcasting.api.casting.iota.Iota
+import at.petrak.hexcasting.api.utils.TreeList
 import com.hollingsworth.arsnouveau.api.spell.SpellResolver
 import io.yukkuric.hex_ars_link.config.LinkConfig
 import io.yukkuric.hex_ars_link.env.ars.PatternResolver
@@ -23,7 +24,7 @@ class GlyphCallbackCastEnv(caster: ServerPlayer, val hitPos: Vec3, resolver: Spe
 
     fun getVM(init: Iota) = CastingVM(
         CastingImage().copy(
-            stack = listOf(init),
+            stack = TreeList.from(listOf(init)),
             opsConsumed = LinkConfig.extraOpsConsumedForCallbacks().toLong()
         ), this
     )

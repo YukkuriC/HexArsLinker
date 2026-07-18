@@ -1,6 +1,8 @@
 package io.yukkuric.hex_ars_link.env.hex;
 
-import at.petrak.hexcasting.api.casting.SpellList;
+import at.petrak.hexcasting.api.casting.iota.Iota;
+import at.petrak.hexcasting.api.casting.iota.IotaType;
+import at.petrak.hexcasting.api.utils.TreeList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
@@ -21,25 +23,25 @@ public class CallbackStorage extends SavedData {
         var ds = level.getDataStorage();
         return ds.computeIfAbsent(FACTORY, SAVENAME);
     }
-    public static void Put(ServerPlayer player, SpellList callback) {
+    public static void Put(ServerPlayer player, TreeList<Iota> callback) {
         getInstance(player.serverLevel()).put(player, callback);
     }
-    public static @Nullable SpellList Get(ServerPlayer player) {
+    public static @Nullable TreeList<Iota> Get(ServerPlayer player) {
         return getInstance(player.serverLevel()).get(player);
     }
 
-    public void put(ServerPlayer player, SpellList callback) {
+    public void put(ServerPlayer player, TreeList<Iota> callback) {
         var uuid = player.getUUID();
-        var result = SpellList.getCODEC().encodeStart(NbtOps.INSTANCE, callback);
+        var result = TreeList.codecOf(IotaType.TYPED_CODEC).encodeStart(NbtOps.INSTANCE, callback);
         result.ifSuccess(tag -> {
             pool.put(uuid, tag);
             setDirty();
         });
     }
-    public @Nullable SpellList get(ServerPlayer player) {
+    public @Nullable TreeList<Iota> get(ServerPlayer player) {
         var raw = pool.get(player.getUUID());
         if (raw == null) return null;
-        var result = SpellList.getCODEC().decode(NbtOps.INSTANCE, raw);
+        var result = TreeList.codecOf(IotaType.TYPED_CODEC).decode(NbtOps.INSTANCE, raw);
         if (result.isSuccess()) {
             return result.getOrThrow().getFirst();
         }

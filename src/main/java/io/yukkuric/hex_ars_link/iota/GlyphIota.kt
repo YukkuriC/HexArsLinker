@@ -1,9 +1,9 @@
 package io.yukkuric.hex_ars_link.iota
 
-import at.petrak.hexcasting.api.casting.SpellList
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.IotaType
 import at.petrak.hexcasting.api.casting.mishaps.MishapEvalTooMuch
+import at.petrak.hexcasting.api.utils.TreeList
 import at.petrak.hexcasting.api.utils.asTranslatedComponent
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart
@@ -76,7 +76,7 @@ class GlyphIota(val key: ResourceLocation) : Iota({ TYPE }) {
             }
         }
 
-        fun grabSpell(raw: SpellList, isDelegated: Boolean = false): Spell {
+        fun grabSpell(raw: TreeList<Iota>, isDelegated: Boolean = false): Spell {
             val ret = ArrayList<AbstractSpellPart>()
             for (sub in raw) {
                 if (sub !is GlyphIota) continue
