@@ -45,7 +45,7 @@ public class HexArsLinkItems {
     }
 
     public static void HookCreativeTabs(CreativeModeTab tab, Consumer<Item> regFunc) {
-        if (tab.equals(HexCreativeTabs.HEX) || tab.equals(CreativeTabRegistry.BLOCKS.get())) {
+        if (tab.equals(HexCreativeTabs.HEX.value()) || tab.equals(CreativeTabRegistry.BLOCKS.get())) {
             for (var item : ITEMS.values()) regFunc.accept(item.getValue());
         }
     }
