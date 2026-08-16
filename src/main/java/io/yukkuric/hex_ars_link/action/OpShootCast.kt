@@ -15,6 +15,7 @@ import com.hollingsworth.arsnouveau.common.entity.EntityProjectileSpell
 import com.hollingsworth.arsnouveau.common.spell.method.MethodProjectile
 import io.yukkuric.hex_ars_link.env.ars.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
+import io.yukkuric.hex_ars_link.legacy.caster
 import net.minecraft.world.phys.Vec3
 import kotlin.math.max
 

@@ -8,6 +8,7 @@ import at.petrak.hexcasting.api.misc.MediaConstants
 import io.yukkuric.hex_ars_link.env.ars.PatternCaster
 import io.yukkuric.hex_ars_link.env.ars.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
+import io.yukkuric.hex_ars_link.legacy.caster
 
 object OpCastMyself : SpellAction {
     override val argc = 1
