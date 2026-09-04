@@ -1,3 +1,6 @@
+libs/**.jar
+yclib/**.jar
+
 # hexdoc
 _site/
 _checkout/
