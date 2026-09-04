@@ -19,7 +19,7 @@ import com.mojang.datafixers.util.Either
 import io.yukkuric.hex_ars_link.env.ars.PatternCaster
 import io.yukkuric.hex_ars_link.env.ars.PatternResolver
 import io.yukkuric.hex_ars_link.iota.GlyphIota
-import io.yukkuric.hex_ars_link.legacy.caster
+import io.yukkuric.yclib_kt.legacy.caster
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.world.entity.Entity

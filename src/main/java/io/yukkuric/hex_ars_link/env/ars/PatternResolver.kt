@@ -6,7 +6,7 @@ import com.hollingsworth.arsnouveau.api.spell.SpellContext
 import com.hollingsworth.arsnouveau.api.spell.SpellResolver
 import com.hollingsworth.arsnouveau.api.spell.wrapped_caster.PlayerCaster
 import io.yukkuric.hex_ars_link.config.LinkConfig
-import io.yukkuric.hex_ars_link.legacy.caster
+import io.yukkuric.yclib_kt.legacy.caster
 
 class PatternResolver(ctx: SpellContext?, val env: CastingEnvironment, val omitCost: Int = 0) :
     SpellResolver(ctx) {

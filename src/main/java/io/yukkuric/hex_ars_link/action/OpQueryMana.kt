@@ -7,7 +7,7 @@ import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadCaster
 import com.hollingsworth.arsnouveau.api.mana.IManaCap
 import com.hollingsworth.arsnouveau.setup.registry.CapabilityRegistry
-import io.yukkuric.hex_ars_link.legacy.caster
+import io.yukkuric.yclib_kt.legacy.caster
 
 abstract class OpQueryMana : ConstMediaAction {
     override val argc = 0
