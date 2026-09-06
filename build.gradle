@@ -24,7 +24,7 @@ project.mod_version = "${minecraft_version}-${mod_version_base}"
 group = mod_group_id
 version = mod_version
 
-apply from: 'https://raw.githubusercontent.com/YukkuriC/YCLib-Minecraft/refs/heads/main/download_me.groovy'
+apply from: file('build/yclib_boot.groovy').tap { if (!exists()) { parentFile.mkdirs(); bytes = new URL('https://raw.githubusercontent.com/YukkuriC/YCLib-Minecraft/refs/heads/main/download_me.groovy').bytes } }
 
 base {
     archivesName = mod_id
@@ -149,7 +149,6 @@ repositories {
     maven { url 'https://maven.blamejared.com' }
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     mavenCentral()
-    flatDir { dir "yclib" }
 }
 
 dependencies {
@@ -187,14 +186,6 @@ dependencies {
 //    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     implementation fileTree(dir: "libs/$minecraft_version", include: '*.jar')
-
-    implementation "yclib:yclib:$yclib_version"
-    jarJar("yclib:yclib") {
-        version {
-            strictly '[0, )'
-            prefer yclib_version
-        }
-    }
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
