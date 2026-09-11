@@ -6,7 +6,7 @@ import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.ListIota
 import at.petrak.hexcasting.api.casting.iota.NullIota
 import io.yukkuric.hex_ars_link.env.hex.CallbackStorage
-import io.yukkuric.yclib_kt.legacy.caster
+import io.yukkuric.hex_ars_link.legacy.caster
 
 object OpGetCallback : ConstMediaAction {
     override val argc = 0
