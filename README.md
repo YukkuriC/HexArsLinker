@@ -21,3 +21,9 @@ Adds `callback` glyph and corresponding `set_callback` pattern.
 When `callback` glyph is executed at a position/an entity, the spell consumed by `set_callback` pattern will be executed with certain initial stack.
 
 ![img](src/main/resources/cover.png)
+
+## Credits
+
+The recovered legacy Patchouli stuff under `src/main/java/io/yukkuric/hex_ars_link/legacy/patchouli` are taken from
+[Ars Nouveau](https://github.com/baileyholl/Ars-Nouveau/tree/1.21.x), which is licensed under LGPL-3.0.
+The GNU LGPL-3.0 and GNU GPL-3.0 texts are bundled in the mod jar under `META-INF/`.

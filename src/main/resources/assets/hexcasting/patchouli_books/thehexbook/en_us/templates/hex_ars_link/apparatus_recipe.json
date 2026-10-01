@@ -1,5 +1,5 @@
 {
-  "processor": "com.hollingsworth.arsnouveau.client.patchouli.ApparatusProcessor",
+  "processor": "io.yukkuric.hex_ars_link.legacy.patchouli.ApparatusProcessor",
   "components": [
     {
       "type": "patchouli:header",
@@ -9,7 +9,7 @@
     },
     {
       "type": "patchouli:custom",
-      "class": "com.hollingsworth.arsnouveau.client.patchouli.component.RotatingItemListComponent",
+      "class": "io.yukkuric.hex_ars_link.legacy.patchouli.RotatingItemListComponent",
       "x": -1,
       "y": 21,
       "recipe_type": "enchanting_apparatus",

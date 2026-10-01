@@ -1,0 +1,11 @@
+License notice for Hex-Ars Linker
+=================================
+
+Hex-Ars Linker is licensed under MIT, except for the packages listed below.
+
+LGPL-3.0 -- see LICENSE-LGPL-3.0.txt and LICENSE-GPL-3.0.txt
+------------------------------------------------------------
+
+Package: io.yukkuric.hex_ars_link.legacy.patchouli 
+
+Source: Ars Nouveau (https://github.com/baileyholl/Ars-Nouveau/tree/1.21.x), LGPL-3.0.
