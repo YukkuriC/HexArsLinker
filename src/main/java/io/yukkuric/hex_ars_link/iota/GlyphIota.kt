@@ -1,5 +1,6 @@
 package io.yukkuric.hex_ars_link.iota
 
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.IotaType
 import at.petrak.hexcasting.api.casting.mishaps.MishapEvalTooMuch
@@ -53,7 +54,7 @@ class GlyphIota(val key: ResourceLocation) : Iota({ TYPE }) {
     }
 
     fun getSpellPart() = GlyphRegistry.getSpellPart(key)
-    override fun isTruthy() = true
+    override fun isTruthy(env: CastingEnvironment?) = true
     override fun toleratesOther(other: Iota?) = other is GlyphIota && key == other.key
     override fun display() = TYPE.display(this)
     override fun hashCode() = key.hashCode()
